@@ -1,0 +1,2477 @@
+
+AtmegaRom.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000004a  00800100  00001208  0000129c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00001208  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          000000ff  0080014a  0080014a  000012e6  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000012e6  2**0
+                  CONTENTS, READONLY
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	1d c0       	rjmp	.+58     	; 0x3c <__dtors_end>
+       2:	41 c0       	rjmp	.+130    	; 0x86 <__bad_interrupt>
+       4:	40 c0       	rjmp	.+128    	; 0x86 <__bad_interrupt>
+       6:	3f c0       	rjmp	.+126    	; 0x86 <__bad_interrupt>
+       8:	3e c0       	rjmp	.+124    	; 0x86 <__bad_interrupt>
+       a:	3d c0       	rjmp	.+122    	; 0x86 <__bad_interrupt>
+       c:	3c c0       	rjmp	.+120    	; 0x86 <__bad_interrupt>
+       e:	3b c0       	rjmp	.+118    	; 0x86 <__bad_interrupt>
+      10:	3a c0       	rjmp	.+116    	; 0x86 <__bad_interrupt>
+      12:	39 c0       	rjmp	.+114    	; 0x86 <__bad_interrupt>
+      14:	38 c0       	rjmp	.+112    	; 0x86 <__bad_interrupt>
+      16:	37 c0       	rjmp	.+110    	; 0x86 <__bad_interrupt>
+      18:	36 c0       	rjmp	.+108    	; 0x86 <__bad_interrupt>
+      1a:	35 c0       	rjmp	.+106    	; 0x86 <__bad_interrupt>
+      1c:	01 c2       	rjmp	.+1026   	; 0x420 <__vector_14>
+      1e:	33 c0       	rjmp	.+102    	; 0x86 <__bad_interrupt>
+      20:	32 c0       	rjmp	.+100    	; 0x86 <__bad_interrupt>
+      22:	31 c0       	rjmp	.+98     	; 0x86 <__bad_interrupt>
+      24:	30 c0       	rjmp	.+96     	; 0x86 <__bad_interrupt>
+      26:	2f c0       	rjmp	.+94     	; 0x86 <__bad_interrupt>
+      28:	2e c0       	rjmp	.+92     	; 0x86 <__bad_interrupt>
+      2a:	2d c0       	rjmp	.+90     	; 0x86 <__bad_interrupt>
+      2c:	2c c0       	rjmp	.+88     	; 0x86 <__bad_interrupt>
+      2e:	2b c0       	rjmp	.+86     	; 0x86 <__bad_interrupt>
+      30:	2a c0       	rjmp	.+84     	; 0x86 <__bad_interrupt>
+      32:	29 c0       	rjmp	.+82     	; 0x86 <__bad_interrupt>
+
+00000034 <__ctors_start>:
+      34:	a5 01       	movw	r20, r10
+      36:	37 02       	muls	r19, r23
+
+00000038 <__ctors_end>:
+      38:	ab 01       	movw	r20, r22
+      3a:	3d 02       	muls	r19, r29
+
+0000003c <__dtors_end>:
+      3c:	11 24       	eor	r1, r1
+      3e:	1f be       	out	0x3f, r1	; 63
+      40:	cf ef       	ldi	r28, 0xFF	; 255
+      42:	d4 e0       	ldi	r29, 0x04	; 4
+      44:	de bf       	out	0x3e, r29	; 62
+      46:	cd bf       	out	0x3d, r28	; 61
+
+00000048 <__do_copy_data>:
+      48:	11 e0       	ldi	r17, 0x01	; 1
+      4a:	a0 e0       	ldi	r26, 0x00	; 0
+      4c:	b1 e0       	ldi	r27, 0x01	; 1
+      4e:	e8 e0       	ldi	r30, 0x08	; 8
+      50:	f2 e1       	ldi	r31, 0x12	; 18
+      52:	02 c0       	rjmp	.+4      	; 0x58 <__do_copy_data+0x10>
+      54:	05 90       	lpm	r0, Z+
+      56:	0d 92       	st	X+, r0
+      58:	aa 34       	cpi	r26, 0x4A	; 74
+      5a:	b1 07       	cpc	r27, r17
+      5c:	d9 f7       	brne	.-10     	; 0x54 <__do_copy_data+0xc>
+
+0000005e <__do_clear_bss>:
+      5e:	22 e0       	ldi	r18, 0x02	; 2
+      60:	aa e4       	ldi	r26, 0x4A	; 74
+      62:	b1 e0       	ldi	r27, 0x01	; 1
+      64:	01 c0       	rjmp	.+2      	; 0x68 <.do_clear_bss_start>
+
+00000066 <.do_clear_bss_loop>:
+      66:	1d 92       	st	X+, r1
+
+00000068 <.do_clear_bss_start>:
+      68:	a9 34       	cpi	r26, 0x49	; 73
+      6a:	b2 07       	cpc	r27, r18
+      6c:	e1 f7       	brne	.-8      	; 0x66 <.do_clear_bss_loop>
+
+0000006e <__do_global_ctors>:
+      6e:	10 e0       	ldi	r17, 0x00	; 0
+      70:	c8 e3       	ldi	r28, 0x38	; 56
+      72:	d0 e0       	ldi	r29, 0x00	; 0
+      74:	03 c0       	rjmp	.+6      	; 0x7c <__do_global_ctors+0xe>
+      76:	22 97       	sbiw	r28, 0x02	; 2
+      78:	fe 01       	movw	r30, r28
+      7a:	aa d8       	rcall	.-3756   	; 0xfffff1d0 <__eeprom_end+0xff7ef1d0>
+      7c:	c4 33       	cpi	r28, 0x34	; 52
+      7e:	d1 07       	cpc	r29, r17
+      80:	d1 f7       	brne	.-12     	; 0x76 <__do_global_ctors+0x8>
+      82:	32 d1       	rcall	.+612    	; 0x2e8 <main>
+      84:	b5 c8       	rjmp	.-3734   	; 0xfffff1f0 <__eeprom_end+0xff7ef1f0>
+
+00000086 <__bad_interrupt>:
+      86:	bc cf       	rjmp	.-136    	; 0x0 <__vectors>
+
+00000088 <_Z19VerticalMotorUpdateh>:
+      88:	93 b1       	in	r25, 0x03	; 3
+      8a:	8f 73       	andi	r24, 0x3F	; 63
+      8c:	90 7c       	andi	r25, 0xC0	; 192
+      8e:	89 2b       	or	r24, r25
+      90:	85 b9       	out	0x05, r24	; 5
+      92:	08 95       	ret
+
+00000094 <_Z21HorizontalMotorUpdateh>:
+      94:	96 b1       	in	r25, 0x06	; 6
+      96:	8f 73       	andi	r24, 0x3F	; 63
+      98:	90 7c       	andi	r25, 0xC0	; 192
+      9a:	89 2b       	or	r24, r25
+      9c:	88 b9       	out	0x08, r24	; 8
+      9e:	08 95       	ret
+
+000000a0 <_Z14SendHeadStatusv>:
+      a0:	84 e5       	ldi	r24, 0x54	; 84
+      a2:	91 e0       	ldi	r25, 0x01	; 1
+      a4:	17 d3       	rcall	.+1582   	; 0x6d4 <_ZN11MotorDriver8GetAngleEv>
+      a6:	9b 01       	movw	r18, r22
+      a8:	ac 01       	movw	r20, r24
+      aa:	20 5c       	subi	r18, 0xC0	; 192
+      ac:	34 4f       	sbci	r19, 0xF4	; 244
+      ae:	4f 4f       	sbci	r20, 0xFF	; 255
+      b0:	5f 4f       	sbci	r21, 0xFF	; 255
+      b2:	66 eb       	ldi	r22, 0xB6	; 182
+      b4:	70 e6       	ldi	r23, 0x60	; 96
+      b6:	8b e0       	ldi	r24, 0x0B	; 11
+      b8:	90 e0       	ldi	r25, 0x00	; 0
+      ba:	01 d8       	rcall	.-4094   	; 0xfffff0be <__eeprom_end+0xff7ef0be>
+      bc:	60 93 4a 01 	sts	0x014A, r22
+      c0:	70 93 4b 01 	sts	0x014B, r23
+      c4:	80 93 4c 01 	sts	0x014C, r24
+      c8:	90 93 4d 01 	sts	0x014D, r25
+      cc:	88 e7       	ldi	r24, 0x78	; 120
+      ce:	91 e0       	ldi	r25, 0x01	; 1
+      d0:	01 d3       	rcall	.+1538   	; 0x6d4 <_ZN11MotorDriver8GetAngleEv>
+      d2:	9b 01       	movw	r18, r22
+      d4:	ac 01       	movw	r20, r24
+      d6:	20 56       	subi	r18, 0x60	; 96
+      d8:	3a 4f       	sbci	r19, 0xFA	; 250
+      da:	4f 4f       	sbci	r20, 0xFF	; 255
+      dc:	5f 4f       	sbci	r21, 0xFF	; 255
+      de:	6c e6       	ldi	r22, 0x6C	; 108
+      e0:	71 ec       	ldi	r23, 0xC1	; 193
+      e2:	86 e1       	ldi	r24, 0x16	; 22
+      e4:	90 e0       	ldi	r25, 0x00	; 0
+      e6:	eb d7       	rcall	.+4054   	; 0x10be <__mulsi3>
+      e8:	60 93 4e 01 	sts	0x014E, r22
+      ec:	70 93 4f 01 	sts	0x014F, r23
+      f0:	80 93 50 01 	sts	0x0150, r24
+      f4:	90 93 51 01 	sts	0x0151, r25
+      f8:	6a e4       	ldi	r22, 0x4A	; 74
+      fa:	71 e0       	ldi	r23, 0x01	; 1
+      fc:	80 91 9c 01 	lds	r24, 0x019C
+     100:	90 91 9d 01 	lds	r25, 0x019D
+     104:	87 c3       	rjmp	.+1806   	; 0x814 <_ZN19SerialCommunication10SendPacketEPh>
+
+00000106 <_Z18SetUpVerticalMotorv>:
+     106:	0f 93       	push	r16
+     108:	1f 93       	push	r17
+     10a:	65 e2       	ldi	r22, 0x25	; 37
+     10c:	71 e0       	ldi	r23, 0x01	; 1
+     10e:	88 e7       	ldi	r24, 0x78	; 120
+     110:	91 e0       	ldi	r25, 0x01	; 1
+     112:	df d1       	rcall	.+958    	; 0x4d2 <_ZN11MotorDriver14SetMotorStatesEP13_MOTOR_STATES>
+     114:	61 e0       	ldi	r22, 0x01	; 1
+     116:	88 e7       	ldi	r24, 0x78	; 120
+     118:	91 e0       	ldi	r25, 0x01	; 1
+     11a:	df d1       	rcall	.+958    	; 0x4da <_ZN11MotorDriver12SetGearRatioEh>
+     11c:	60 e9       	ldi	r22, 0x90	; 144
+     11e:	71 e0       	ldi	r23, 0x01	; 1
+     120:	88 e7       	ldi	r24, 0x78	; 120
+     122:	91 e0       	ldi	r25, 0x01	; 1
+     124:	dd d1       	rcall	.+954    	; 0x4e0 <_ZN11MotorDriver21SetStepsPerRevolutionEj>
+     126:	4a e0       	ldi	r20, 0x0A	; 10
+     128:	50 e0       	ldi	r21, 0x00	; 0
+     12a:	60 e0       	ldi	r22, 0x00	; 0
+     12c:	70 e0       	ldi	r23, 0x00	; 0
+     12e:	88 e7       	ldi	r24, 0x78	; 120
+     130:	91 e0       	ldi	r25, 0x01	; 1
+     132:	f6 d1       	rcall	.+1004   	; 0x520 <_ZN11MotorDriver11SetTresholdEl>
+     134:	00 ed       	ldi	r16, 0xD0	; 208
+     136:	12 e0       	ldi	r17, 0x02	; 2
+     138:	20 e0       	ldi	r18, 0x00	; 0
+     13a:	30 e0       	ldi	r19, 0x00	; 0
+     13c:	40 e3       	ldi	r20, 0x30	; 48
+     13e:	5d ef       	ldi	r21, 0xFD	; 253
+     140:	6f ef       	ldi	r22, 0xFF	; 255
+     142:	7f ef       	ldi	r23, 0xFF	; 255
+     144:	88 e7       	ldi	r24, 0x78	; 120
+     146:	91 e0       	ldi	r25, 0x01	; 1
+     148:	b1 d2       	rcall	.+1378   	; 0x6ac <_ZN11MotorDriver14SetLimitAnglesEll>
+     14a:	40 e4       	ldi	r20, 0x40	; 64
+     14c:	52 e4       	ldi	r21, 0x42	; 66
+     14e:	6f e0       	ldi	r22, 0x0F	; 15
+     150:	70 e0       	ldi	r23, 0x00	; 0
+     152:	88 e7       	ldi	r24, 0x78	; 120
+     154:	91 e0       	ldi	r25, 0x01	; 1
+     156:	ce d2       	rcall	.+1436   	; 0x6f4 <_ZN11MotorDriver9SetTimeotEm>
+     158:	88 e7       	ldi	r24, 0x78	; 120
+     15a:	91 e0       	ldi	r25, 0x01	; 1
+     15c:	1f 91       	pop	r17
+     15e:	0f 91       	pop	r16
+     160:	c2 c1       	rjmp	.+900    	; 0x4e6 <_ZN11MotorDriver5StartEv>
+
+00000162 <_Z20SetUpHorizontalMotorv>:
+     162:	0f 93       	push	r16
+     164:	1f 93       	push	r17
+     166:	60 e0       	ldi	r22, 0x00	; 0
+     168:	71 e0       	ldi	r23, 0x01	; 1
+     16a:	84 e5       	ldi	r24, 0x54	; 84
+     16c:	91 e0       	ldi	r25, 0x01	; 1
+     16e:	b1 d1       	rcall	.+866    	; 0x4d2 <_ZN11MotorDriver14SetMotorStatesEP13_MOTOR_STATES>
+     170:	61 e0       	ldi	r22, 0x01	; 1
+     172:	84 e5       	ldi	r24, 0x54	; 84
+     174:	91 e0       	ldi	r25, 0x01	; 1
+     176:	b1 d1       	rcall	.+866    	; 0x4da <_ZN11MotorDriver12SetGearRatioEh>
+     178:	68 ec       	ldi	r22, 0xC8	; 200
+     17a:	70 e0       	ldi	r23, 0x00	; 0
+     17c:	84 e5       	ldi	r24, 0x54	; 84
+     17e:	91 e0       	ldi	r25, 0x01	; 1
+     180:	af d1       	rcall	.+862    	; 0x4e0 <_ZN11MotorDriver21SetStepsPerRevolutionEj>
+     182:	44 e1       	ldi	r20, 0x14	; 20
+     184:	50 e0       	ldi	r21, 0x00	; 0
+     186:	60 e0       	ldi	r22, 0x00	; 0
+     188:	70 e0       	ldi	r23, 0x00	; 0
+     18a:	84 e5       	ldi	r24, 0x54	; 84
+     18c:	91 e0       	ldi	r25, 0x01	; 1
+     18e:	c8 d1       	rcall	.+912    	; 0x520 <_ZN11MotorDriver11SetTresholdEl>
+     190:	00 e4       	ldi	r16, 0x40	; 64
+     192:	1b e0       	ldi	r17, 0x0B	; 11
+     194:	20 e0       	ldi	r18, 0x00	; 0
+     196:	30 e0       	ldi	r19, 0x00	; 0
+     198:	40 ec       	ldi	r20, 0xC0	; 192
+     19a:	54 ef       	ldi	r21, 0xF4	; 244
+     19c:	6f ef       	ldi	r22, 0xFF	; 255
+     19e:	7f ef       	ldi	r23, 0xFF	; 255
+     1a0:	84 e5       	ldi	r24, 0x54	; 84
+     1a2:	91 e0       	ldi	r25, 0x01	; 1
+     1a4:	83 d2       	rcall	.+1286   	; 0x6ac <_ZN11MotorDriver14SetLimitAnglesEll>
+     1a6:	40 e4       	ldi	r20, 0x40	; 64
+     1a8:	52 e4       	ldi	r21, 0x42	; 66
+     1aa:	6f e0       	ldi	r22, 0x0F	; 15
+     1ac:	70 e0       	ldi	r23, 0x00	; 0
+     1ae:	84 e5       	ldi	r24, 0x54	; 84
+     1b0:	91 e0       	ldi	r25, 0x01	; 1
+     1b2:	a0 d2       	rcall	.+1344   	; 0x6f4 <_ZN11MotorDriver9SetTimeotEm>
+     1b4:	84 e5       	ldi	r24, 0x54	; 84
+     1b6:	91 e0       	ldi	r25, 0x01	; 1
+     1b8:	1f 91       	pop	r17
+     1ba:	0f 91       	pop	r16
+     1bc:	94 c1       	rjmp	.+808    	; 0x4e6 <_ZN11MotorDriver5StartEv>
+
+000001be <_Z14PacketReceivedPh>:
+     1be:	cf 93       	push	r28
+     1c0:	df 93       	push	r29
+     1c2:	ec 01       	movw	r28, r24
+     1c4:	68 81       	ld	r22, Y
+     1c6:	79 81       	ldd	r23, Y+1	; 0x01
+     1c8:	8a 81       	ldd	r24, Y+2	; 0x02
+     1ca:	9b 81       	ldd	r25, Y+3	; 0x03
+     1cc:	26 eb       	ldi	r18, 0xB6	; 182
+     1ce:	30 e6       	ldi	r19, 0x60	; 96
+     1d0:	4b e0       	ldi	r20, 0x0B	; 11
+     1d2:	50 e0       	ldi	r21, 0x00	; 0
+     1d4:	83 d7       	rcall	.+3846   	; 0x10dc <__udivmodsi4>
+     1d6:	ba 01       	movw	r22, r20
+     1d8:	a9 01       	movw	r20, r18
+     1da:	40 54       	subi	r20, 0x40	; 64
+     1dc:	5b 40       	sbci	r21, 0x0B	; 11
+     1de:	61 09       	sbc	r22, r1
+     1e0:	71 09       	sbc	r23, r1
+     1e2:	84 e5       	ldi	r24, 0x54	; 84
+     1e4:	91 e0       	ldi	r25, 0x01	; 1
+     1e6:	70 d2       	rcall	.+1248   	; 0x6c8 <_ZN11MotorDriver8SetAngleEl>
+     1e8:	6c 81       	ldd	r22, Y+4	; 0x04
+     1ea:	7d 81       	ldd	r23, Y+5	; 0x05
+     1ec:	8e 81       	ldd	r24, Y+6	; 0x06
+     1ee:	9f 81       	ldd	r25, Y+7	; 0x07
+     1f0:	2c e6       	ldi	r18, 0x6C	; 108
+     1f2:	31 ec       	ldi	r19, 0xC1	; 193
+     1f4:	46 e1       	ldi	r20, 0x16	; 22
+     1f6:	50 e0       	ldi	r21, 0x00	; 0
+     1f8:	71 d7       	rcall	.+3810   	; 0x10dc <__udivmodsi4>
+     1fa:	ba 01       	movw	r22, r20
+     1fc:	a9 01       	movw	r20, r18
+     1fe:	40 5a       	subi	r20, 0xA0	; 160
+     200:	55 40       	sbci	r21, 0x05	; 5
+     202:	61 09       	sbc	r22, r1
+     204:	71 09       	sbc	r23, r1
+     206:	88 e7       	ldi	r24, 0x78	; 120
+     208:	91 e0       	ldi	r25, 0x01	; 1
+     20a:	df 91       	pop	r29
+     20c:	cf 91       	pop	r28
+     20e:	5c c2       	rjmp	.+1208   	; 0x6c8 <_ZN11MotorDriver8SetAngleEl>
+
+00000210 <_Z11SetUpMotorsv>:
+     210:	7a df       	rcall	.-268    	; 0x106 <_Z18SetUpVerticalMotorv>
+     212:	a7 cf       	rjmp	.-178    	; 0x162 <_Z20SetUpHorizontalMotorv>
+
+00000214 <_Z10SetupPortsv>:
+     214:	8f ef       	ldi	r24, 0xFF	; 255
+     216:	84 b9       	out	0x04, r24	; 4
+     218:	1a b8       	out	0x0a, r1	; 10
+     21a:	87 b9       	out	0x07, r24	; 7
+     21c:	18 b8       	out	0x08, r1	; 8
+     21e:	8b b9       	out	0x0b, r24	; 11
+     220:	15 b8       	out	0x05, r1	; 5
+     222:	08 95       	ret
+
+00000224 <_Z7TheLoopv>:
+     224:	80 91 9e 01 	lds	r24, 0x019E
+     228:	90 91 9f 01 	lds	r25, 0x019F
+     22c:	00 d7       	rcall	.+3584   	; 0x102e <_ZN20TimerEventDispatcher11CheckEventsEv>
+     22e:	80 91 c0 00 	lds	r24, 0x00C0
+     232:	87 ff       	sbrs	r24, 7
+     234:	05 c0       	rjmp	.+10     	; 0x240 <_Z7TheLoopv+0x1c>
+     236:	80 91 9c 01 	lds	r24, 0x019C
+     23a:	90 91 9d 01 	lds	r25, 0x019D
+     23e:	50 d3       	rcall	.+1696   	; 0x8e0 <_ZN19SerialCommunication11ReceiveDataEv>
+     240:	89 b1       	in	r24, 0x09	; 9
+     242:	8c 7f       	andi	r24, 0xFC	; 252
+     244:	8c 3f       	cpi	r24, 0xFC	; 252
+     246:	09 f4       	brne	.+2      	; 0x24a <_Z7TheLoopv+0x26>
+     248:	4e c0       	rjmp	.+156    	; 0x2e6 <_Z7TheLoopv+0xc2>
+     24a:	4f 99       	sbic	0x09, 7	; 9
+     24c:	06 c0       	rjmp	.+12     	; 0x25a <_Z7TheLoopv+0x36>
+     24e:	84 e5       	ldi	r24, 0x54	; 84
+     250:	91 e0       	ldi	r25, 0x01	; 1
+     252:	46 d2       	rcall	.+1164   	; 0x6e0 <_ZN11MotorDriver7SetZeroEv>
+     254:	88 e7       	ldi	r24, 0x78	; 120
+     256:	91 e0       	ldi	r25, 0x01	; 1
+     258:	43 d2       	rcall	.+1158   	; 0x6e0 <_ZN11MotorDriver7SetZeroEv>
+     25a:	4e 99       	sbic	0x09, 6	; 9
+     25c:	0c c0       	rjmp	.+24     	; 0x276 <_Z7TheLoopv+0x52>
+     25e:	88 e7       	ldi	r24, 0x78	; 120
+     260:	91 e0       	ldi	r25, 0x01	; 1
+     262:	38 d2       	rcall	.+1136   	; 0x6d4 <_ZN11MotorDriver8GetAngleEv>
+     264:	ab 01       	movw	r20, r22
+     266:	bc 01       	movw	r22, r24
+     268:	40 5c       	subi	r20, 0xC0	; 192
+     26a:	5f 4f       	sbci	r21, 0xFF	; 255
+     26c:	6f 4f       	sbci	r22, 0xFF	; 255
+     26e:	7f 4f       	sbci	r23, 0xFF	; 255
+     270:	88 e7       	ldi	r24, 0x78	; 120
+     272:	91 e0       	ldi	r25, 0x01	; 1
+     274:	29 d2       	rcall	.+1106   	; 0x6c8 <_ZN11MotorDriver8SetAngleEl>
+     276:	4d 99       	sbic	0x09, 5	; 9
+     278:	0c c0       	rjmp	.+24     	; 0x292 <_Z7TheLoopv+0x6e>
+     27a:	40 e0       	ldi	r20, 0x00	; 0
+     27c:	50 e0       	ldi	r21, 0x00	; 0
+     27e:	ba 01       	movw	r22, r20
+     280:	84 e5       	ldi	r24, 0x54	; 84
+     282:	91 e0       	ldi	r25, 0x01	; 1
+     284:	21 d2       	rcall	.+1090   	; 0x6c8 <_ZN11MotorDriver8SetAngleEl>
+     286:	40 e0       	ldi	r20, 0x00	; 0
+     288:	50 e0       	ldi	r21, 0x00	; 0
+     28a:	ba 01       	movw	r22, r20
+     28c:	88 e7       	ldi	r24, 0x78	; 120
+     28e:	91 e0       	ldi	r25, 0x01	; 1
+     290:	1b d2       	rcall	.+1078   	; 0x6c8 <_ZN11MotorDriver8SetAngleEl>
+     292:	4c 99       	sbic	0x09, 4	; 9
+     294:	0c c0       	rjmp	.+24     	; 0x2ae <_Z7TheLoopv+0x8a>
+     296:	84 e5       	ldi	r24, 0x54	; 84
+     298:	91 e0       	ldi	r25, 0x01	; 1
+     29a:	1c d2       	rcall	.+1080   	; 0x6d4 <_ZN11MotorDriver8GetAngleEv>
+     29c:	ab 01       	movw	r20, r22
+     29e:	bc 01       	movw	r22, r24
+     2a0:	40 54       	subi	r20, 0x40	; 64
+     2a2:	51 09       	sbc	r21, r1
+     2a4:	61 09       	sbc	r22, r1
+     2a6:	71 09       	sbc	r23, r1
+     2a8:	84 e5       	ldi	r24, 0x54	; 84
+     2aa:	91 e0       	ldi	r25, 0x01	; 1
+     2ac:	0d d2       	rcall	.+1050   	; 0x6c8 <_ZN11MotorDriver8SetAngleEl>
+     2ae:	4b 99       	sbic	0x09, 3	; 9
+     2b0:	0c c0       	rjmp	.+24     	; 0x2ca <_Z7TheLoopv+0xa6>
+     2b2:	88 e7       	ldi	r24, 0x78	; 120
+     2b4:	91 e0       	ldi	r25, 0x01	; 1
+     2b6:	0e d2       	rcall	.+1052   	; 0x6d4 <_ZN11MotorDriver8GetAngleEv>
+     2b8:	ab 01       	movw	r20, r22
+     2ba:	bc 01       	movw	r22, r24
+     2bc:	40 54       	subi	r20, 0x40	; 64
+     2be:	51 09       	sbc	r21, r1
+     2c0:	61 09       	sbc	r22, r1
+     2c2:	71 09       	sbc	r23, r1
+     2c4:	88 e7       	ldi	r24, 0x78	; 120
+     2c6:	91 e0       	ldi	r25, 0x01	; 1
+     2c8:	ff d1       	rcall	.+1022   	; 0x6c8 <_ZN11MotorDriver8SetAngleEl>
+     2ca:	4a 99       	sbic	0x09, 2	; 9
+     2cc:	0c c0       	rjmp	.+24     	; 0x2e6 <_Z7TheLoopv+0xc2>
+     2ce:	84 e5       	ldi	r24, 0x54	; 84
+     2d0:	91 e0       	ldi	r25, 0x01	; 1
+     2d2:	00 d2       	rcall	.+1024   	; 0x6d4 <_ZN11MotorDriver8GetAngleEv>
+     2d4:	ab 01       	movw	r20, r22
+     2d6:	bc 01       	movw	r22, r24
+     2d8:	40 5c       	subi	r20, 0xC0	; 192
+     2da:	5f 4f       	sbci	r21, 0xFF	; 255
+     2dc:	6f 4f       	sbci	r22, 0xFF	; 255
+     2de:	7f 4f       	sbci	r23, 0xFF	; 255
+     2e0:	84 e5       	ldi	r24, 0x54	; 84
+     2e2:	91 e0       	ldi	r25, 0x01	; 1
+     2e4:	f1 c1       	rjmp	.+994    	; 0x6c8 <_ZN11MotorDriver8SetAngleEl>
+     2e6:	08 95       	ret
+
+000002e8 <main>:
+     2e8:	84 b7       	in	r24, 0x34	; 52
+     2ea:	94 df       	rcall	.-216    	; 0x214 <_Z10SetupPortsv>
+     2ec:	41 d0       	rcall	.+130    	; 0x370 <_Z23InitGlobalServicesTablev>
+     2ee:	90 df       	rcall	.-224    	; 0x210 <_Z11SetUpMotorsv>
+     2f0:	c0 e5       	ldi	r28, 0x50	; 80
+     2f2:	d0 e0       	ldi	r29, 0x00	; 0
+     2f4:	80 91 9c 01 	lds	r24, 0x019C
+     2f8:	90 91 9d 01 	lds	r25, 0x019D
+     2fc:	7d d2       	rcall	.+1274   	; 0x7f8 <_ZN19SerialCommunication5StartEv>
+     2fe:	e0 91 9c 01 	lds	r30, 0x019C
+     302:	f0 91 9d 01 	lds	r31, 0x019D
+     306:	d1 83       	std	Z+1, r29	; 0x01
+     308:	c0 83       	st	Z, r28
+     30a:	ca de       	rcall	.-620    	; 0xa0 <_Z14SendHeadStatusv>
+     30c:	80 91 9c 01 	lds	r24, 0x019C
+     310:	90 91 9d 01 	lds	r25, 0x019D
+     314:	14 d2       	rcall	.+1064   	; 0x73e <_ZN19SerialCommunication8GetStateEv>
+     316:	85 30       	cpi	r24, 0x05	; 5
+     318:	11 f0       	breq	.+4      	; 0x31e <main+0x36>
+     31a:	84 df       	rcall	.-248    	; 0x224 <_Z7TheLoopv>
+     31c:	f7 cf       	rjmp	.-18     	; 0x30c <main+0x24>
+     31e:	40 e0       	ldi	r20, 0x00	; 0
+     320:	50 e0       	ldi	r21, 0x00	; 0
+     322:	ba 01       	movw	r22, r20
+     324:	84 e5       	ldi	r24, 0x54	; 84
+     326:	91 e0       	ldi	r25, 0x01	; 1
+     328:	cf d1       	rcall	.+926    	; 0x6c8 <_ZN11MotorDriver8SetAngleEl>
+     32a:	40 e0       	ldi	r20, 0x00	; 0
+     32c:	50 e0       	ldi	r21, 0x00	; 0
+     32e:	ba 01       	movw	r22, r20
+     330:	88 e7       	ldi	r24, 0x78	; 120
+     332:	91 e0       	ldi	r25, 0x01	; 1
+     334:	c9 d1       	rcall	.+914    	; 0x6c8 <_ZN11MotorDriver8SetAngleEl>
+     336:	2f ef       	ldi	r18, 0xFF	; 255
+     338:	8b e7       	ldi	r24, 0x7B	; 123
+     33a:	92 e9       	ldi	r25, 0x92	; 146
+     33c:	21 50       	subi	r18, 0x01	; 1
+     33e:	80 40       	sbci	r24, 0x00	; 0
+     340:	90 40       	sbci	r25, 0x00	; 0
+     342:	e1 f7       	brne	.-8      	; 0x33c <main+0x54>
+     344:	00 c0       	rjmp	.+0      	; 0x346 <main+0x5e>
+     346:	00 00       	nop
+     348:	d5 cf       	rjmp	.-86     	; 0x2f4 <main+0xc>
+
+0000034a <_GLOBAL__sub_I__Z19VerticalMotorUpdateh>:
+     34a:	88 e7       	ldi	r24, 0x78	; 120
+     34c:	91 e0       	ldi	r25, 0x01	; 1
+     34e:	9b d0       	rcall	.+310    	; 0x486 <_ZN11MotorDriverC1Ev>
+     350:	84 e5       	ldi	r24, 0x54	; 84
+     352:	91 e0       	ldi	r25, 0x01	; 1
+     354:	98 c0       	rjmp	.+304    	; 0x486 <_ZN11MotorDriverC1Ev>
+
+00000356 <_GLOBAL__sub_D__Z19VerticalMotorUpdateh>:
+     356:	84 e5       	ldi	r24, 0x54	; 84
+     358:	91 e0       	ldi	r25, 0x01	; 1
+     35a:	ba d0       	rcall	.+372    	; 0x4d0 <_ZN11MotorDriverD1Ev>
+     35c:	88 e7       	ldi	r24, 0x78	; 120
+     35e:	91 e0       	ldi	r25, 0x01	; 1
+     360:	b7 c0       	rjmp	.+366    	; 0x4d0 <_ZN11MotorDriverD1Ev>
+
+00000362 <_Z18SerialEventGatewayP12_TIMER_EVENTPv>:
+     362:	ab 01       	movw	r20, r22
+     364:	bc 01       	movw	r22, r24
+     366:	80 91 9c 01 	lds	r24, 0x019C
+     36a:	90 91 9d 01 	lds	r25, 0x019D
+     36e:	0e c3       	rjmp	.+1564   	; 0x98c <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv>
+
+00000370 <_Z23InitGlobalServicesTablev>:
+     370:	ef 92       	push	r14
+     372:	ff 92       	push	r15
+     374:	0f 93       	push	r16
+     376:	1f 93       	push	r17
+     378:	cf 93       	push	r28
+     37a:	df 93       	push	r29
+     37c:	cd b7       	in	r28, 0x3d	; 61
+     37e:	de b7       	in	r29, 0x3e	; 62
+     380:	cf 57       	subi	r28, 0x7F	; 127
+     382:	d1 09       	sbc	r29, r1
+     384:	0f b6       	in	r0, 0x3f	; 63
+     386:	f8 94       	cli
+     388:	de bf       	out	0x3e, r29	; 62
+     38a:	0f be       	out	0x3f, r0	; 63
+     38c:	cd bf       	out	0x3d, r28	; 61
+     38e:	ce 01       	movw	r24, r28
+     390:	01 96       	adiw	r24, 0x01	; 1
+     392:	5d d5       	rcall	.+2746   	; 0xe4e <_ZN20TimerEventDispatcherC1Ev>
+     394:	8f e7       	ldi	r24, 0x7F	; 127
+     396:	fe 01       	movw	r30, r28
+     398:	31 96       	adiw	r30, 0x01	; 1
+     39a:	a9 ec       	ldi	r26, 0xC9	; 201
+     39c:	b1 e0       	ldi	r27, 0x01	; 1
+     39e:	01 90       	ld	r0, Z+
+     3a0:	0d 92       	st	X+, r0
+     3a2:	8a 95       	dec	r24
+     3a4:	e1 f7       	brne	.-8      	; 0x39e <_Z23InitGlobalServicesTablev+0x2e>
+     3a6:	ce 01       	movw	r24, r28
+     3a8:	01 96       	adiw	r24, 0x01	; 1
+     3aa:	50 d5       	rcall	.+2720   	; 0xe4c <_ZN11TimerDriverD1Ev>
+     3ac:	ce 01       	movw	r24, r28
+     3ae:	01 96       	adiw	r24, 0x01	; 1
+     3b0:	a7 d1       	rcall	.+846    	; 0x700 <_ZN19SerialCommunicationC1Ev>
+     3b2:	89 e2       	ldi	r24, 0x29	; 41
+     3b4:	fe 01       	movw	r30, r28
+     3b6:	31 96       	adiw	r30, 0x01	; 1
+     3b8:	a0 ea       	ldi	r26, 0xA0	; 160
+     3ba:	b1 e0       	ldi	r27, 0x01	; 1
+     3bc:	01 90       	ld	r0, Z+
+     3be:	0d 92       	st	X+, r0
+     3c0:	8a 95       	dec	r24
+     3c2:	e1 f7       	brne	.-8      	; 0x3bc <_Z23InitGlobalServicesTablev+0x4c>
+     3c4:	ce 01       	movw	r24, r28
+     3c6:	4e 96       	adiw	r24, 0x1e	; 30
+     3c8:	fe d2       	rcall	.+1532   	; 0x9c6 <_ZN12SerialDriverD1Ev>
+     3ca:	e1 2c       	mov	r14, r1
+     3cc:	f1 2c       	mov	r15, r1
+     3ce:	01 eb       	ldi	r16, 0xB1	; 177
+     3d0:	11 e0       	ldi	r17, 0x01	; 1
+     3d2:	20 e0       	ldi	r18, 0x00	; 0
+     3d4:	31 ee       	ldi	r19, 0xE1	; 225
+     3d6:	45 ef       	ldi	r20, 0xF5	; 245
+     3d8:	55 e0       	ldi	r21, 0x05	; 5
+     3da:	61 e0       	ldi	r22, 0x01	; 1
+     3dc:	89 ec       	ldi	r24, 0xC9	; 201
+     3de:	91 e0       	ldi	r25, 0x01	; 1
+     3e0:	9d d5       	rcall	.+2874   	; 0xf1c <_ZN20TimerEventDispatcher11CreateEventE14TimerEventTypemPFvP12_TIMER_EVENTPvES3_>
+     3e2:	80 ea       	ldi	r24, 0xA0	; 160
+     3e4:	91 e0       	ldi	r25, 0x01	; 1
+     3e6:	08 d2       	rcall	.+1040   	; 0x7f8 <_ZN19SerialCommunication5StartEv>
+     3e8:	89 ec       	ldi	r24, 0xC9	; 201
+     3ea:	91 e0       	ldi	r25, 0x01	; 1
+     3ec:	90 93 9f 01 	sts	0x019F, r25
+     3f0:	80 93 9e 01 	sts	0x019E, r24
+     3f4:	80 ea       	ldi	r24, 0xA0	; 160
+     3f6:	91 e0       	ldi	r25, 0x01	; 1
+     3f8:	90 93 9d 01 	sts	0x019D, r25
+     3fc:	80 93 9c 01 	sts	0x019C, r24
+     400:	78 94       	sei
+     402:	80 e0       	ldi	r24, 0x00	; 0
+     404:	c1 58       	subi	r28, 0x81	; 129
+     406:	df 4f       	sbci	r29, 0xFF	; 255
+     408:	0f b6       	in	r0, 0x3f	; 63
+     40a:	f8 94       	cli
+     40c:	de bf       	out	0x3e, r29	; 62
+     40e:	0f be       	out	0x3f, r0	; 63
+     410:	cd bf       	out	0x3d, r28	; 61
+     412:	df 91       	pop	r29
+     414:	cf 91       	pop	r28
+     416:	1f 91       	pop	r17
+     418:	0f 91       	pop	r16
+     41a:	ff 90       	pop	r15
+     41c:	ef 90       	pop	r14
+     41e:	08 95       	ret
+
+00000420 <__vector_14>:
+     420:	1f 92       	push	r1
+     422:	0f 92       	push	r0
+     424:	0f b6       	in	r0, 0x3f	; 63
+     426:	0f 92       	push	r0
+     428:	11 24       	eor	r1, r1
+     42a:	2f 93       	push	r18
+     42c:	3f 93       	push	r19
+     42e:	4f 93       	push	r20
+     430:	5f 93       	push	r21
+     432:	6f 93       	push	r22
+     434:	7f 93       	push	r23
+     436:	8f 93       	push	r24
+     438:	9f 93       	push	r25
+     43a:	af 93       	push	r26
+     43c:	bf 93       	push	r27
+     43e:	ef 93       	push	r30
+     440:	ff 93       	push	r31
+     442:	80 91 9e 01 	lds	r24, 0x019E
+     446:	90 91 9f 01 	lds	r25, 0x019F
+     44a:	9b d5       	rcall	.+2870   	; 0xf82 <_ZN20TimerEventDispatcher16SysTimerOverflowEv>
+     44c:	ff 91       	pop	r31
+     44e:	ef 91       	pop	r30
+     450:	bf 91       	pop	r27
+     452:	af 91       	pop	r26
+     454:	9f 91       	pop	r25
+     456:	8f 91       	pop	r24
+     458:	7f 91       	pop	r23
+     45a:	6f 91       	pop	r22
+     45c:	5f 91       	pop	r21
+     45e:	4f 91       	pop	r20
+     460:	3f 91       	pop	r19
+     462:	2f 91       	pop	r18
+     464:	0f 90       	pop	r0
+     466:	0f be       	out	0x3f, r0	; 63
+     468:	0f 90       	pop	r0
+     46a:	1f 90       	pop	r1
+     46c:	18 95       	reti
+
+0000046e <_GLOBAL__sub_I_timer>:
+     46e:	89 ec       	ldi	r24, 0xC9	; 201
+     470:	91 e0       	ldi	r25, 0x01	; 1
+     472:	ed d4       	rcall	.+2522   	; 0xe4e <_ZN20TimerEventDispatcherC1Ev>
+     474:	80 ea       	ldi	r24, 0xA0	; 160
+     476:	91 e0       	ldi	r25, 0x01	; 1
+     478:	43 c1       	rjmp	.+646    	; 0x700 <_ZN19SerialCommunicationC1Ev>
+
+0000047a <_GLOBAL__sub_D_timer>:
+     47a:	8d eb       	ldi	r24, 0xBD	; 189
+     47c:	91 e0       	ldi	r25, 0x01	; 1
+     47e:	a3 d2       	rcall	.+1350   	; 0x9c6 <_ZN12SerialDriverD1Ev>
+     480:	89 ec       	ldi	r24, 0xC9	; 201
+     482:	91 e0       	ldi	r25, 0x01	; 1
+     484:	e3 c4       	rjmp	.+2502   	; 0xe4c <_ZN11TimerDriverD1Ev>
+
+00000486 <_ZN11MotorDriverC1Ev>:
+     486:	fc 01       	movw	r30, r24
+     488:	10 82       	st	Z, r1
+     48a:	11 82       	std	Z+1, r1	; 0x01
+     48c:	12 82       	std	Z+2, r1	; 0x02
+     48e:	13 82       	std	Z+3, r1	; 0x03
+     490:	14 82       	std	Z+4, r1	; 0x04
+     492:	15 82       	std	Z+5, r1	; 0x05
+     494:	16 82       	std	Z+6, r1	; 0x06
+     496:	17 82       	std	Z+7, r1	; 0x07
+     498:	10 86       	std	Z+8, r1	; 0x08
+     49a:	11 86       	std	Z+9, r1	; 0x09
+     49c:	12 86       	std	Z+10, r1	; 0x0a
+     49e:	13 86       	std	Z+11, r1	; 0x0b
+     4a0:	81 e0       	ldi	r24, 0x01	; 1
+     4a2:	84 87       	std	Z+12, r24	; 0x0c
+     4a4:	85 87       	std	Z+13, r24	; 0x0d
+     4a6:	42 e0       	ldi	r20, 0x02	; 2
+     4a8:	50 e0       	ldi	r21, 0x00	; 0
+     4aa:	60 e0       	ldi	r22, 0x00	; 0
+     4ac:	70 e0       	ldi	r23, 0x00	; 0
+     4ae:	46 87       	std	Z+14, r20	; 0x0e
+     4b0:	57 87       	std	Z+15, r21	; 0x0f
+     4b2:	60 8b       	std	Z+16, r22	; 0x10
+     4b4:	71 8b       	std	Z+17, r23	; 0x11
+     4b6:	40 e6       	ldi	r20, 0x60	; 96
+     4b8:	53 ee       	ldi	r21, 0xE3	; 227
+     4ba:	66 e1       	ldi	r22, 0x16	; 22
+     4bc:	70 e0       	ldi	r23, 0x00	; 0
+     4be:	42 8b       	std	Z+18, r20	; 0x12
+     4c0:	53 8b       	std	Z+19, r21	; 0x13
+     4c2:	64 8b       	std	Z+20, r22	; 0x14
+     4c4:	75 8b       	std	Z+21, r23	; 0x15
+     4c6:	17 8a       	std	Z+23, r1	; 0x17
+     4c8:	16 8a       	std	Z+22, r1	; 0x16
+     4ca:	13 8e       	std	Z+27, r1	; 0x1b
+     4cc:	12 8e       	std	Z+26, r1	; 0x1a
+     4ce:	08 95       	ret
+
+000004d0 <_ZN11MotorDriverD1Ev>:
+     4d0:	08 95       	ret
+
+000004d2 <_ZN11MotorDriver14SetMotorStatesEP13_MOTOR_STATES>:
+     4d2:	fc 01       	movw	r30, r24
+     4d4:	71 8f       	std	Z+25, r23	; 0x19
+     4d6:	60 8f       	std	Z+24, r22	; 0x18
+     4d8:	08 95       	ret
+
+000004da <_ZN11MotorDriver12SetGearRatioEh>:
+     4da:	fc 01       	movw	r30, r24
+     4dc:	65 87       	std	Z+13, r22	; 0x0d
+     4de:	08 95       	ret
+
+000004e0 <_ZN11MotorDriver21SetStepsPerRevolutionEj>:
+     4e0:	fc 01       	movw	r30, r24
+     4e2:	64 87       	std	Z+12, r22	; 0x0c
+     4e4:	08 95       	ret
+
+000004e6 <_ZN11MotorDriver5StartEv>:
+     4e6:	ef 92       	push	r14
+     4e8:	ff 92       	push	r15
+     4ea:	0f 93       	push	r16
+     4ec:	1f 93       	push	r17
+     4ee:	cf 93       	push	r28
+     4f0:	df 93       	push	r29
+     4f2:	ec 01       	movw	r28, r24
+     4f4:	2a 89       	ldd	r18, Y+18	; 0x12
+     4f6:	3b 89       	ldd	r19, Y+19	; 0x13
+     4f8:	4c 89       	ldd	r20, Y+20	; 0x14
+     4fa:	5d 89       	ldd	r21, Y+21	; 0x15
+     4fc:	7c 01       	movw	r14, r24
+     4fe:	04 e5       	ldi	r16, 0x54	; 84
+     500:	13 e0       	ldi	r17, 0x03	; 3
+     502:	63 e0       	ldi	r22, 0x03	; 3
+     504:	80 91 9e 01 	lds	r24, 0x019E
+     508:	90 91 9f 01 	lds	r25, 0x019F
+     50c:	07 d5       	rcall	.+2574   	; 0xf1c <_ZN20TimerEventDispatcher11CreateEventE14TimerEventTypemPFvP12_TIMER_EVENTPvES3_>
+     50e:	9f 8b       	std	Y+23, r25	; 0x17
+     510:	8e 8b       	std	Y+22, r24	; 0x16
+     512:	df 91       	pop	r29
+     514:	cf 91       	pop	r28
+     516:	1f 91       	pop	r17
+     518:	0f 91       	pop	r16
+     51a:	ff 90       	pop	r15
+     51c:	ef 90       	pop	r14
+     51e:	08 95       	ret
+
+00000520 <_ZN11MotorDriver11SetTresholdEl>:
+     520:	fc 01       	movw	r30, r24
+     522:	46 87       	std	Z+14, r20	; 0x0e
+     524:	57 87       	std	Z+15, r21	; 0x0f
+     526:	60 8b       	std	Z+16, r22	; 0x10
+     528:	71 8b       	std	Z+17, r23	; 0x11
+     52a:	08 95       	ret
+
+0000052c <_ZN11MotorDriver9StepRightEv>:
+     52c:	0f 93       	push	r16
+     52e:	1f 93       	push	r17
+     530:	cf 93       	push	r28
+     532:	df 93       	push	r29
+     534:	ec 01       	movw	r28, r24
+     536:	08 81       	ld	r16, Y
+     538:	19 81       	ldd	r17, Y+1	; 0x01
+     53a:	2a 81       	ldd	r18, Y+2	; 0x02
+     53c:	3b 81       	ldd	r19, Y+3	; 0x03
+     53e:	48 a1       	ldd	r20, Y+32	; 0x20
+     540:	59 a1       	ldd	r21, Y+33	; 0x21
+     542:	6a a1       	ldd	r22, Y+34	; 0x22
+     544:	7b a1       	ldd	r23, Y+35	; 0x23
+     546:	40 17       	cp	r20, r16
+     548:	51 07       	cpc	r21, r17
+     54a:	62 07       	cpc	r22, r18
+     54c:	73 07       	cpc	r23, r19
+     54e:	34 f1       	brlt	.+76     	; 0x59c <_ZN11MotorDriver9StepRightEv+0x70>
+     550:	8a 8d       	ldd	r24, Y+26	; 0x1a
+     552:	9b 8d       	ldd	r25, Y+27	; 0x1b
+     554:	01 96       	adiw	r24, 0x01	; 1
+     556:	9b 8f       	std	Y+27, r25	; 0x1b
+     558:	8a 8f       	std	Y+26, r24	; 0x1a
+     55a:	2a 8d       	ldd	r18, Y+26	; 0x1a
+     55c:	3b 8d       	ldd	r19, Y+27	; 0x1b
+     55e:	e8 8d       	ldd	r30, Y+24	; 0x18
+     560:	f9 8d       	ldd	r31, Y+25	; 0x19
+     562:	82 a1       	ldd	r24, Z+34	; 0x22
+     564:	90 e0       	ldi	r25, 0x00	; 0
+     566:	28 17       	cp	r18, r24
+     568:	39 07       	cpc	r19, r25
+     56a:	14 f0       	brlt	.+4      	; 0x570 <_ZN11MotorDriver9StepRightEv+0x44>
+     56c:	1b 8e       	std	Y+27, r1	; 0x1b
+     56e:	1a 8e       	std	Y+26, r1	; 0x1a
+     570:	aa 8d       	ldd	r26, Y+26	; 0x1a
+     572:	bb 8d       	ldd	r27, Y+27	; 0x1b
+     574:	ae 0f       	add	r26, r30
+     576:	bf 1f       	adc	r27, r31
+     578:	03 a0       	ldd	r0, Z+35	; 0x23
+     57a:	f4 a1       	ldd	r31, Z+36	; 0x24
+     57c:	e0 2d       	mov	r30, r0
+     57e:	12 96       	adiw	r26, 0x02	; 2
+     580:	8c 91       	ld	r24, X
+     582:	09 95       	icall
+     584:	48 81       	ld	r20, Y
+     586:	59 81       	ldd	r21, Y+1	; 0x01
+     588:	6a 81       	ldd	r22, Y+2	; 0x02
+     58a:	7b 81       	ldd	r23, Y+3	; 0x03
+     58c:	4f 5f       	subi	r20, 0xFF	; 255
+     58e:	5f 4f       	sbci	r21, 0xFF	; 255
+     590:	6f 4f       	sbci	r22, 0xFF	; 255
+     592:	7f 4f       	sbci	r23, 0xFF	; 255
+     594:	48 83       	st	Y, r20
+     596:	59 83       	std	Y+1, r21	; 0x01
+     598:	6a 83       	std	Y+2, r22	; 0x02
+     59a:	7b 83       	std	Y+3, r23	; 0x03
+     59c:	df 91       	pop	r29
+     59e:	cf 91       	pop	r28
+     5a0:	1f 91       	pop	r17
+     5a2:	0f 91       	pop	r16
+     5a4:	08 95       	ret
+
+000005a6 <_ZN11MotorDriver8StepLeftEv>:
+     5a6:	0f 93       	push	r16
+     5a8:	1f 93       	push	r17
+     5aa:	cf 93       	push	r28
+     5ac:	df 93       	push	r29
+     5ae:	ec 01       	movw	r28, r24
+     5b0:	08 81       	ld	r16, Y
+     5b2:	19 81       	ldd	r17, Y+1	; 0x01
+     5b4:	2a 81       	ldd	r18, Y+2	; 0x02
+     5b6:	3b 81       	ldd	r19, Y+3	; 0x03
+     5b8:	4c 8d       	ldd	r20, Y+28	; 0x1c
+     5ba:	5d 8d       	ldd	r21, Y+29	; 0x1d
+     5bc:	6e 8d       	ldd	r22, Y+30	; 0x1e
+     5be:	7f 8d       	ldd	r23, Y+31	; 0x1f
+     5c0:	04 17       	cp	r16, r20
+     5c2:	15 07       	cpc	r17, r21
+     5c4:	26 07       	cpc	r18, r22
+     5c6:	37 07       	cpc	r19, r23
+     5c8:	24 f1       	brlt	.+72     	; 0x612 <_ZN11MotorDriver8StepLeftEv+0x6c>
+     5ca:	8a 8d       	ldd	r24, Y+26	; 0x1a
+     5cc:	9b 8d       	ldd	r25, Y+27	; 0x1b
+     5ce:	e8 8d       	ldd	r30, Y+24	; 0x18
+     5d0:	f9 8d       	ldd	r31, Y+25	; 0x19
+     5d2:	89 2b       	or	r24, r25
+     5d4:	19 f4       	brne	.+6      	; 0x5dc <_ZN11MotorDriver8StepLeftEv+0x36>
+     5d6:	82 a1       	ldd	r24, Z+34	; 0x22
+     5d8:	90 e0       	ldi	r25, 0x00	; 0
+     5da:	02 c0       	rjmp	.+4      	; 0x5e0 <_ZN11MotorDriver8StepLeftEv+0x3a>
+     5dc:	8a 8d       	ldd	r24, Y+26	; 0x1a
+     5de:	9b 8d       	ldd	r25, Y+27	; 0x1b
+     5e0:	01 97       	sbiw	r24, 0x01	; 1
+     5e2:	9b 8f       	std	Y+27, r25	; 0x1b
+     5e4:	8a 8f       	std	Y+26, r24	; 0x1a
+     5e6:	aa 8d       	ldd	r26, Y+26	; 0x1a
+     5e8:	bb 8d       	ldd	r27, Y+27	; 0x1b
+     5ea:	ae 0f       	add	r26, r30
+     5ec:	bf 1f       	adc	r27, r31
+     5ee:	03 a0       	ldd	r0, Z+35	; 0x23
+     5f0:	f4 a1       	ldd	r31, Z+36	; 0x24
+     5f2:	e0 2d       	mov	r30, r0
+     5f4:	12 96       	adiw	r26, 0x02	; 2
+     5f6:	8c 91       	ld	r24, X
+     5f8:	09 95       	icall
+     5fa:	48 81       	ld	r20, Y
+     5fc:	59 81       	ldd	r21, Y+1	; 0x01
+     5fe:	6a 81       	ldd	r22, Y+2	; 0x02
+     600:	7b 81       	ldd	r23, Y+3	; 0x03
+     602:	41 50       	subi	r20, 0x01	; 1
+     604:	51 09       	sbc	r21, r1
+     606:	61 09       	sbc	r22, r1
+     608:	71 09       	sbc	r23, r1
+     60a:	48 83       	st	Y, r20
+     60c:	59 83       	std	Y+1, r21	; 0x01
+     60e:	6a 83       	std	Y+2, r22	; 0x02
+     610:	7b 83       	std	Y+3, r23	; 0x03
+     612:	df 91       	pop	r29
+     614:	cf 91       	pop	r28
+     616:	1f 91       	pop	r17
+     618:	0f 91       	pop	r16
+     61a:	08 95       	ret
+
+0000061c <_ZN11MotorDriver17TimerEventHandlerEv>:
+     61c:	0f 93       	push	r16
+     61e:	1f 93       	push	r17
+     620:	fc 01       	movw	r30, r24
+     622:	40 81       	ld	r20, Z
+     624:	51 81       	ldd	r21, Z+1	; 0x01
+     626:	62 81       	ldd	r22, Z+2	; 0x02
+     628:	73 81       	ldd	r23, Z+3	; 0x03
+     62a:	04 81       	ldd	r16, Z+4	; 0x04
+     62c:	15 81       	ldd	r17, Z+5	; 0x05
+     62e:	26 81       	ldd	r18, Z+6	; 0x06
+     630:	37 81       	ldd	r19, Z+7	; 0x07
+     632:	40 1b       	sub	r20, r16
+     634:	51 0b       	sbc	r21, r17
+     636:	62 0b       	sbc	r22, r18
+     638:	73 0b       	sbc	r23, r19
+     63a:	77 ff       	sbrs	r23, 7
+     63c:	09 c0       	rjmp	.+18     	; 0x650 <_ZN11MotorDriver17TimerEventHandlerEv+0x34>
+     63e:	44 81       	ldd	r20, Z+4	; 0x04
+     640:	55 81       	ldd	r21, Z+5	; 0x05
+     642:	66 81       	ldd	r22, Z+6	; 0x06
+     644:	77 81       	ldd	r23, Z+7	; 0x07
+     646:	00 81       	ld	r16, Z
+     648:	11 81       	ldd	r17, Z+1	; 0x01
+     64a:	22 81       	ldd	r18, Z+2	; 0x02
+     64c:	33 81       	ldd	r19, Z+3	; 0x03
+     64e:	08 c0       	rjmp	.+16     	; 0x660 <_ZN11MotorDriver17TimerEventHandlerEv+0x44>
+     650:	40 81       	ld	r20, Z
+     652:	51 81       	ldd	r21, Z+1	; 0x01
+     654:	62 81       	ldd	r22, Z+2	; 0x02
+     656:	73 81       	ldd	r23, Z+3	; 0x03
+     658:	04 81       	ldd	r16, Z+4	; 0x04
+     65a:	15 81       	ldd	r17, Z+5	; 0x05
+     65c:	26 81       	ldd	r18, Z+6	; 0x06
+     65e:	37 81       	ldd	r19, Z+7	; 0x07
+     660:	40 1b       	sub	r20, r16
+     662:	51 0b       	sbc	r21, r17
+     664:	62 0b       	sbc	r22, r18
+     666:	73 0b       	sbc	r23, r19
+     668:	06 85       	ldd	r16, Z+14	; 0x0e
+     66a:	17 85       	ldd	r17, Z+15	; 0x0f
+     66c:	20 89       	ldd	r18, Z+16	; 0x10
+     66e:	31 89       	ldd	r19, Z+17	; 0x11
+     670:	40 17       	cp	r20, r16
+     672:	51 07       	cpc	r21, r17
+     674:	62 07       	cpc	r22, r18
+     676:	73 07       	cpc	r23, r19
+     678:	a4 f0       	brlt	.+40     	; 0x6a2 <_ZN11MotorDriver17TimerEventHandlerEv+0x86>
+     67a:	04 81       	ldd	r16, Z+4	; 0x04
+     67c:	15 81       	ldd	r17, Z+5	; 0x05
+     67e:	26 81       	ldd	r18, Z+6	; 0x06
+     680:	37 81       	ldd	r19, Z+7	; 0x07
+     682:	40 81       	ld	r20, Z
+     684:	51 81       	ldd	r21, Z+1	; 0x01
+     686:	62 81       	ldd	r22, Z+2	; 0x02
+     688:	73 81       	ldd	r23, Z+3	; 0x03
+     68a:	cf 01       	movw	r24, r30
+     68c:	04 17       	cp	r16, r20
+     68e:	15 07       	cpc	r17, r21
+     690:	26 07       	cpc	r18, r22
+     692:	37 07       	cpc	r19, r23
+     694:	1c f4       	brge	.+6      	; 0x69c <_ZN11MotorDriver17TimerEventHandlerEv+0x80>
+     696:	1f 91       	pop	r17
+     698:	0f 91       	pop	r16
+     69a:	85 cf       	rjmp	.-246    	; 0x5a6 <_ZN11MotorDriver8StepLeftEv>
+     69c:	1f 91       	pop	r17
+     69e:	0f 91       	pop	r16
+     6a0:	45 cf       	rjmp	.-374    	; 0x52c <_ZN11MotorDriver9StepRightEv>
+     6a2:	1f 91       	pop	r17
+     6a4:	0f 91       	pop	r16
+     6a6:	08 95       	ret
+
+000006a8 <_Z24DispatchMotorDriverEventP12_TIMER_EVENTPv>:
+     6a8:	cb 01       	movw	r24, r22
+     6aa:	b8 cf       	rjmp	.-144    	; 0x61c <_ZN11MotorDriver17TimerEventHandlerEv>
+
+000006ac <_ZN11MotorDriver14SetLimitAnglesEll>:
+     6ac:	0f 93       	push	r16
+     6ae:	1f 93       	push	r17
+     6b0:	fc 01       	movw	r30, r24
+     6b2:	44 8f       	std	Z+28, r20	; 0x1c
+     6b4:	55 8f       	std	Z+29, r21	; 0x1d
+     6b6:	66 8f       	std	Z+30, r22	; 0x1e
+     6b8:	77 8f       	std	Z+31, r23	; 0x1f
+     6ba:	00 a3       	std	Z+32, r16	; 0x20
+     6bc:	11 a3       	std	Z+33, r17	; 0x21
+     6be:	22 a3       	std	Z+34, r18	; 0x22
+     6c0:	33 a3       	std	Z+35, r19	; 0x23
+     6c2:	1f 91       	pop	r17
+     6c4:	0f 91       	pop	r16
+     6c6:	08 95       	ret
+
+000006c8 <_ZN11MotorDriver8SetAngleEl>:
+     6c8:	fc 01       	movw	r30, r24
+     6ca:	44 83       	std	Z+4, r20	; 0x04
+     6cc:	55 83       	std	Z+5, r21	; 0x05
+     6ce:	66 83       	std	Z+6, r22	; 0x06
+     6d0:	77 83       	std	Z+7, r23	; 0x07
+     6d2:	08 95       	ret
+
+000006d4 <_ZN11MotorDriver8GetAngleEv>:
+     6d4:	fc 01       	movw	r30, r24
+     6d6:	60 81       	ld	r22, Z
+     6d8:	71 81       	ldd	r23, Z+1	; 0x01
+     6da:	82 81       	ldd	r24, Z+2	; 0x02
+     6dc:	93 81       	ldd	r25, Z+3	; 0x03
+     6de:	08 95       	ret
+
+000006e0 <_ZN11MotorDriver7SetZeroEv>:
+     6e0:	fc 01       	movw	r30, r24
+     6e2:	14 82       	std	Z+4, r1	; 0x04
+     6e4:	15 82       	std	Z+5, r1	; 0x05
+     6e6:	16 82       	std	Z+6, r1	; 0x06
+     6e8:	17 82       	std	Z+7, r1	; 0x07
+     6ea:	10 82       	st	Z, r1
+     6ec:	11 82       	std	Z+1, r1	; 0x01
+     6ee:	12 82       	std	Z+2, r1	; 0x02
+     6f0:	13 82       	std	Z+3, r1	; 0x03
+     6f2:	08 95       	ret
+
+000006f4 <_ZN11MotorDriver9SetTimeotEm>:
+     6f4:	fc 01       	movw	r30, r24
+     6f6:	42 8b       	std	Z+18, r20	; 0x12
+     6f8:	53 8b       	std	Z+19, r21	; 0x13
+     6fa:	64 8b       	std	Z+20, r22	; 0x14
+     6fc:	75 8b       	std	Z+21, r23	; 0x15
+     6fe:	08 95       	ret
+
+00000700 <_ZN19SerialCommunicationC1Ev>:
+     700:	1f 93       	push	r17
+     702:	cf 93       	push	r28
+     704:	df 93       	push	r29
+     706:	ec 01       	movw	r28, r24
+     708:	19 82       	std	Y+1, r1	; 0x01
+     70a:	18 82       	st	Y, r1
+     70c:	11 e0       	ldi	r17, 0x01	; 1
+     70e:	1a 83       	std	Y+2, r17	; 0x02
+     710:	1b 82       	std	Y+3, r1	; 0x03
+     712:	1c 82       	std	Y+4, r1	; 0x04
+     714:	1d 82       	std	Y+5, r1	; 0x05
+     716:	8a e0       	ldi	r24, 0x0A	; 10
+     718:	8e 83       	std	Y+6, r24	; 0x06
+     71a:	1f 82       	std	Y+7, r1	; 0x07
+     71c:	1a 8a       	std	Y+18, r1	; 0x12
+     71e:	1d 8a       	std	Y+21, r1	; 0x15
+     720:	1e 8a       	std	Y+22, r1	; 0x16
+     722:	1f 8a       	std	Y+23, r1	; 0x17
+     724:	18 8e       	std	Y+24, r1	; 0x18
+     726:	19 8e       	std	Y+25, r1	; 0x19
+     728:	1a 8e       	std	Y+26, r1	; 0x1a
+     72a:	1b 8e       	std	Y+27, r1	; 0x1b
+     72c:	1c 8e       	std	Y+28, r1	; 0x1c
+     72e:	ce 01       	movw	r24, r28
+     730:	4d 96       	adiw	r24, 0x1d	; 29
+     732:	40 d1       	rcall	.+640    	; 0x9b4 <_ZN12SerialDriverC1Ev>
+     734:	1a 83       	std	Y+2, r17	; 0x02
+     736:	df 91       	pop	r29
+     738:	cf 91       	pop	r28
+     73a:	1f 91       	pop	r17
+     73c:	08 95       	ret
+
+0000073e <_ZN19SerialCommunication8GetStateEv>:
+     73e:	fc 01       	movw	r30, r24
+     740:	82 81       	ldd	r24, Z+2	; 0x02
+     742:	08 95       	ret
+
+00000744 <_ZN19SerialCommunication15_HandshakeStateEv>:
+     744:	fc 01       	movw	r30, r24
+     746:	83 81       	ldd	r24, Z+3	; 0x03
+     748:	84 30       	cpi	r24, 0x04	; 4
+     74a:	48 f4       	brcc	.+18     	; 0x75e <_ZN19SerialCommunication15_HandshakeStateEv+0x1a>
+     74c:	80 91 c0 00 	lds	r24, 0x00C0
+     750:	87 ff       	sbrs	r24, 7
+     752:	1d c0       	rjmp	.+58     	; 0x78e <_ZN19SerialCommunication15_HandshakeStateEv+0x4a>
+     754:	80 91 c6 00 	lds	r24, 0x00C6
+     758:	81 31       	cpi	r24, 0x11	; 17
+     75a:	c9 f4       	brne	.+50     	; 0x78e <_ZN19SerialCommunication15_HandshakeStateEv+0x4a>
+     75c:	14 c0       	rjmp	.+40     	; 0x786 <_ZN19SerialCommunication15_HandshakeStateEv+0x42>
+     75e:	83 81       	ldd	r24, Z+3	; 0x03
+     760:	89 30       	cpi	r24, 0x09	; 9
+     762:	28 f4       	brcc	.+10     	; 0x76e <_ZN19SerialCommunication15_HandshakeStateEv+0x2a>
+     764:	80 91 c0 00 	lds	r24, 0x00C0
+     768:	87 ff       	sbrs	r24, 7
+     76a:	0d c0       	rjmp	.+26     	; 0x786 <_ZN19SerialCommunication15_HandshakeStateEv+0x42>
+     76c:	10 c0       	rjmp	.+32     	; 0x78e <_ZN19SerialCommunication15_HandshakeStateEv+0x4a>
+     76e:	83 81       	ldd	r24, Z+3	; 0x03
+     770:	8e 30       	cpi	r24, 0x0E	; 14
+     772:	78 f4       	brcc	.+30     	; 0x792 <_ZN19SerialCommunication15_HandshakeStateEv+0x4e>
+     774:	80 91 c0 00 	lds	r24, 0x00C0
+     778:	87 ff       	sbrs	r24, 7
+     77a:	09 c0       	rjmp	.+18     	; 0x78e <_ZN19SerialCommunication15_HandshakeStateEv+0x4a>
+     77c:	80 91 c6 00 	lds	r24, 0x00C6
+     780:	8f 5f       	subi	r24, 0xFF	; 255
+     782:	80 93 c6 00 	sts	0x00C6, r24
+     786:	83 81       	ldd	r24, Z+3	; 0x03
+     788:	8f 5f       	subi	r24, 0xFF	; 255
+     78a:	83 83       	std	Z+3, r24	; 0x03
+     78c:	08 95       	ret
+     78e:	82 e0       	ldi	r24, 0x02	; 2
+     790:	04 c0       	rjmp	.+8      	; 0x79a <_ZN19SerialCommunication15_HandshakeStateEv+0x56>
+     792:	81 e0       	ldi	r24, 0x01	; 1
+     794:	84 83       	std	Z+4, r24	; 0x04
+     796:	85 83       	std	Z+5, r24	; 0x05
+     798:	84 e0       	ldi	r24, 0x04	; 4
+     79a:	82 83       	std	Z+2, r24	; 0x02
+     79c:	08 95       	ret
+
+0000079e <_ZN19SerialCommunication12_SetupSerialEv>:
+     79e:	cf 93       	push	r28
+     7a0:	df 93       	push	r29
+     7a2:	ec 01       	movw	r28, r24
+     7a4:	6d 96       	adiw	r28, 0x1d	; 29
+     7a6:	63 e0       	ldi	r22, 0x03	; 3
+     7a8:	ce 01       	movw	r24, r28
+     7aa:	0e d1       	rcall	.+540    	; 0x9c8 <_ZN12SerialDriver11SetDataSizeE8DataSize>
+     7ac:	40 e8       	ldi	r20, 0x80	; 128
+     7ae:	55 e2       	ldi	r21, 0x25	; 37
+     7b0:	60 e0       	ldi	r22, 0x00	; 0
+     7b2:	70 e0       	ldi	r23, 0x00	; 0
+     7b4:	ce 01       	movw	r24, r28
+     7b6:	70 d1       	rcall	.+736    	; 0xa98 <_ZN12SerialDriver11SetBaudRateEm>
+     7b8:	60 e0       	ldi	r22, 0x00	; 0
+     7ba:	ce 01       	movw	r24, r28
+     7bc:	2f d1       	rcall	.+606    	; 0xa1c <_ZN12SerialDriver7SetModeE10SerialMode>
+     7be:	60 e0       	ldi	r22, 0x00	; 0
+     7c0:	ce 01       	movw	r24, r28
+     7c2:	3d d1       	rcall	.+634    	; 0xa3e <_ZN12SerialDriver9SetParityE6Parity>
+     7c4:	60 e0       	ldi	r22, 0x00	; 0
+     7c6:	ce 01       	movw	r24, r28
+     7c8:	50 d1       	rcall	.+672    	; 0xa6a <_ZN12SerialDriver11SetStopBitsE8StopBits>
+     7ca:	ce 01       	movw	r24, r28
+     7cc:	60 d1       	rcall	.+704    	; 0xa8e <_ZN12SerialDriver19EnableCommunicationEv>
+     7ce:	ce 01       	movw	r24, r28
+     7d0:	df 91       	pop	r29
+     7d2:	cf 91       	pop	r28
+     7d4:	f6 c1       	rjmp	.+1004   	; 0xbc2 <_ZN12SerialDriver19SendStatusRegistersEv>
+
+000007d6 <_ZN19SerialCommunication25_WaitingForHandshakeStateEv>:
+     7d6:	20 91 c0 00 	lds	r18, 0x00C0
+     7da:	27 ff       	sbrs	r18, 7
+     7dc:	09 c0       	rjmp	.+18     	; 0x7f0 <_ZN19SerialCommunication25_WaitingForHandshakeStateEv+0x1a>
+     7de:	20 91 c6 00 	lds	r18, 0x00C6
+     7e2:	21 31       	cpi	r18, 0x11	; 17
+     7e4:	29 f4       	brne	.+10     	; 0x7f0 <_ZN19SerialCommunication25_WaitingForHandshakeStateEv+0x1a>
+     7e6:	fc 01       	movw	r30, r24
+     7e8:	13 82       	std	Z+3, r1	; 0x03
+     7ea:	23 e0       	ldi	r18, 0x03	; 3
+     7ec:	22 83       	std	Z+2, r18	; 0x02
+     7ee:	08 95       	ret
+     7f0:	81 e1       	ldi	r24, 0x11	; 17
+     7f2:	80 93 c6 00 	sts	0x00C6, r24
+     7f6:	08 95       	ret
+
+000007f8 <_ZN19SerialCommunication5StartEv>:
+     7f8:	cf 93       	push	r28
+     7fa:	df 93       	push	r29
+     7fc:	ec 01       	movw	r28, r24
+     7fe:	cf df       	rcall	.-98     	; 0x79e <_ZN19SerialCommunication12_SetupSerialEv>
+     800:	1a 8a       	std	Y+18, r1	; 0x12
+     802:	1d 8a       	std	Y+21, r1	; 0x15
+     804:	1c 8a       	std	Y+20, r1	; 0x14
+     806:	1b 8a       	std	Y+19, r1	; 0x13
+     808:	82 e0       	ldi	r24, 0x02	; 2
+     80a:	8a 83       	std	Y+2, r24	; 0x02
+     80c:	80 e0       	ldi	r24, 0x00	; 0
+     80e:	df 91       	pop	r29
+     810:	cf 91       	pop	r28
+     812:	08 95       	ret
+
+00000814 <_ZN19SerialCommunication10SendPacketEPh>:
+     814:	fc 01       	movw	r30, r24
+     816:	82 89       	ldd	r24, Z+18	; 0x12
+     818:	81 11       	cpse	r24, r1
+     81a:	05 c0       	rjmp	.+10     	; 0x826 <_ZN19SerialCommunication10SendPacketEPh+0x12>
+     81c:	74 8b       	std	Z+20, r23	; 0x14
+     81e:	63 8b       	std	Z+19, r22	; 0x13
+     820:	15 8a       	std	Z+21, r1	; 0x15
+     822:	81 e0       	ldi	r24, 0x01	; 1
+     824:	82 8b       	std	Z+18, r24	; 0x12
+     826:	08 95       	ret
+
+00000828 <_ZN19SerialCommunication10_ClearDataEv>:
+     828:	fc 01       	movw	r30, r24
+     82a:	12 8a       	std	Z+18, r1	; 0x12
+     82c:	15 8a       	std	Z+21, r1	; 0x15
+     82e:	14 8a       	std	Z+20, r1	; 0x14
+     830:	13 8a       	std	Z+19, r1	; 0x13
+     832:	17 82       	std	Z+7, r1	; 0x07
+     834:	13 82       	std	Z+3, r1	; 0x03
+     836:	08 95       	ret
+
+00000838 <_ZN19SerialCommunication17RestoreConnectionEv>:
+     838:	cf 93       	push	r28
+     83a:	df 93       	push	r29
+     83c:	ec 01       	movw	r28, r24
+     83e:	f4 df       	rcall	.-24     	; 0x828 <_ZN19SerialCommunication10_ClearDataEv>
+     840:	82 e0       	ldi	r24, 0x02	; 2
+     842:	8a 83       	std	Y+2, r24	; 0x02
+     844:	df 91       	pop	r29
+     846:	cf 91       	pop	r28
+     848:	08 95       	ret
+
+0000084a <_ZN19SerialCommunication12_BrokenStateEv>:
+     84a:	fc 01       	movw	r30, r24
+     84c:	26 89       	ldd	r18, Z+22	; 0x16
+     84e:	21 11       	cpse	r18, r1
+     850:	f3 cf       	rjmp	.-26     	; 0x838 <_ZN19SerialCommunication17RestoreConnectionEv>
+     852:	08 95       	ret
+
+00000854 <_ZN19SerialCommunication25CheckForKeepAliveResponseEv>:
+     854:	20 91 c6 00 	lds	r18, 0x00C6
+     858:	25 35       	cpi	r18, 0x55	; 85
+     85a:	11 f4       	brne	.+4      	; 0x860 <_ZN19SerialCommunication25CheckForKeepAliveResponseEv+0xc>
+     85c:	24 e0       	ldi	r18, 0x04	; 4
+     85e:	01 c0       	rjmp	.+2      	; 0x862 <_ZN19SerialCommunication25CheckForKeepAliveResponseEv+0xe>
+     860:	25 e0       	ldi	r18, 0x05	; 5
+     862:	fc 01       	movw	r30, r24
+     864:	22 83       	std	Z+2, r18	; 0x02
+     866:	08 95       	ret
+
+00000868 <_ZN19SerialCommunication21CheckForKeepAliveByteEv>:
+     868:	fc 01       	movw	r30, r24
+     86a:	80 91 c6 00 	lds	r24, 0x00C6
+     86e:	85 35       	cpi	r24, 0x55	; 85
+     870:	29 f4       	brne	.+10     	; 0x87c <_ZN19SerialCommunication21CheckForKeepAliveByteEv+0x14>
+     872:	15 82       	std	Z+5, r1	; 0x05
+     874:	80 93 c6 00 	sts	0x00C6, r24
+     878:	84 e0       	ldi	r24, 0x04	; 4
+     87a:	01 c0       	rjmp	.+2      	; 0x87e <_ZN19SerialCommunication21CheckForKeepAliveByteEv+0x16>
+     87c:	85 e0       	ldi	r24, 0x05	; 5
+     87e:	82 83       	std	Z+2, r24	; 0x02
+     880:	08 95       	ret
+
+00000882 <_ZN19SerialCommunication12_ReceiveByteEv>:
+     882:	fc 01       	movw	r30, r24
+     884:	87 81       	ldd	r24, Z+7	; 0x07
+     886:	90 91 c6 00 	lds	r25, 0x00C6
+     88a:	df 01       	movw	r26, r30
+     88c:	a8 0f       	add	r26, r24
+     88e:	b1 1d       	adc	r27, r1
+     890:	18 96       	adiw	r26, 0x08	; 8
+     892:	9c 93       	st	X, r25
+     894:	8f 5f       	subi	r24, 0xFF	; 255
+     896:	87 83       	std	Z+7, r24	; 0x07
+     898:	14 82       	std	Z+4, r1	; 0x04
+     89a:	96 81       	ldd	r25, Z+6	; 0x06
+     89c:	89 13       	cpse	r24, r25
+     89e:	04 c0       	rjmp	.+8      	; 0x8a8 <_ZN19SerialCommunication12_ReceiveByteEv+0x26>
+     8a0:	17 82       	std	Z+7, r1	; 0x07
+     8a2:	cf 01       	movw	r24, r30
+     8a4:	08 96       	adiw	r24, 0x08	; 8
+     8a6:	8b cc       	rjmp	.-1770   	; 0x1be <_Z14PacketReceivedPh>
+     8a8:	08 95       	ret
+
+000008aa <_ZN19SerialCommunication9_SendByteEv>:
+     8aa:	fc 01       	movw	r30, r24
+     8ac:	82 89       	ldd	r24, Z+18	; 0x12
+     8ae:	88 23       	and	r24, r24
+     8b0:	b1 f0       	breq	.+44     	; 0x8de <_ZN19SerialCommunication9_SendByteEv+0x34>
+     8b2:	85 89       	ldd	r24, Z+21	; 0x15
+     8b4:	a3 89       	ldd	r26, Z+19	; 0x13
+     8b6:	b4 89       	ldd	r27, Z+20	; 0x14
+     8b8:	a8 0f       	add	r26, r24
+     8ba:	b1 1d       	adc	r27, r1
+     8bc:	8c 91       	ld	r24, X
+     8be:	80 93 c6 00 	sts	0x00C6, r24
+     8c2:	85 89       	ldd	r24, Z+21	; 0x15
+     8c4:	8f 5f       	subi	r24, 0xFF	; 255
+     8c6:	85 8b       	std	Z+21, r24	; 0x15
+     8c8:	15 82       	std	Z+5, r1	; 0x05
+     8ca:	96 81       	ldd	r25, Z+6	; 0x06
+     8cc:	89 13       	cpse	r24, r25
+     8ce:	07 c0       	rjmp	.+14     	; 0x8de <_ZN19SerialCommunication9_SendByteEv+0x34>
+     8d0:	12 8a       	std	Z+18, r1	; 0x12
+     8d2:	01 90       	ld	r0, Z+
+     8d4:	f0 81       	ld	r31, Z
+     8d6:	e0 2d       	mov	r30, r0
+     8d8:	30 97       	sbiw	r30, 0x00	; 0
+     8da:	09 f0       	breq	.+2      	; 0x8de <_ZN19SerialCommunication9_SendByteEv+0x34>
+     8dc:	09 94       	ijmp
+     8de:	08 95       	ret
+
+000008e0 <_ZN19SerialCommunication11ReceiveDataEv>:
+     8e0:	cf 93       	push	r28
+     8e2:	df 93       	push	r29
+     8e4:	ec 01       	movw	r28, r24
+     8e6:	80 91 48 02 	lds	r24, 0x0248
+     8ea:	81 11       	cpse	r24, r1
+     8ec:	1d c0       	rjmp	.+58     	; 0x928 <_ZN19SerialCommunication11ReceiveDataEv+0x48>
+     8ee:	80 91 c0 00 	lds	r24, 0x00C0
+     8f2:	87 ff       	sbrs	r24, 7
+     8f4:	19 c0       	rjmp	.+50     	; 0x928 <_ZN19SerialCommunication11ReceiveDataEv+0x48>
+     8f6:	81 e0       	ldi	r24, 0x01	; 1
+     8f8:	80 93 48 02 	sts	0x0248, r24
+     8fc:	1c 82       	std	Y+4, r1	; 0x04
+     8fe:	8a 81       	ldd	r24, Y+2	; 0x02
+     900:	87 30       	cpi	r24, 0x07	; 7
+     902:	19 f4       	brne	.+6      	; 0x90a <_ZN19SerialCommunication11ReceiveDataEv+0x2a>
+     904:	ce 01       	movw	r24, r28
+     906:	b0 df       	rcall	.-160    	; 0x868 <_ZN19SerialCommunication21CheckForKeepAliveByteEv>
+     908:	0d c0       	rjmp	.+26     	; 0x924 <_ZN19SerialCommunication11ReceiveDataEv+0x44>
+     90a:	8a 81       	ldd	r24, Y+2	; 0x02
+     90c:	86 30       	cpi	r24, 0x06	; 6
+     90e:	19 f4       	brne	.+6      	; 0x916 <_ZN19SerialCommunication11ReceiveDataEv+0x36>
+     910:	ce 01       	movw	r24, r28
+     912:	a0 df       	rcall	.-192    	; 0x854 <_ZN19SerialCommunication25CheckForKeepAliveResponseEv>
+     914:	07 c0       	rjmp	.+14     	; 0x924 <_ZN19SerialCommunication11ReceiveDataEv+0x44>
+     916:	8a 81       	ldd	r24, Y+2	; 0x02
+     918:	84 30       	cpi	r24, 0x04	; 4
+     91a:	21 f4       	brne	.+8      	; 0x924 <_ZN19SerialCommunication11ReceiveDataEv+0x44>
+     91c:	ce 01       	movw	r24, r28
+     91e:	b1 df       	rcall	.-158    	; 0x882 <_ZN19SerialCommunication12_ReceiveByteEv>
+     920:	ce 01       	movw	r24, r28
+     922:	c3 df       	rcall	.-122    	; 0x8aa <_ZN19SerialCommunication9_SendByteEv>
+     924:	10 92 48 02 	sts	0x0248, r1
+     928:	df 91       	pop	r29
+     92a:	cf 91       	pop	r28
+     92c:	08 95       	ret
+
+0000092e <_ZN19SerialCommunication17_CheckRxLineStateEv>:
+     92e:	fc 01       	movw	r30, r24
+     930:	84 81       	ldd	r24, Z+4	; 0x04
+     932:	8f 5f       	subi	r24, 0xFF	; 255
+     934:	84 83       	std	Z+4, r24	; 0x04
+     936:	84 81       	ldd	r24, Z+4	; 0x04
+     938:	85 30       	cpi	r24, 0x05	; 5
+     93a:	11 f4       	brne	.+4      	; 0x940 <_ZN19SerialCommunication17_CheckRxLineStateEv+0x12>
+     93c:	87 e0       	ldi	r24, 0x07	; 7
+     93e:	04 c0       	rjmp	.+8      	; 0x948 <_ZN19SerialCommunication17_CheckRxLineStateEv+0x1a>
+     940:	84 81       	ldd	r24, Z+4	; 0x04
+     942:	8a 30       	cpi	r24, 0x0A	; 10
+     944:	11 f4       	brne	.+4      	; 0x94a <_ZN19SerialCommunication17_CheckRxLineStateEv+0x1c>
+     946:	85 e0       	ldi	r24, 0x05	; 5
+     948:	82 83       	std	Z+2, r24	; 0x02
+     94a:	08 95       	ret
+
+0000094c <_ZN19SerialCommunication17_CheckTxLineStateEv>:
+     94c:	fc 01       	movw	r30, r24
+     94e:	85 81       	ldd	r24, Z+5	; 0x05
+     950:	8f 5f       	subi	r24, 0xFF	; 255
+     952:	85 83       	std	Z+5, r24	; 0x05
+     954:	85 81       	ldd	r24, Z+5	; 0x05
+     956:	84 30       	cpi	r24, 0x04	; 4
+     958:	29 f4       	brne	.+10     	; 0x964 <_ZN19SerialCommunication17_CheckTxLineStateEv+0x18>
+     95a:	85 e5       	ldi	r24, 0x55	; 85
+     95c:	80 93 c6 00 	sts	0x00C6, r24
+     960:	86 e0       	ldi	r24, 0x06	; 6
+     962:	04 c0       	rjmp	.+8      	; 0x96c <_ZN19SerialCommunication17_CheckTxLineStateEv+0x20>
+     964:	85 81       	ldd	r24, Z+5	; 0x05
+     966:	8a 30       	cpi	r24, 0x0A	; 10
+     968:	11 f4       	brne	.+4      	; 0x96e <_ZN19SerialCommunication17_CheckTxLineStateEv+0x22>
+     96a:	85 e0       	ldi	r24, 0x05	; 5
+     96c:	82 83       	std	Z+2, r24	; 0x02
+     96e:	08 95       	ret
+
+00000970 <_ZN19SerialCommunication12_ActiveStateEv>:
+     970:	cf 93       	push	r28
+     972:	df 93       	push	r29
+     974:	ec 01       	movw	r28, r24
+     976:	db df       	rcall	.-74     	; 0x92e <_ZN19SerialCommunication17_CheckRxLineStateEv>
+     978:	8a 81       	ldd	r24, Y+2	; 0x02
+     97a:	84 30       	cpi	r24, 0x04	; 4
+     97c:	21 f4       	brne	.+8      	; 0x986 <_ZN19SerialCommunication12_ActiveStateEv+0x16>
+     97e:	ce 01       	movw	r24, r28
+     980:	df 91       	pop	r29
+     982:	cf 91       	pop	r28
+     984:	e3 cf       	rjmp	.-58     	; 0x94c <_ZN19SerialCommunication17_CheckTxLineStateEv>
+     986:	df 91       	pop	r29
+     988:	cf 91       	pop	r28
+     98a:	08 95       	ret
+
+0000098c <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv>:
+     98c:	fc 01       	movw	r30, r24
+     98e:	22 81       	ldd	r18, Z+2	; 0x02
+     990:	24 30       	cpi	r18, 0x04	; 4
+     992:	71 f0       	breq	.+28     	; 0x9b0 <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv+0x24>
+     994:	28 f4       	brcc	.+10     	; 0x9a0 <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv+0x14>
+     996:	22 30       	cpi	r18, 0x02	; 2
+     998:	41 f0       	breq	.+16     	; 0x9aa <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv+0x1e>
+     99a:	23 30       	cpi	r18, 0x03	; 3
+     99c:	39 f0       	breq	.+14     	; 0x9ac <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv+0x20>
+     99e:	08 95       	ret
+     9a0:	25 30       	cpi	r18, 0x05	; 5
+     9a2:	29 f0       	breq	.+10     	; 0x9ae <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv+0x22>
+     9a4:	28 30       	cpi	r18, 0x08	; 8
+     9a6:	28 f4       	brcc	.+10     	; 0x9b2 <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv+0x26>
+     9a8:	03 c0       	rjmp	.+6      	; 0x9b0 <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv+0x24>
+     9aa:	15 cf       	rjmp	.-470    	; 0x7d6 <_ZN19SerialCommunication25_WaitingForHandshakeStateEv>
+     9ac:	cb ce       	rjmp	.-618    	; 0x744 <_ZN19SerialCommunication15_HandshakeStateEv>
+     9ae:	4d cf       	rjmp	.-358    	; 0x84a <_ZN19SerialCommunication12_BrokenStateEv>
+     9b0:	df cf       	rjmp	.-66     	; 0x970 <_ZN19SerialCommunication12_ActiveStateEv>
+     9b2:	08 95       	ret
+
+000009b4 <_ZN12SerialDriverC1Ev>:
+     9b4:	fc 01       	movw	r30, r24
+     9b6:	10 82       	st	Z, r1
+     9b8:	11 82       	std	Z+1, r1	; 0x01
+     9ba:	12 82       	std	Z+2, r1	; 0x02
+     9bc:	13 82       	std	Z+3, r1	; 0x03
+     9be:	14 82       	std	Z+4, r1	; 0x04
+     9c0:	15 82       	std	Z+5, r1	; 0x05
+     9c2:	16 82       	std	Z+6, r1	; 0x06
+     9c4:	08 95       	ret
+
+000009c6 <_ZN12SerialDriverD1Ev>:
+     9c6:	08 95       	ret
+
+000009c8 <_ZN12SerialDriver11SetDataSizeE8DataSize>:
+     9c8:	fc 01       	movw	r30, r24
+     9ca:	61 11       	cpse	r22, r1
+     9cc:	03 c0       	rjmp	.+6      	; 0x9d4 <_ZN12SerialDriver11SetDataSizeE8DataSize+0xc>
+     9ce:	85 e0       	ldi	r24, 0x05	; 5
+     9d0:	87 83       	std	Z+7, r24	; 0x07
+     9d2:	19 c0       	rjmp	.+50     	; 0xa06 <_ZN12SerialDriver11SetDataSizeE8DataSize+0x3e>
+     9d4:	61 30       	cpi	r22, 0x01	; 1
+     9d6:	21 f4       	brne	.+8      	; 0x9e0 <_ZN12SerialDriver11SetDataSizeE8DataSize+0x18>
+     9d8:	86 e0       	ldi	r24, 0x06	; 6
+     9da:	87 83       	std	Z+7, r24	; 0x07
+     9dc:	82 e0       	ldi	r24, 0x02	; 2
+     9de:	14 c0       	rjmp	.+40     	; 0xa08 <_ZN12SerialDriver11SetDataSizeE8DataSize+0x40>
+     9e0:	62 30       	cpi	r22, 0x02	; 2
+     9e2:	21 f4       	brne	.+8      	; 0x9ec <_ZN12SerialDriver11SetDataSizeE8DataSize+0x24>
+     9e4:	87 e0       	ldi	r24, 0x07	; 7
+     9e6:	87 83       	std	Z+7, r24	; 0x07
+     9e8:	84 e0       	ldi	r24, 0x04	; 4
+     9ea:	0e c0       	rjmp	.+28     	; 0xa08 <_ZN12SerialDriver11SetDataSizeE8DataSize+0x40>
+     9ec:	63 30       	cpi	r22, 0x03	; 3
+     9ee:	21 f4       	brne	.+8      	; 0x9f8 <_ZN12SerialDriver11SetDataSizeE8DataSize+0x30>
+     9f0:	88 e0       	ldi	r24, 0x08	; 8
+     9f2:	87 83       	std	Z+7, r24	; 0x07
+     9f4:	86 e0       	ldi	r24, 0x06	; 6
+     9f6:	08 c0       	rjmp	.+16     	; 0xa08 <_ZN12SerialDriver11SetDataSizeE8DataSize+0x40>
+     9f8:	64 30       	cpi	r22, 0x04	; 4
+     9fa:	29 f4       	brne	.+10     	; 0xa06 <_ZN12SerialDriver11SetDataSizeE8DataSize+0x3e>
+     9fc:	89 e0       	ldi	r24, 0x09	; 9
+     9fe:	87 83       	std	Z+7, r24	; 0x07
+     a00:	86 e0       	ldi	r24, 0x06	; 6
+     a02:	94 e0       	ldi	r25, 0x04	; 4
+     a04:	02 c0       	rjmp	.+4      	; 0xa0a <_ZN12SerialDriver11SetDataSizeE8DataSize+0x42>
+     a06:	80 e0       	ldi	r24, 0x00	; 0
+     a08:	90 e0       	ldi	r25, 0x00	; 0
+     a0a:	21 81       	ldd	r18, Z+1	; 0x01
+     a0c:	2b 7f       	andi	r18, 0xFB	; 251
+     a0e:	29 2b       	or	r18, r25
+     a10:	21 83       	std	Z+1, r18	; 0x01
+     a12:	92 81       	ldd	r25, Z+2	; 0x02
+     a14:	99 7f       	andi	r25, 0xF9	; 249
+     a16:	98 2b       	or	r25, r24
+     a18:	92 83       	std	Z+2, r25	; 0x02
+     a1a:	08 95       	ret
+
+00000a1c <_ZN12SerialDriver7SetModeE10SerialMode>:
+     a1c:	61 11       	cpse	r22, r1
+     a1e:	02 c0       	rjmp	.+4      	; 0xa24 <_ZN12SerialDriver7SetModeE10SerialMode+0x8>
+     a20:	30 e0       	ldi	r19, 0x00	; 0
+     a22:	07 c0       	rjmp	.+14     	; 0xa32 <_ZN12SerialDriver7SetModeE10SerialMode+0x16>
+     a24:	61 30       	cpi	r22, 0x01	; 1
+     a26:	21 f0       	breq	.+8      	; 0xa30 <_ZN12SerialDriver7SetModeE10SerialMode+0x14>
+     a28:	62 30       	cpi	r22, 0x02	; 2
+     a2a:	d1 f7       	brne	.-12     	; 0xa20 <_ZN12SerialDriver7SetModeE10SerialMode+0x4>
+     a2c:	30 ec       	ldi	r19, 0xC0	; 192
+     a2e:	01 c0       	rjmp	.+2      	; 0xa32 <_ZN12SerialDriver7SetModeE10SerialMode+0x16>
+     a30:	30 e4       	ldi	r19, 0x40	; 64
+     a32:	fc 01       	movw	r30, r24
+     a34:	22 81       	ldd	r18, Z+2	; 0x02
+     a36:	2f 73       	andi	r18, 0x3F	; 63
+     a38:	23 2b       	or	r18, r19
+     a3a:	22 83       	std	Z+2, r18	; 0x02
+     a3c:	08 95       	ret
+
+00000a3e <_ZN12SerialDriver9SetParityE6Parity>:
+     a3e:	fc 01       	movw	r30, r24
+     a40:	61 11       	cpse	r22, r1
+     a42:	02 c0       	rjmp	.+4      	; 0xa48 <_ZN12SerialDriver9SetParityE6Parity+0xa>
+     a44:	11 86       	std	Z+9, r1	; 0x09
+     a46:	0b c0       	rjmp	.+22     	; 0xa5e <_ZN12SerialDriver9SetParityE6Parity+0x20>
+     a48:	61 30       	cpi	r22, 0x01	; 1
+     a4a:	19 f4       	brne	.+6      	; 0xa52 <_ZN12SerialDriver9SetParityE6Parity+0x14>
+     a4c:	61 87       	std	Z+9, r22	; 0x09
+     a4e:	90 e2       	ldi	r25, 0x20	; 32
+     a50:	07 c0       	rjmp	.+14     	; 0xa60 <_ZN12SerialDriver9SetParityE6Parity+0x22>
+     a52:	62 30       	cpi	r22, 0x02	; 2
+     a54:	21 f4       	brne	.+8      	; 0xa5e <_ZN12SerialDriver9SetParityE6Parity+0x20>
+     a56:	81 e0       	ldi	r24, 0x01	; 1
+     a58:	81 87       	std	Z+9, r24	; 0x09
+     a5a:	90 e3       	ldi	r25, 0x30	; 48
+     a5c:	01 c0       	rjmp	.+2      	; 0xa60 <_ZN12SerialDriver9SetParityE6Parity+0x22>
+     a5e:	90 e0       	ldi	r25, 0x00	; 0
+     a60:	82 81       	ldd	r24, Z+2	; 0x02
+     a62:	8f 7c       	andi	r24, 0xCF	; 207
+     a64:	89 2b       	or	r24, r25
+     a66:	82 83       	std	Z+2, r24	; 0x02
+     a68:	08 95       	ret
+
+00000a6a <_ZN12SerialDriver11SetStopBitsE8StopBits>:
+     a6a:	fc 01       	movw	r30, r24
+     a6c:	61 11       	cpse	r22, r1
+     a6e:	03 c0       	rjmp	.+6      	; 0xa76 <_ZN12SerialDriver11SetStopBitsE8StopBits+0xc>
+     a70:	81 e0       	ldi	r24, 0x01	; 1
+     a72:	80 87       	std	Z+8, r24	; 0x08
+     a74:	06 c0       	rjmp	.+12     	; 0xa82 <_ZN12SerialDriver11SetStopBitsE8StopBits+0x18>
+     a76:	61 30       	cpi	r22, 0x01	; 1
+     a78:	21 f4       	brne	.+8      	; 0xa82 <_ZN12SerialDriver11SetStopBitsE8StopBits+0x18>
+     a7a:	82 e0       	ldi	r24, 0x02	; 2
+     a7c:	80 87       	std	Z+8, r24	; 0x08
+     a7e:	98 e0       	ldi	r25, 0x08	; 8
+     a80:	01 c0       	rjmp	.+2      	; 0xa84 <_ZN12SerialDriver11SetStopBitsE8StopBits+0x1a>
+     a82:	90 e0       	ldi	r25, 0x00	; 0
+     a84:	82 81       	ldd	r24, Z+2	; 0x02
+     a86:	87 7f       	andi	r24, 0xF7	; 247
+     a88:	89 2b       	or	r24, r25
+     a8a:	82 83       	std	Z+2, r24	; 0x02
+     a8c:	08 95       	ret
+
+00000a8e <_ZN12SerialDriver19EnableCommunicationEv>:
+     a8e:	fc 01       	movw	r30, r24
+     a90:	21 81       	ldd	r18, Z+1	; 0x01
+     a92:	28 61       	ori	r18, 0x18	; 24
+     a94:	21 83       	std	Z+1, r18	; 0x01
+     a96:	08 95       	ret
+
+00000a98 <_ZN12SerialDriver11SetBaudRateEm>:
+     a98:	fc 01       	movw	r30, r24
+     a9a:	43 83       	std	Z+3, r20	; 0x03
+     a9c:	54 83       	std	Z+4, r21	; 0x04
+     a9e:	65 83       	std	Z+5, r22	; 0x05
+     aa0:	76 83       	std	Z+6, r23	; 0x06
+     aa2:	08 95       	ret
+
+00000aa4 <_ZN12SerialDriver26_CalculateBaudRateRegisterEv>:
+     aa4:	8f 92       	push	r8
+     aa6:	9f 92       	push	r9
+     aa8:	af 92       	push	r10
+     aaa:	bf 92       	push	r11
+     aac:	cf 92       	push	r12
+     aae:	df 92       	push	r13
+     ab0:	ef 92       	push	r14
+     ab2:	ff 92       	push	r15
+     ab4:	1f 93       	push	r17
+     ab6:	cf 93       	push	r28
+     ab8:	df 93       	push	r29
+     aba:	ec 01       	movw	r28, r24
+     abc:	8b 80       	ldd	r8, Y+3	; 0x03
+     abe:	9c 80       	ldd	r9, Y+4	; 0x04
+     ac0:	ad 80       	ldd	r10, Y+5	; 0x05
+     ac2:	be 80       	ldd	r11, Y+6	; 0x06
+     ac4:	a5 01       	movw	r20, r10
+     ac6:	94 01       	movw	r18, r8
+     ac8:	74 e0       	ldi	r23, 0x04	; 4
+     aca:	22 0f       	add	r18, r18
+     acc:	33 1f       	adc	r19, r19
+     ace:	44 1f       	adc	r20, r20
+     ad0:	55 1f       	adc	r21, r21
+     ad2:	7a 95       	dec	r23
+     ad4:	d1 f7       	brne	.-12     	; 0xaca <_ZN12SerialDriver26_CalculateBaudRateRegisterEv+0x26>
+     ad6:	60 e0       	ldi	r22, 0x00	; 0
+     ad8:	70 e1       	ldi	r23, 0x10	; 16
+     ada:	8e e5       	ldi	r24, 0x5E	; 94
+     adc:	9f e5       	ldi	r25, 0x5F	; 95
+     ade:	fe d2       	rcall	.+1532   	; 0x10dc <__udivmodsi4>
+     ae0:	21 50       	subi	r18, 0x01	; 1
+     ae2:	31 09       	sbc	r19, r1
+     ae4:	41 09       	sbc	r20, r1
+     ae6:	51 09       	sbc	r21, r1
+     ae8:	ca 01       	movw	r24, r20
+     aea:	b9 01       	movw	r22, r18
+     aec:	24 e6       	ldi	r18, 0x64	; 100
+     aee:	30 e0       	ldi	r19, 0x00	; 0
+     af0:	40 e0       	ldi	r20, 0x00	; 0
+     af2:	50 e0       	ldi	r21, 0x00	; 0
+     af4:	f3 d2       	rcall	.+1510   	; 0x10dc <__udivmodsi4>
+     af6:	69 01       	movw	r12, r18
+     af8:	7a 01       	movw	r14, r20
+     afa:	63 33       	cpi	r22, 0x33	; 51
+     afc:	71 05       	cpc	r23, r1
+     afe:	81 05       	cpc	r24, r1
+     b00:	91 05       	cpc	r25, r1
+     b02:	28 f0       	brcs	.+10     	; 0xb0e <_ZN12SerialDriver26_CalculateBaudRateRegisterEv+0x6a>
+     b04:	8f ef       	ldi	r24, 0xFF	; 255
+     b06:	c8 1a       	sub	r12, r24
+     b08:	d8 0a       	sbc	r13, r24
+     b0a:	e8 0a       	sbc	r14, r24
+     b0c:	f8 0a       	sbc	r15, r24
+     b0e:	a7 01       	movw	r20, r14
+     b10:	96 01       	movw	r18, r12
+     b12:	2f 5f       	subi	r18, 0xFF	; 255
+     b14:	3f 4f       	sbci	r19, 0xFF	; 255
+     b16:	4f 4f       	sbci	r20, 0xFF	; 255
+     b18:	5f 4f       	sbci	r21, 0xFF	; 255
+     b1a:	64 e0       	ldi	r22, 0x04	; 4
+     b1c:	22 0f       	add	r18, r18
+     b1e:	33 1f       	adc	r19, r19
+     b20:	44 1f       	adc	r20, r20
+     b22:	55 1f       	adc	r21, r21
+     b24:	6a 95       	dec	r22
+     b26:	d1 f7       	brne	.-12     	; 0xb1c <_ZN12SerialDriver26_CalculateBaudRateRegisterEv+0x78>
+     b28:	60 e0       	ldi	r22, 0x00	; 0
+     b2a:	74 e2       	ldi	r23, 0x24	; 36
+     b2c:	84 ef       	ldi	r24, 0xF4	; 244
+     b2e:	90 e0       	ldi	r25, 0x00	; 0
+     b30:	d5 d2       	rcall	.+1450   	; 0x10dc <__udivmodsi4>
+     b32:	c2 16       	cp	r12, r18
+     b34:	d3 06       	cpc	r13, r19
+     b36:	e4 06       	cpc	r14, r20
+     b38:	f5 06       	cpc	r15, r21
+     b3a:	38 f4       	brcc	.+14     	; 0xb4a <_ZN12SerialDriver26_CalculateBaudRateRegisterEv+0xa6>
+     b3c:	ca 01       	movw	r24, r20
+     b3e:	b9 01       	movw	r22, r18
+     b40:	6c 19       	sub	r22, r12
+     b42:	7d 09       	sbc	r23, r13
+     b44:	8e 09       	sbc	r24, r14
+     b46:	9f 09       	sbc	r25, r15
+     b48:	06 c0       	rjmp	.+12     	; 0xb56 <_ZN12SerialDriver26_CalculateBaudRateRegisterEv+0xb2>
+     b4a:	c7 01       	movw	r24, r14
+     b4c:	b6 01       	movw	r22, r12
+     b4e:	62 1b       	sub	r22, r18
+     b50:	73 0b       	sbc	r23, r19
+     b52:	84 0b       	sbc	r24, r20
+     b54:	95 0b       	sbc	r25, r21
+     b56:	27 e0       	ldi	r18, 0x07	; 7
+     b58:	66 0f       	add	r22, r22
+     b5a:	77 1f       	adc	r23, r23
+     b5c:	88 1f       	adc	r24, r24
+     b5e:	99 1f       	adc	r25, r25
+     b60:	2a 95       	dec	r18
+     b62:	d1 f7       	brne	.-12     	; 0xb58 <_ZN12SerialDriver26_CalculateBaudRateRegisterEv+0xb4>
+     b64:	a7 01       	movw	r20, r14
+     b66:	96 01       	movw	r18, r12
+     b68:	b9 d2       	rcall	.+1394   	; 0x10dc <__udivmodsi4>
+     b6a:	18 81       	ld	r17, Y
+     b6c:	23 2b       	or	r18, r19
+     b6e:	24 2b       	or	r18, r20
+     b70:	25 2b       	or	r18, r21
+     b72:	b9 f0       	breq	.+46     	; 0xba2 <_ZN12SerialDriver26_CalculateBaudRateRegisterEv+0xfe>
+     b74:	a5 01       	movw	r20, r10
+     b76:	94 01       	movw	r18, r8
+     b78:	83 e0       	ldi	r24, 0x03	; 3
+     b7a:	22 0f       	add	r18, r18
+     b7c:	33 1f       	adc	r19, r19
+     b7e:	44 1f       	adc	r20, r20
+     b80:	55 1f       	adc	r21, r21
+     b82:	8a 95       	dec	r24
+     b84:	d1 f7       	brne	.-12     	; 0xb7a <_ZN12SerialDriver26_CalculateBaudRateRegisterEv+0xd6>
+     b86:	60 e0       	ldi	r22, 0x00	; 0
+     b88:	74 e2       	ldi	r23, 0x24	; 36
+     b8a:	84 ef       	ldi	r24, 0xF4	; 244
+     b8c:	90 e0       	ldi	r25, 0x00	; 0
+     b8e:	a6 d2       	rcall	.+1356   	; 0x10dc <__udivmodsi4>
+     b90:	69 01       	movw	r12, r18
+     b92:	7a 01       	movw	r14, r20
+     b94:	81 e0       	ldi	r24, 0x01	; 1
+     b96:	c8 1a       	sub	r12, r24
+     b98:	d1 08       	sbc	r13, r1
+     b9a:	e1 08       	sbc	r14, r1
+     b9c:	f1 08       	sbc	r15, r1
+     b9e:	12 60       	ori	r17, 0x02	; 2
+     ba0:	01 c0       	rjmp	.+2      	; 0xba4 <_ZN12SerialDriver26_CalculateBaudRateRegisterEv+0x100>
+     ba2:	1d 6f       	ori	r17, 0xFD	; 253
+     ba4:	18 83       	st	Y, r17
+     ba6:	ca 86       	std	Y+10, r12	; 0x0a
+     ba8:	db 86       	std	Y+11, r13	; 0x0b
+     baa:	df 91       	pop	r29
+     bac:	cf 91       	pop	r28
+     bae:	1f 91       	pop	r17
+     bb0:	ff 90       	pop	r15
+     bb2:	ef 90       	pop	r14
+     bb4:	df 90       	pop	r13
+     bb6:	cf 90       	pop	r12
+     bb8:	bf 90       	pop	r11
+     bba:	af 90       	pop	r10
+     bbc:	9f 90       	pop	r9
+     bbe:	8f 90       	pop	r8
+     bc0:	08 95       	ret
+
+00000bc2 <_ZN12SerialDriver19SendStatusRegistersEv>:
+     bc2:	cf 93       	push	r28
+     bc4:	df 93       	push	r29
+     bc6:	ec 01       	movw	r28, r24
+     bc8:	6d df       	rcall	.-294    	; 0xaa4 <_ZN12SerialDriver26_CalculateBaudRateRegisterEv>
+     bca:	88 81       	ld	r24, Y
+     bcc:	80 93 c0 00 	sts	0x00C0, r24
+     bd0:	89 81       	ldd	r24, Y+1	; 0x01
+     bd2:	80 93 c1 00 	sts	0x00C1, r24
+     bd6:	8a 81       	ldd	r24, Y+2	; 0x02
+     bd8:	80 93 c2 00 	sts	0x00C2, r24
+     bdc:	8a 85       	ldd	r24, Y+10	; 0x0a
+     bde:	80 93 c4 00 	sts	0x00C4, r24
+     be2:	8b 85       	ldd	r24, Y+11	; 0x0b
+     be4:	80 93 c5 00 	sts	0x00C5, r24
+     be8:	df 91       	pop	r29
+     bea:	cf 91       	pop	r28
+     bec:	08 95       	ret
+
+00000bee <_ZN11TimerDriver14SetClockSourceE11ClockSource>:
+     bee:	61 11       	cpse	r22, r1
+     bf0:	02 c0       	rjmp	.+4      	; 0xbf6 <_ZN11TimerDriver14SetClockSourceE11ClockSource+0x8>
+     bf2:	fc 01       	movw	r30, r24
+     bf4:	11 82       	std	Z+1, r1	; 0x01
+     bf6:	08 95       	ret
+
+00000bf8 <_ZN11TimerDriver19SetOverflowIntervalEm>:
+     bf8:	4f 92       	push	r4
+     bfa:	5f 92       	push	r5
+     bfc:	6f 92       	push	r6
+     bfe:	7f 92       	push	r7
+     c00:	8f 92       	push	r8
+     c02:	9f 92       	push	r9
+     c04:	af 92       	push	r10
+     c06:	bf 92       	push	r11
+     c08:	cf 92       	push	r12
+     c0a:	df 92       	push	r13
+     c0c:	ef 92       	push	r14
+     c0e:	ff 92       	push	r15
+     c10:	0f 93       	push	r16
+     c12:	1f 93       	push	r17
+     c14:	cf 93       	push	r28
+     c16:	df 93       	push	r29
+     c18:	cd b7       	in	r28, 0x3d	; 61
+     c1a:	de b7       	in	r29, 0x3e	; 62
+     c1c:	28 97       	sbiw	r28, 0x08	; 8
+     c1e:	0f b6       	in	r0, 0x3f	; 63
+     c20:	f8 94       	cli
+     c22:	de bf       	out	0x3e, r29	; 62
+     c24:	0f be       	out	0x3f, r0	; 63
+     c26:	cd bf       	out	0x3d, r28	; 61
+     c28:	4c 01       	movw	r8, r24
+     c2a:	2a 01       	movw	r4, r20
+     c2c:	3b 01       	movw	r6, r22
+     c2e:	9a 01       	movw	r18, r20
+     c30:	ab 01       	movw	r20, r22
+     c32:	60 e0       	ldi	r22, 0x00	; 0
+     c34:	70 e0       	ldi	r23, 0x00	; 0
+     c36:	cb 01       	movw	r24, r22
+     c38:	29 83       	std	Y+1, r18	; 0x01
+     c3a:	3a 83       	std	Y+2, r19	; 0x02
+     c3c:	4b 83       	std	Y+3, r20	; 0x03
+     c3e:	5c 83       	std	Y+4, r21	; 0x04
+     c40:	6d 83       	std	Y+5, r22	; 0x05
+     c42:	7e 83       	std	Y+6, r23	; 0x06
+     c44:	8f 83       	std	Y+7, r24	; 0x07
+     c46:	98 87       	std	Y+8, r25	; 0x08
+     c48:	8e e3       	ldi	r24, 0x3E	; 62
+     c4a:	a8 2e       	mov	r10, r24
+     c4c:	b1 2c       	mov	r11, r1
+     c4e:	c1 2c       	mov	r12, r1
+     c50:	d1 2c       	mov	r13, r1
+     c52:	e1 2c       	mov	r14, r1
+     c54:	f1 2c       	mov	r15, r1
+     c56:	00 e0       	ldi	r16, 0x00	; 0
+     c58:	10 e0       	ldi	r17, 0x00	; 0
+     c5a:	60 e0       	ldi	r22, 0x00	; 0
+     c5c:	70 e0       	ldi	r23, 0x00	; 0
+     c5e:	80 e0       	ldi	r24, 0x00	; 0
+     c60:	90 e0       	ldi	r25, 0x00	; 0
+     c62:	6a d2       	rcall	.+1236   	; 0x1138 <__udivdi3>
+     c64:	79 01       	movw	r14, r18
+     c66:	8a 01       	movw	r16, r20
+     c68:	b6 2f       	mov	r27, r22
+     c6a:	a7 2f       	mov	r26, r23
+     c6c:	f8 2f       	mov	r31, r24
+     c6e:	d9 2e       	mov	r13, r25
+     c70:	2f 3f       	cpi	r18, 0xFF	; 255
+     c72:	ef ef       	ldi	r30, 0xFF	; 255
+     c74:	3e 07       	cpc	r19, r30
+     c76:	e3 e0       	ldi	r30, 0x03	; 3
+     c78:	4e 07       	cpc	r20, r30
+     c7a:	51 05       	cpc	r21, r1
+     c7c:	61 05       	cpc	r22, r1
+     c7e:	71 05       	cpc	r23, r1
+     c80:	81 05       	cpc	r24, r1
+     c82:	91 05       	cpc	r25, r1
+     c84:	11 f0       	breq	.+4      	; 0xc8a <_ZN11TimerDriver19SetOverflowIntervalEm+0x92>
+     c86:	08 f0       	brcs	.+2      	; 0xc8a <_ZN11TimerDriver19SetOverflowIntervalEm+0x92>
+     c88:	6a c0       	rjmp	.+212    	; 0xd5e <_ZN11TimerDriver19SetOverflowIntervalEm+0x166>
+     c8a:	2f 3f       	cpi	r18, 0xFF	; 255
+     c8c:	3f 4f       	sbci	r19, 0xFF	; 255
+     c8e:	41 05       	cpc	r20, r1
+     c90:	51 05       	cpc	r21, r1
+     c92:	61 05       	cpc	r22, r1
+     c94:	71 05       	cpc	r23, r1
+     c96:	81 05       	cpc	r24, r1
+     c98:	91 05       	cpc	r25, r1
+     c9a:	49 f0       	breq	.+18     	; 0xcae <_ZN11TimerDriver19SetOverflowIntervalEm+0xb6>
+     c9c:	40 f0       	brcs	.+16     	; 0xcae <_ZN11TimerDriver19SetOverflowIntervalEm+0xb6>
+     c9e:	85 e0       	ldi	r24, 0x05	; 5
+     ca0:	f4 01       	movw	r30, r8
+     ca2:	82 83       	std	Z+2, r24	; 0x02
+     ca4:	80 e0       	ldi	r24, 0x00	; 0
+     ca6:	98 ef       	ldi	r25, 0xF8	; 248
+     ca8:	a0 e0       	ldi	r26, 0x00	; 0
+     caa:	b0 e0       	ldi	r27, 0x00	; 0
+     cac:	4f c0       	rjmp	.+158    	; 0xd4c <_ZN11TimerDriver19SetOverflowIntervalEm+0x154>
+     cae:	97 01       	movw	r18, r14
+     cb0:	a8 01       	movw	r20, r16
+     cb2:	6b 2f       	mov	r22, r27
+     cb4:	7a 2f       	mov	r23, r26
+     cb6:	8f 2f       	mov	r24, r31
+     cb8:	9d 2d       	mov	r25, r13
+     cba:	2f 3f       	cpi	r18, 0xFF	; 255
+     cbc:	3f 43       	sbci	r19, 0x3F	; 63
+     cbe:	41 05       	cpc	r20, r1
+     cc0:	51 05       	cpc	r21, r1
+     cc2:	61 05       	cpc	r22, r1
+     cc4:	71 05       	cpc	r23, r1
+     cc6:	81 05       	cpc	r24, r1
+     cc8:	91 05       	cpc	r25, r1
+     cca:	49 f0       	breq	.+18     	; 0xcde <_ZN11TimerDriver19SetOverflowIntervalEm+0xe6>
+     ccc:	40 f0       	brcs	.+16     	; 0xcde <_ZN11TimerDriver19SetOverflowIntervalEm+0xe6>
+     cce:	84 e0       	ldi	r24, 0x04	; 4
+     cd0:	f4 01       	movw	r30, r8
+     cd2:	82 83       	std	Z+2, r24	; 0x02
+     cd4:	80 e0       	ldi	r24, 0x00	; 0
+     cd6:	9e e3       	ldi	r25, 0x3E	; 62
+     cd8:	a0 e0       	ldi	r26, 0x00	; 0
+     cda:	b0 e0       	ldi	r27, 0x00	; 0
+     cdc:	37 c0       	rjmp	.+110    	; 0xd4c <_ZN11TimerDriver19SetOverflowIntervalEm+0x154>
+     cde:	97 01       	movw	r18, r14
+     ce0:	a8 01       	movw	r20, r16
+     ce2:	6b 2f       	mov	r22, r27
+     ce4:	7a 2f       	mov	r23, r26
+     ce6:	8f 2f       	mov	r24, r31
+     ce8:	9d 2d       	mov	r25, r13
+     cea:	2f 3f       	cpi	r18, 0xFF	; 255
+     cec:	37 40       	sbci	r19, 0x07	; 7
+     cee:	41 05       	cpc	r20, r1
+     cf0:	51 05       	cpc	r21, r1
+     cf2:	61 05       	cpc	r22, r1
+     cf4:	71 05       	cpc	r23, r1
+     cf6:	81 05       	cpc	r24, r1
+     cf8:	91 05       	cpc	r25, r1
+     cfa:	49 f0       	breq	.+18     	; 0xd0e <_ZN11TimerDriver19SetOverflowIntervalEm+0x116>
+     cfc:	40 f0       	brcs	.+16     	; 0xd0e <_ZN11TimerDriver19SetOverflowIntervalEm+0x116>
+     cfe:	83 e0       	ldi	r24, 0x03	; 3
+     d00:	f4 01       	movw	r30, r8
+     d02:	82 83       	std	Z+2, r24	; 0x02
+     d04:	80 e8       	ldi	r24, 0x80	; 128
+     d06:	9f e0       	ldi	r25, 0x0F	; 15
+     d08:	a0 e0       	ldi	r26, 0x00	; 0
+     d0a:	b0 e0       	ldi	r27, 0x00	; 0
+     d0c:	1f c0       	rjmp	.+62     	; 0xd4c <_ZN11TimerDriver19SetOverflowIntervalEm+0x154>
+     d0e:	97 01       	movw	r18, r14
+     d10:	a8 01       	movw	r20, r16
+     d12:	6b 2f       	mov	r22, r27
+     d14:	7a 2f       	mov	r23, r26
+     d16:	8f 2f       	mov	r24, r31
+     d18:	9d 2d       	mov	r25, r13
+     d1a:	2f 3f       	cpi	r18, 0xFF	; 255
+     d1c:	31 05       	cpc	r19, r1
+     d1e:	41 05       	cpc	r20, r1
+     d20:	51 05       	cpc	r21, r1
+     d22:	61 05       	cpc	r22, r1
+     d24:	71 05       	cpc	r23, r1
+     d26:	81 05       	cpc	r24, r1
+     d28:	91 05       	cpc	r25, r1
+     d2a:	49 f0       	breq	.+18     	; 0xd3e <_ZN11TimerDriver19SetOverflowIntervalEm+0x146>
+     d2c:	40 f0       	brcs	.+16     	; 0xd3e <_ZN11TimerDriver19SetOverflowIntervalEm+0x146>
+     d2e:	82 e0       	ldi	r24, 0x02	; 2
+     d30:	f4 01       	movw	r30, r8
+     d32:	82 83       	std	Z+2, r24	; 0x02
+     d34:	80 ef       	ldi	r24, 0xF0	; 240
+     d36:	91 e0       	ldi	r25, 0x01	; 1
+     d38:	a0 e0       	ldi	r26, 0x00	; 0
+     d3a:	b0 e0       	ldi	r27, 0x00	; 0
+     d3c:	07 c0       	rjmp	.+14     	; 0xd4c <_ZN11TimerDriver19SetOverflowIntervalEm+0x154>
+     d3e:	81 e0       	ldi	r24, 0x01	; 1
+     d40:	f4 01       	movw	r30, r8
+     d42:	82 83       	std	Z+2, r24	; 0x02
+     d44:	8e e3       	ldi	r24, 0x3E	; 62
+     d46:	90 e0       	ldi	r25, 0x00	; 0
+     d48:	a0 e0       	ldi	r26, 0x00	; 0
+     d4a:	b0 e0       	ldi	r27, 0x00	; 0
+     d4c:	80 87       	std	Z+8, r24	; 0x08
+     d4e:	91 87       	std	Z+9, r25	; 0x09
+     d50:	a2 87       	std	Z+10, r26	; 0x0a
+     d52:	b3 87       	std	Z+11, r27	; 0x0b
+     d54:	f4 01       	movw	r30, r8
+     d56:	44 86       	std	Z+12, r4	; 0x0c
+     d58:	55 86       	std	Z+13, r5	; 0x0d
+     d5a:	66 86       	std	Z+14, r6	; 0x0e
+     d5c:	77 86       	std	Z+15, r7	; 0x0f
+     d5e:	28 96       	adiw	r28, 0x08	; 8
+     d60:	0f b6       	in	r0, 0x3f	; 63
+     d62:	f8 94       	cli
+     d64:	de bf       	out	0x3e, r29	; 62
+     d66:	0f be       	out	0x3f, r0	; 63
+     d68:	cd bf       	out	0x3d, r28	; 61
+     d6a:	df 91       	pop	r29
+     d6c:	cf 91       	pop	r28
+     d6e:	1f 91       	pop	r17
+     d70:	0f 91       	pop	r16
+     d72:	ff 90       	pop	r15
+     d74:	ef 90       	pop	r14
+     d76:	df 90       	pop	r13
+     d78:	cf 90       	pop	r12
+     d7a:	bf 90       	pop	r11
+     d7c:	af 90       	pop	r10
+     d7e:	9f 90       	pop	r9
+     d80:	8f 90       	pop	r8
+     d82:	7f 90       	pop	r7
+     d84:	6f 90       	pop	r6
+     d86:	5f 90       	pop	r5
+     d88:	4f 90       	pop	r4
+     d8a:	08 95       	ret
+
+00000d8c <_ZN11TimerDriver29_UpdateOutputCompareRegistersEv>:
+     d8c:	fc 01       	movw	r30, r24
+     d8e:	20 89       	ldd	r18, Z+16	; 0x10
+     d90:	27 bd       	out	0x27, r18	; 39
+     d92:	81 89       	ldd	r24, Z+17	; 0x11
+     d94:	88 bd       	out	0x28, r24	; 40
+     d96:	08 95       	ret
+
+00000d98 <_ZN11TimerDriver25_ComputeInterruptRegisterEv>:
+     d98:	fc 01       	movw	r30, r24
+     d9a:	27 81       	ldd	r18, Z+7	; 0x07
+     d9c:	28 7f       	andi	r18, 0xF8	; 248
+     d9e:	22 60       	ori	r18, 0x02	; 2
+     da0:	27 83       	std	Z+7, r18	; 0x07
+     da2:	08 95       	ret
+
+00000da4 <_ZN11TimerDriver27_ComputeInterruptsRegistersEv>:
+     da4:	fc 01       	movw	r30, r24
+     da6:	17 82       	std	Z+7, r1	; 0x07
+     da8:	22 e0       	ldi	r18, 0x02	; 2
+     daa:	26 83       	std	Z+6, r18	; 0x06
+     dac:	f5 cf       	rjmp	.-22     	; 0xd98 <_ZN11TimerDriver25_ComputeInterruptRegisterEv>
+
+00000dae <_ZN11TimerDriver38_ComputeWaveFormGenerationModeRegisterEv>:
+     dae:	fc 01       	movw	r30, r24
+     db0:	84 81       	ldd	r24, Z+4	; 0x04
+     db2:	8c 7f       	andi	r24, 0xFC	; 252
+     db4:	82 60       	ori	r24, 0x02	; 2
+     db6:	84 83       	std	Z+4, r24	; 0x04
+     db8:	85 81       	ldd	r24, Z+5	; 0x05
+     dba:	87 7f       	andi	r24, 0xF7	; 247
+     dbc:	85 83       	std	Z+5, r24	; 0x05
+     dbe:	08 95       	ret
+
+00000dc0 <_ZN11TimerDriver27_ComputeClockSourceRegisterEv>:
+     dc0:	fc 01       	movw	r30, r24
+     dc2:	81 81       	ldd	r24, Z+1	; 0x01
+     dc4:	81 11       	cpse	r24, r1
+     dc6:	02 c0       	rjmp	.+4      	; 0xdcc <_ZN11TimerDriver27_ComputeClockSourceRegisterEv+0xc>
+     dc8:	82 81       	ldd	r24, Z+2	; 0x02
+     dca:	01 c0       	rjmp	.+2      	; 0xdce <_ZN11TimerDriver27_ComputeClockSourceRegisterEv+0xe>
+     dcc:	80 e0       	ldi	r24, 0x00	; 0
+     dce:	87 70       	andi	r24, 0x07	; 7
+     dd0:	95 81       	ldd	r25, Z+5	; 0x05
+     dd2:	98 7f       	andi	r25, 0xF8	; 248
+     dd4:	89 2b       	or	r24, r25
+     dd6:	85 83       	std	Z+5, r24	; 0x05
+     dd8:	08 95       	ret
+
+00000dda <_ZN11TimerDriver30_ComputeOutputCompareRegistersEv>:
+     dda:	cf 93       	push	r28
+     ddc:	df 93       	push	r29
+     dde:	ec 01       	movw	r28, r24
+     de0:	6c 85       	ldd	r22, Y+12	; 0x0c
+     de2:	7d 85       	ldd	r23, Y+13	; 0x0d
+     de4:	8e 85       	ldd	r24, Y+14	; 0x0e
+     de6:	9f 85       	ldd	r25, Y+15	; 0x0f
+     de8:	28 85       	ldd	r18, Y+8	; 0x08
+     dea:	39 85       	ldd	r19, Y+9	; 0x09
+     dec:	4a 85       	ldd	r20, Y+10	; 0x0a
+     dee:	5b 85       	ldd	r21, Y+11	; 0x0b
+     df0:	75 d1       	rcall	.+746    	; 0x10dc <__udivmodsi4>
+     df2:	28 8b       	std	Y+16, r18	; 0x10
+     df4:	19 8a       	std	Y+17, r1	; 0x11
+     df6:	df 91       	pop	r29
+     df8:	cf 91       	pop	r28
+     dfa:	08 95       	ret
+
+00000dfc <_ZN11TimerDriver23_ComputeCotrolRegistersEv>:
+     dfc:	cf 93       	push	r28
+     dfe:	df 93       	push	r29
+     e00:	ec 01       	movw	r28, r24
+     e02:	1c 82       	std	Y+4, r1	; 0x04
+     e04:	1d 82       	std	Y+5, r1	; 0x05
+     e06:	e9 df       	rcall	.-46     	; 0xdda <_ZN11TimerDriver30_ComputeOutputCompareRegistersEv>
+     e08:	ce 01       	movw	r24, r28
+     e0a:	da df       	rcall	.-76     	; 0xdc0 <_ZN11TimerDriver27_ComputeClockSourceRegisterEv>
+     e0c:	ce 01       	movw	r24, r28
+     e0e:	df 91       	pop	r29
+     e10:	cf 91       	pop	r28
+     e12:	cd cf       	rjmp	.-102    	; 0xdae <_ZN11TimerDriver38_ComputeWaveFormGenerationModeRegisterEv>
+
+00000e14 <_ZN11TimerDriver23_UpdateControlRegistersEv>:
+     e14:	fc 01       	movw	r30, r24
+     e16:	24 81       	ldd	r18, Z+4	; 0x04
+     e18:	24 bd       	out	0x24, r18	; 36
+     e1a:	85 81       	ldd	r24, Z+5	; 0x05
+     e1c:	85 bd       	out	0x25, r24	; 37
+     e1e:	08 95       	ret
+
+00000e20 <_ZN11TimerDriver26_UpdateInterruptsRegistersEv>:
+     e20:	fc 01       	movw	r30, r24
+     e22:	27 81       	ldd	r18, Z+7	; 0x07
+     e24:	25 bb       	out	0x15, r18	; 21
+     e26:	86 81       	ldd	r24, Z+6	; 0x06
+     e28:	80 93 6e 00 	sts	0x006E, r24
+     e2c:	08 95       	ret
+
+00000e2e <_ZN11TimerDriver5StartEv>:
+     e2e:	cf 93       	push	r28
+     e30:	df 93       	push	r29
+     e32:	ec 01       	movw	r28, r24
+     e34:	e3 df       	rcall	.-58     	; 0xdfc <_ZN11TimerDriver23_ComputeCotrolRegistersEv>
+     e36:	ce 01       	movw	r24, r28
+     e38:	b5 df       	rcall	.-150    	; 0xda4 <_ZN11TimerDriver27_ComputeInterruptsRegistersEv>
+     e3a:	ce 01       	movw	r24, r28
+     e3c:	eb df       	rcall	.-42     	; 0xe14 <_ZN11TimerDriver23_UpdateControlRegistersEv>
+     e3e:	ce 01       	movw	r24, r28
+     e40:	a5 df       	rcall	.-182    	; 0xd8c <_ZN11TimerDriver29_UpdateOutputCompareRegistersEv>
+     e42:	ce 01       	movw	r24, r28
+     e44:	df 91       	pop	r29
+     e46:	cf 91       	pop	r28
+     e48:	eb cf       	rjmp	.-42     	; 0xe20 <_ZN11TimerDriver26_UpdateInterruptsRegistersEv>
+
+00000e4a <_ZN11TimerDriverC1Ev>:
+     e4a:	08 95       	ret
+
+00000e4c <_ZN11TimerDriverD1Ev>:
+     e4c:	08 95       	ret
+
+00000e4e <_ZN20TimerEventDispatcherC1Ev>:
+     e4e:	0f 93       	push	r16
+     e50:	1f 93       	push	r17
+     e52:	cf 93       	push	r28
+     e54:	df 93       	push	r29
+     e56:	cd b7       	in	r28, 0x3d	; 61
+     e58:	de b7       	in	r29, 0x3e	; 62
+     e5a:	62 97       	sbiw	r28, 0x12	; 18
+     e5c:	0f b6       	in	r0, 0x3f	; 63
+     e5e:	f8 94       	cli
+     e60:	de bf       	out	0x3e, r29	; 62
+     e62:	0f be       	out	0x3f, r0	; 63
+     e64:	cd bf       	out	0x3d, r28	; 61
+     e66:	8c 01       	movw	r16, r24
+     e68:	f0 df       	rcall	.-32     	; 0xe4a <_ZN11TimerDriverC1Ev>
+     e6a:	88 e0       	ldi	r24, 0x08	; 8
+     e6c:	d8 01       	movw	r26, r16
+     e6e:	52 96       	adiw	r26, 0x12	; 18
+     e70:	8c 93       	st	X, r24
+     e72:	80 e2       	ldi	r24, 0x20	; 32
+     e74:	91 ea       	ldi	r25, 0xA1	; 161
+     e76:	a7 e0       	ldi	r26, 0x07	; 7
+     e78:	b0 e0       	ldi	r27, 0x00	; 0
+     e7a:	f8 01       	movw	r30, r16
+     e7c:	83 8b       	std	Z+19, r24	; 0x13
+     e7e:	94 8b       	std	Z+20, r25	; 0x14
+     e80:	a5 8b       	std	Z+21, r26	; 0x15
+     e82:	b6 8b       	std	Z+22, r27	; 0x16
+     e84:	77 96       	adiw	r30, 0x17	; 23
+     e86:	88 e6       	ldi	r24, 0x68	; 104
+     e88:	df 01       	movw	r26, r30
+     e8a:	1d 92       	st	X+, r1
+     e8c:	8a 95       	dec	r24
+     e8e:	e9 f7       	brne	.-6      	; 0xe8a <_ZN20TimerEventDispatcherC1Ev+0x3c>
+     e90:	ce 01       	movw	r24, r28
+     e92:	01 96       	adiw	r24, 0x01	; 1
+     e94:	da df       	rcall	.-76     	; 0xe4a <_ZN11TimerDriverC1Ev>
+     e96:	82 e1       	ldi	r24, 0x12	; 18
+     e98:	fe 01       	movw	r30, r28
+     e9a:	31 96       	adiw	r30, 0x01	; 1
+     e9c:	d8 01       	movw	r26, r16
+     e9e:	01 90       	ld	r0, Z+
+     ea0:	0d 92       	st	X+, r0
+     ea2:	8a 95       	dec	r24
+     ea4:	e1 f7       	brne	.-8      	; 0xe9e <_ZN20TimerEventDispatcherC1Ev+0x50>
+     ea6:	ce 01       	movw	r24, r28
+     ea8:	01 96       	adiw	r24, 0x01	; 1
+     eaa:	d0 df       	rcall	.-96     	; 0xe4c <_ZN11TimerDriverD1Ev>
+     eac:	60 e0       	ldi	r22, 0x00	; 0
+     eae:	c8 01       	movw	r24, r16
+     eb0:	9e de       	rcall	.-708    	; 0xbee <_ZN11TimerDriver14SetClockSourceE11ClockSource>
+     eb2:	f8 01       	movw	r30, r16
+     eb4:	43 89       	ldd	r20, Z+19	; 0x13
+     eb6:	54 89       	ldd	r21, Z+20	; 0x14
+     eb8:	65 89       	ldd	r22, Z+21	; 0x15
+     eba:	76 89       	ldd	r23, Z+22	; 0x16
+     ebc:	c8 01       	movw	r24, r16
+     ebe:	9c de       	rcall	.-712    	; 0xbf8 <_ZN11TimerDriver19SetOverflowIntervalEm>
+     ec0:	c8 01       	movw	r24, r16
+     ec2:	b5 df       	rcall	.-150    	; 0xe2e <_ZN11TimerDriver5StartEv>
+     ec4:	62 96       	adiw	r28, 0x12	; 18
+     ec6:	0f b6       	in	r0, 0x3f	; 63
+     ec8:	f8 94       	cli
+     eca:	de bf       	out	0x3e, r29	; 62
+     ecc:	0f be       	out	0x3f, r0	; 63
+     ece:	cd bf       	out	0x3d, r28	; 61
+     ed0:	df 91       	pop	r29
+     ed2:	cf 91       	pop	r28
+     ed4:	1f 91       	pop	r17
+     ed6:	0f 91       	pop	r16
+     ed8:	08 95       	ret
+
+00000eda <_ZN20TimerEventDispatcher17_GetFreeEventSlotEv>:
+     eda:	fc 01       	movw	r30, r24
+     edc:	82 89       	ldd	r24, Z+18	; 0x12
+     ede:	40 e0       	ldi	r20, 0x00	; 0
+     ee0:	50 e0       	ldi	r21, 0x00	; 0
+     ee2:	20 e0       	ldi	r18, 0x00	; 0
+     ee4:	30 e0       	ldi	r19, 0x00	; 0
+     ee6:	28 17       	cp	r18, r24
+     ee8:	b0 f4       	brcc	.+44     	; 0xf16 <_ZN20TimerEventDispatcher17_GetFreeEventSlotEv+0x3c>
+     eea:	b9 01       	movw	r22, r18
+     eec:	df 01       	movw	r26, r30
+     eee:	a4 0f       	add	r26, r20
+     ef0:	b5 1f       	adc	r27, r21
+     ef2:	57 96       	adiw	r26, 0x17	; 23
+     ef4:	9c 91       	ld	r25, X
+     ef6:	2f 5f       	subi	r18, 0xFF	; 255
+     ef8:	3f 4f       	sbci	r19, 0xFF	; 255
+     efa:	43 5f       	subi	r20, 0xF3	; 243
+     efc:	5f 4f       	sbci	r21, 0xFF	; 255
+     efe:	91 11       	cpse	r25, r1
+     f00:	f2 cf       	rjmp	.-28     	; 0xee6 <_ZN20TimerEventDispatcher17_GetFreeEventSlotEv+0xc>
+     f02:	2d e0       	ldi	r18, 0x0D	; 13
+     f04:	26 9f       	mul	r18, r22
+     f06:	c0 01       	movw	r24, r0
+     f08:	27 9f       	mul	r18, r23
+     f0a:	90 0d       	add	r25, r0
+     f0c:	11 24       	eor	r1, r1
+     f0e:	47 96       	adiw	r24, 0x17	; 23
+     f10:	8e 0f       	add	r24, r30
+     f12:	9f 1f       	adc	r25, r31
+     f14:	08 95       	ret
+     f16:	80 e0       	ldi	r24, 0x00	; 0
+     f18:	90 e0       	ldi	r25, 0x00	; 0
+     f1a:	08 95       	ret
+
+00000f1c <_ZN20TimerEventDispatcher11CreateEventE14TimerEventTypemPFvP12_TIMER_EVENTPvES3_>:
+     f1c:	ef 92       	push	r14
+     f1e:	ff 92       	push	r15
+     f20:	0f 93       	push	r16
+     f22:	1f 93       	push	r17
+     f24:	cf 93       	push	r28
+     f26:	df 93       	push	r29
+     f28:	00 d0       	rcall	.+0      	; 0xf2a <_ZN20TimerEventDispatcher11CreateEventE14TimerEventTypemPFvP12_TIMER_EVENTPvES3_+0xe>
+     f2a:	00 d0       	rcall	.+0      	; 0xf2c <_ZN20TimerEventDispatcher11CreateEventE14TimerEventTypemPFvP12_TIMER_EVENTPvES3_+0x10>
+     f2c:	1f 92       	push	r1
+     f2e:	cd b7       	in	r28, 0x3d	; 61
+     f30:	de b7       	in	r29, 0x3e	; 62
+     f32:	2a 83       	std	Y+2, r18	; 0x02
+     f34:	3b 83       	std	Y+3, r19	; 0x03
+     f36:	4c 83       	std	Y+4, r20	; 0x04
+     f38:	5d 83       	std	Y+5, r21	; 0x05
+     f3a:	69 83       	std	Y+1, r22	; 0x01
+     f3c:	ce df       	rcall	.-100    	; 0xeda <_ZN20TimerEventDispatcher17_GetFreeEventSlotEv>
+     f3e:	fc 01       	movw	r30, r24
+     f40:	2a 81       	ldd	r18, Y+2	; 0x02
+     f42:	3b 81       	ldd	r19, Y+3	; 0x03
+     f44:	4c 81       	ldd	r20, Y+4	; 0x04
+     f46:	5d 81       	ldd	r21, Y+5	; 0x05
+     f48:	69 81       	ldd	r22, Y+1	; 0x01
+     f4a:	00 97       	sbiw	r24, 0x00	; 0
+     f4c:	69 f0       	breq	.+26     	; 0xf68 <_ZN20TimerEventDispatcher11CreateEventE14TimerEventTypemPFvP12_TIMER_EVENTPvES3_+0x4c>
+     f4e:	21 83       	std	Z+1, r18	; 0x01
+     f50:	32 83       	std	Z+2, r19	; 0x02
+     f52:	43 83       	std	Z+3, r20	; 0x03
+     f54:	54 83       	std	Z+4, r21	; 0x04
+     f56:	25 83       	std	Z+5, r18	; 0x05
+     f58:	36 83       	std	Z+6, r19	; 0x06
+     f5a:	47 83       	std	Z+7, r20	; 0x07
+     f5c:	50 87       	std	Z+8, r21	; 0x08
+     f5e:	12 87       	std	Z+10, r17	; 0x0a
+     f60:	01 87       	std	Z+9, r16	; 0x09
+     f62:	f4 86       	std	Z+12, r15	; 0x0c
+     f64:	e3 86       	std	Z+11, r14	; 0x0b
+     f66:	60 83       	st	Z, r22
+     f68:	cf 01       	movw	r24, r30
+     f6a:	0f 90       	pop	r0
+     f6c:	0f 90       	pop	r0
+     f6e:	0f 90       	pop	r0
+     f70:	0f 90       	pop	r0
+     f72:	0f 90       	pop	r0
+     f74:	df 91       	pop	r29
+     f76:	cf 91       	pop	r28
+     f78:	1f 91       	pop	r17
+     f7a:	0f 91       	pop	r16
+     f7c:	ff 90       	pop	r15
+     f7e:	ef 90       	pop	r14
+     f80:	08 95       	ret
+
+00000f82 <_ZN20TimerEventDispatcher16SysTimerOverflowEv>:
+     f82:	ef 92       	push	r14
+     f84:	ff 92       	push	r15
+     f86:	0f 93       	push	r16
+     f88:	1f 93       	push	r17
+     f8a:	cf 93       	push	r28
+     f8c:	df 93       	push	r29
+     f8e:	ec 01       	movw	r28, r24
+     f90:	f1 2c       	mov	r15, r1
+     f92:	8d e0       	ldi	r24, 0x0D	; 13
+     f94:	e8 2e       	mov	r14, r24
+     f96:	8a 89       	ldd	r24, Y+18	; 0x12
+     f98:	f8 16       	cp	r15, r24
+     f9a:	08 f0       	brcs	.+2      	; 0xf9e <_ZN20TimerEventDispatcher16SysTimerOverflowEv+0x1c>
+     f9c:	41 c0       	rjmp	.+130    	; 0x1020 <_ZN20TimerEventDispatcher16SysTimerOverflowEv+0x9e>
+     f9e:	de 01       	movw	r26, r28
+     fa0:	ef 9c       	mul	r14, r15
+     fa2:	a0 0d       	add	r26, r0
+     fa4:	b1 1d       	adc	r27, r1
+     fa6:	11 24       	eor	r1, r1
+     fa8:	57 96       	adiw	r26, 0x17	; 23
+     faa:	8c 91       	ld	r24, X
+     fac:	88 23       	and	r24, r24
+     fae:	b1 f1       	breq	.+108    	; 0x101c <_ZN20TimerEventDispatcher16SysTimerOverflowEv+0x9a>
+     fb0:	15 96       	adiw	r26, 0x05	; 5
+     fb2:	0d 91       	ld	r16, X+
+     fb4:	1d 91       	ld	r17, X+
+     fb6:	2d 91       	ld	r18, X+
+     fb8:	3c 91       	ld	r19, X
+     fba:	18 97       	sbiw	r26, 0x08	; 8
+     fbc:	4b 89       	ldd	r20, Y+19	; 0x13
+     fbe:	5c 89       	ldd	r21, Y+20	; 0x14
+     fc0:	6d 89       	ldd	r22, Y+21	; 0x15
+     fc2:	7e 89       	ldd	r23, Y+22	; 0x16
+     fc4:	04 17       	cp	r16, r20
+     fc6:	15 07       	cpc	r17, r21
+     fc8:	26 07       	cpc	r18, r22
+     fca:	37 07       	cpc	r19, r23
+     fcc:	38 f1       	brcs	.+78     	; 0x101c <_ZN20TimerEventDispatcher16SysTimerOverflowEv+0x9a>
+     fce:	04 1b       	sub	r16, r20
+     fd0:	15 0b       	sbc	r17, r21
+     fd2:	26 0b       	sbc	r18, r22
+     fd4:	37 0b       	sbc	r19, r23
+     fd6:	15 96       	adiw	r26, 0x05	; 5
+     fd8:	0d 93       	st	X+, r16
+     fda:	1d 93       	st	X+, r17
+     fdc:	2d 93       	st	X+, r18
+     fde:	3c 93       	st	X, r19
+     fe0:	18 97       	sbiw	r26, 0x08	; 8
+     fe2:	81 30       	cpi	r24, 0x01	; 1
+     fe4:	d9 f4       	brne	.+54     	; 0x101c <_ZN20TimerEventDispatcher16SysTimerOverflowEv+0x9a>
+     fe6:	04 17       	cp	r16, r20
+     fe8:	15 07       	cpc	r17, r21
+     fea:	26 07       	cpc	r18, r22
+     fec:	37 07       	cpc	r19, r23
+     fee:	b0 f4       	brcc	.+44     	; 0x101c <_ZN20TimerEventDispatcher16SysTimerOverflowEv+0x9a>
+     ff0:	11 96       	adiw	r26, 0x01	; 1
+     ff2:	4d 91       	ld	r20, X+
+     ff4:	5d 91       	ld	r21, X+
+     ff6:	6d 91       	ld	r22, X+
+     ff8:	7c 91       	ld	r23, X
+     ffa:	14 97       	sbiw	r26, 0x04	; 4
+     ffc:	15 96       	adiw	r26, 0x05	; 5
+     ffe:	4d 93       	st	X+, r20
+    1000:	5d 93       	st	X+, r21
+    1002:	6d 93       	st	X+, r22
+    1004:	7c 93       	st	X, r23
+    1006:	18 97       	sbiw	r26, 0x08	; 8
+    1008:	1b 96       	adiw	r26, 0x0b	; 11
+    100a:	6d 91       	ld	r22, X+
+    100c:	7c 91       	ld	r23, X
+    100e:	1c 97       	sbiw	r26, 0x0c	; 12
+    1010:	19 96       	adiw	r26, 0x09	; 9
+    1012:	ed 91       	ld	r30, X+
+    1014:	fc 91       	ld	r31, X
+    1016:	1a 97       	sbiw	r26, 0x0a	; 10
+    1018:	cd 01       	movw	r24, r26
+    101a:	09 95       	icall
+    101c:	f3 94       	inc	r15
+    101e:	bb cf       	rjmp	.-138    	; 0xf96 <_ZN20TimerEventDispatcher16SysTimerOverflowEv+0x14>
+    1020:	df 91       	pop	r29
+    1022:	cf 91       	pop	r28
+    1024:	1f 91       	pop	r17
+    1026:	0f 91       	pop	r16
+    1028:	ff 90       	pop	r15
+    102a:	ef 90       	pop	r14
+    102c:	08 95       	ret
+
+0000102e <_ZN20TimerEventDispatcher11CheckEventsEv>:
+    102e:	ef 92       	push	r14
+    1030:	ff 92       	push	r15
+    1032:	0f 93       	push	r16
+    1034:	1f 93       	push	r17
+    1036:	cf 93       	push	r28
+    1038:	df 93       	push	r29
+    103a:	ec 01       	movw	r28, r24
+    103c:	85 b1       	in	r24, 0x05	; 5
+    103e:	90 ec       	ldi	r25, 0xC0	; 192
+    1040:	89 27       	eor	r24, r25
+    1042:	85 b9       	out	0x05, r24	; 5
+    1044:	f1 2c       	mov	r15, r1
+    1046:	9d e0       	ldi	r25, 0x0D	; 13
+    1048:	e9 2e       	mov	r14, r25
+    104a:	8a 89       	ldd	r24, Y+18	; 0x12
+    104c:	f8 16       	cp	r15, r24
+    104e:	80 f5       	brcc	.+96     	; 0x10b0 <_ZN20TimerEventDispatcher11CheckEventsEv+0x82>
+    1050:	de 01       	movw	r26, r28
+    1052:	ef 9c       	mul	r14, r15
+    1054:	a0 0d       	add	r26, r0
+    1056:	b1 1d       	adc	r27, r1
+    1058:	11 24       	eor	r1, r1
+    105a:	57 96       	adiw	r26, 0x17	; 23
+    105c:	8c 91       	ld	r24, X
+    105e:	83 30       	cpi	r24, 0x03	; 3
+    1060:	29 f5       	brne	.+74     	; 0x10ac <_ZN20TimerEventDispatcher11CheckEventsEv+0x7e>
+    1062:	15 96       	adiw	r26, 0x05	; 5
+    1064:	0d 91       	ld	r16, X+
+    1066:	1d 91       	ld	r17, X+
+    1068:	2d 91       	ld	r18, X+
+    106a:	3c 91       	ld	r19, X
+    106c:	18 97       	sbiw	r26, 0x08	; 8
+    106e:	4b 89       	ldd	r20, Y+19	; 0x13
+    1070:	5c 89       	ldd	r21, Y+20	; 0x14
+    1072:	6d 89       	ldd	r22, Y+21	; 0x15
+    1074:	7e 89       	ldd	r23, Y+22	; 0x16
+    1076:	04 17       	cp	r16, r20
+    1078:	15 07       	cpc	r17, r21
+    107a:	26 07       	cpc	r18, r22
+    107c:	37 07       	cpc	r19, r23
+    107e:	b0 f4       	brcc	.+44     	; 0x10ac <_ZN20TimerEventDispatcher11CheckEventsEv+0x7e>
+    1080:	11 96       	adiw	r26, 0x01	; 1
+    1082:	4d 91       	ld	r20, X+
+    1084:	5d 91       	ld	r21, X+
+    1086:	6d 91       	ld	r22, X+
+    1088:	7c 91       	ld	r23, X
+    108a:	14 97       	sbiw	r26, 0x04	; 4
+    108c:	15 96       	adiw	r26, 0x05	; 5
+    108e:	4d 93       	st	X+, r20
+    1090:	5d 93       	st	X+, r21
+    1092:	6d 93       	st	X+, r22
+    1094:	7c 93       	st	X, r23
+    1096:	18 97       	sbiw	r26, 0x08	; 8
+    1098:	1b 96       	adiw	r26, 0x0b	; 11
+    109a:	6d 91       	ld	r22, X+
+    109c:	7c 91       	ld	r23, X
+    109e:	1c 97       	sbiw	r26, 0x0c	; 12
+    10a0:	19 96       	adiw	r26, 0x09	; 9
+    10a2:	ed 91       	ld	r30, X+
+    10a4:	fc 91       	ld	r31, X
+    10a6:	1a 97       	sbiw	r26, 0x0a	; 10
+    10a8:	cd 01       	movw	r24, r26
+    10aa:	09 95       	icall
+    10ac:	f3 94       	inc	r15
+    10ae:	cd cf       	rjmp	.-102    	; 0x104a <_ZN20TimerEventDispatcher11CheckEventsEv+0x1c>
+    10b0:	df 91       	pop	r29
+    10b2:	cf 91       	pop	r28
+    10b4:	1f 91       	pop	r17
+    10b6:	0f 91       	pop	r16
+    10b8:	ff 90       	pop	r15
+    10ba:	ef 90       	pop	r14
+    10bc:	08 95       	ret
+
+000010be <__mulsi3>:
+    10be:	db 01       	movw	r26, r22
+    10c0:	8f 93       	push	r24
+    10c2:	9f 93       	push	r25
+    10c4:	2d d0       	rcall	.+90     	; 0x1120 <__muluhisi3>
+    10c6:	bf 91       	pop	r27
+    10c8:	af 91       	pop	r26
+    10ca:	a2 9f       	mul	r26, r18
+    10cc:	80 0d       	add	r24, r0
+    10ce:	91 1d       	adc	r25, r1
+    10d0:	a3 9f       	mul	r26, r19
+    10d2:	90 0d       	add	r25, r0
+    10d4:	b2 9f       	mul	r27, r18
+    10d6:	90 0d       	add	r25, r0
+    10d8:	11 24       	eor	r1, r1
+    10da:	08 95       	ret
+
+000010dc <__udivmodsi4>:
+    10dc:	a1 e2       	ldi	r26, 0x21	; 33
+    10de:	1a 2e       	mov	r1, r26
+    10e0:	aa 1b       	sub	r26, r26
+    10e2:	bb 1b       	sub	r27, r27
+    10e4:	fd 01       	movw	r30, r26
+    10e6:	0d c0       	rjmp	.+26     	; 0x1102 <__udivmodsi4_ep>
+
+000010e8 <__udivmodsi4_loop>:
+    10e8:	aa 1f       	adc	r26, r26
+    10ea:	bb 1f       	adc	r27, r27
+    10ec:	ee 1f       	adc	r30, r30
+    10ee:	ff 1f       	adc	r31, r31
+    10f0:	a2 17       	cp	r26, r18
+    10f2:	b3 07       	cpc	r27, r19
+    10f4:	e4 07       	cpc	r30, r20
+    10f6:	f5 07       	cpc	r31, r21
+    10f8:	20 f0       	brcs	.+8      	; 0x1102 <__udivmodsi4_ep>
+    10fa:	a2 1b       	sub	r26, r18
+    10fc:	b3 0b       	sbc	r27, r19
+    10fe:	e4 0b       	sbc	r30, r20
+    1100:	f5 0b       	sbc	r31, r21
+
+00001102 <__udivmodsi4_ep>:
+    1102:	66 1f       	adc	r22, r22
+    1104:	77 1f       	adc	r23, r23
+    1106:	88 1f       	adc	r24, r24
+    1108:	99 1f       	adc	r25, r25
+    110a:	1a 94       	dec	r1
+    110c:	69 f7       	brne	.-38     	; 0x10e8 <__udivmodsi4_loop>
+    110e:	60 95       	com	r22
+    1110:	70 95       	com	r23
+    1112:	80 95       	com	r24
+    1114:	90 95       	com	r25
+    1116:	9b 01       	movw	r18, r22
+    1118:	ac 01       	movw	r20, r24
+    111a:	bd 01       	movw	r22, r26
+    111c:	cf 01       	movw	r24, r30
+    111e:	08 95       	ret
+
+00001120 <__muluhisi3>:
+    1120:	5b d0       	rcall	.+182    	; 0x11d8 <__umulhisi3>
+    1122:	a5 9f       	mul	r26, r21
+    1124:	90 0d       	add	r25, r0
+    1126:	b4 9f       	mul	r27, r20
+    1128:	90 0d       	add	r25, r0
+    112a:	a4 9f       	mul	r26, r20
+    112c:	80 0d       	add	r24, r0
+    112e:	91 1d       	adc	r25, r1
+    1130:	11 24       	eor	r1, r1
+    1132:	08 95       	ret
+
+00001134 <__umoddi3>:
+    1134:	68 94       	set
+    1136:	01 c0       	rjmp	.+2      	; 0x113a <__udivdi3_umoddi3>
+
+00001138 <__udivdi3>:
+    1138:	e8 94       	clt
+
+0000113a <__udivdi3_umoddi3>:
+    113a:	8f 92       	push	r8
+    113c:	9f 92       	push	r9
+    113e:	cf 93       	push	r28
+    1140:	df 93       	push	r29
+    1142:	05 d0       	rcall	.+10     	; 0x114e <__udivmod64>
+    1144:	df 91       	pop	r29
+    1146:	cf 91       	pop	r28
+    1148:	9f 90       	pop	r9
+    114a:	8f 90       	pop	r8
+    114c:	08 95       	ret
+
+0000114e <__udivmod64>:
+    114e:	88 24       	eor	r8, r8
+    1150:	99 24       	eor	r9, r9
+    1152:	f4 01       	movw	r30, r8
+    1154:	e4 01       	movw	r28, r8
+    1156:	b0 e4       	ldi	r27, 0x40	; 64
+    1158:	1b 2e       	mov	r1, r27
+    115a:	d4 01       	movw	r26, r8
+    115c:	9d 15       	cp	r25, r13
+    115e:	8e 04       	cpc	r8, r14
+    1160:	9f 04       	cpc	r9, r15
+    1162:	e0 07       	cpc	r30, r16
+    1164:	f1 07       	cpc	r31, r17
+    1166:	38 f4       	brcc	.+14     	; 0x1176 <__udivmod64+0x28>
+    1168:	fc 01       	movw	r30, r24
+    116a:	4b 01       	movw	r8, r22
+    116c:	ca 01       	movw	r24, r20
+    116e:	b9 01       	movw	r22, r18
+    1170:	ad 01       	movw	r20, r26
+    1172:	9e 01       	movw	r18, r28
+    1174:	16 94       	lsr	r1
+    1176:	22 0f       	add	r18, r18
+    1178:	33 1f       	adc	r19, r19
+    117a:	44 1f       	adc	r20, r20
+    117c:	55 1f       	adc	r21, r21
+    117e:	66 1f       	adc	r22, r22
+    1180:	77 1f       	adc	r23, r23
+    1182:	88 1f       	adc	r24, r24
+    1184:	99 1f       	adc	r25, r25
+    1186:	88 1c       	adc	r8, r8
+    1188:	99 1c       	adc	r9, r9
+    118a:	ee 1f       	adc	r30, r30
+    118c:	ff 1f       	adc	r31, r31
+    118e:	cc 1f       	adc	r28, r28
+    1190:	dd 1f       	adc	r29, r29
+    1192:	aa 1f       	adc	r26, r26
+    1194:	bb 1f       	adc	r27, r27
+    1196:	8a 14       	cp	r8, r10
+    1198:	9b 04       	cpc	r9, r11
+    119a:	ec 05       	cpc	r30, r12
+    119c:	fd 05       	cpc	r31, r13
+    119e:	ce 05       	cpc	r28, r14
+    11a0:	df 05       	cpc	r29, r15
+    11a2:	a0 07       	cpc	r26, r16
+    11a4:	b1 07       	cpc	r27, r17
+    11a6:	48 f0       	brcs	.+18     	; 0x11ba <__udivmod64+0x6c>
+    11a8:	8a 18       	sub	r8, r10
+    11aa:	9b 08       	sbc	r9, r11
+    11ac:	ec 09       	sbc	r30, r12
+    11ae:	fd 09       	sbc	r31, r13
+    11b0:	ce 09       	sbc	r28, r14
+    11b2:	df 09       	sbc	r29, r15
+    11b4:	a0 0b       	sbc	r26, r16
+    11b6:	b1 0b       	sbc	r27, r17
+    11b8:	21 60       	ori	r18, 0x01	; 1
+    11ba:	1a 94       	dec	r1
+    11bc:	e1 f6       	brne	.-72     	; 0x1176 <__udivmod64+0x28>
+    11be:	2e f4       	brtc	.+10     	; 0x11ca <__udivmod64+0x7c>
+    11c0:	94 01       	movw	r18, r8
+    11c2:	af 01       	movw	r20, r30
+    11c4:	be 01       	movw	r22, r28
+    11c6:	cd 01       	movw	r24, r26
+    11c8:	00 0c       	add	r0, r0
+    11ca:	08 95       	ret
+
+000011cc <__tablejump2__>:
+    11cc:	ee 0f       	add	r30, r30
+    11ce:	ff 1f       	adc	r31, r31
+
+000011d0 <__tablejump__>:
+    11d0:	05 90       	lpm	r0, Z+
+    11d2:	f4 91       	lpm	r31, Z
+    11d4:	e0 2d       	mov	r30, r0
+    11d6:	09 94       	ijmp
+
+000011d8 <__umulhisi3>:
+    11d8:	a2 9f       	mul	r26, r18
+    11da:	b0 01       	movw	r22, r0
+    11dc:	b3 9f       	mul	r27, r19
+    11de:	c0 01       	movw	r24, r0
+    11e0:	a3 9f       	mul	r26, r19
+    11e2:	01 d0       	rcall	.+2      	; 0x11e6 <__umulhisi3+0xe>
+    11e4:	b2 9f       	mul	r27, r18
+    11e6:	70 0d       	add	r23, r0
+    11e8:	81 1d       	adc	r24, r1
+    11ea:	11 24       	eor	r1, r1
+    11ec:	91 1d       	adc	r25, r1
+    11ee:	08 95       	ret
+
+000011f0 <__do_global_dtors>:
+    11f0:	10 e0       	ldi	r17, 0x00	; 0
+    11f2:	c8 e3       	ldi	r28, 0x38	; 56
+    11f4:	d0 e0       	ldi	r29, 0x00	; 0
+    11f6:	03 c0       	rjmp	.+6      	; 0x11fe <__do_global_dtors+0xe>
+    11f8:	fe 01       	movw	r30, r28
+    11fa:	ea df       	rcall	.-44     	; 0x11d0 <__tablejump__>
+    11fc:	22 96       	adiw	r28, 0x02	; 2
+    11fe:	cc 33       	cpi	r28, 0x3C	; 60
+    1200:	d1 07       	cpc	r29, r17
+    1202:	d1 f7       	brne	.-12     	; 0x11f8 <__do_global_dtors+0x8>
+    1204:	f8 94       	cli
+
+00001206 <__stop_program>:
+    1206:	ff cf       	rjmp	.-2      	; 0x1206 <__stop_program>

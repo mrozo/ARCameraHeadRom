@@ -1,0 +1,4077 @@
+
+AtmegaRom.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000004a  00800100  0000155c  000015f0  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000155c  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          000000ff  0080014a  0080014a  0000163a  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000163a  2**0
+                  CONTENTS, READONLY
+  4 .debug_aranges 000003b0  00000000  00000000  0000166a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00006a06  00000000  00000000  00001a1a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000128d  00000000  00000000  00008420  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000f01  00000000  00000000  000096ad  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000920  00000000  00000000  0000a5b0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00001e0b  00000000  00000000  0000aed0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00001a17  00000000  00000000  0000ccdb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000358  00000000  00000000  0000e6f2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	1d c0       	rjmp	.+58     	; 0x3c <__dtors_end>
+       2:	41 c0       	rjmp	.+130    	; 0x86 <__bad_interrupt>
+       4:	40 c0       	rjmp	.+128    	; 0x86 <__bad_interrupt>
+       6:	3f c0       	rjmp	.+126    	; 0x86 <__bad_interrupt>
+       8:	3e c0       	rjmp	.+124    	; 0x86 <__bad_interrupt>
+       a:	3d c0       	rjmp	.+122    	; 0x86 <__bad_interrupt>
+       c:	3c c0       	rjmp	.+120    	; 0x86 <__bad_interrupt>
+       e:	3b c0       	rjmp	.+118    	; 0x86 <__bad_interrupt>
+      10:	3a c0       	rjmp	.+116    	; 0x86 <__bad_interrupt>
+      12:	39 c0       	rjmp	.+114    	; 0x86 <__bad_interrupt>
+      14:	38 c0       	rjmp	.+112    	; 0x86 <__bad_interrupt>
+      16:	37 c0       	rjmp	.+110    	; 0x86 <__bad_interrupt>
+      18:	36 c0       	rjmp	.+108    	; 0x86 <__bad_interrupt>
+      1a:	35 c0       	rjmp	.+106    	; 0x86 <__bad_interrupt>
+      1c:	e6 c1       	rjmp	.+972    	; 0x3ea <__vector_14>
+      1e:	33 c0       	rjmp	.+102    	; 0x86 <__bad_interrupt>
+      20:	32 c0       	rjmp	.+100    	; 0x86 <__bad_interrupt>
+      22:	31 c0       	rjmp	.+98     	; 0x86 <__bad_interrupt>
+      24:	30 c0       	rjmp	.+96     	; 0x86 <__bad_interrupt>
+      26:	2f c0       	rjmp	.+94     	; 0x86 <__bad_interrupt>
+      28:	2e c0       	rjmp	.+92     	; 0x86 <__bad_interrupt>
+      2a:	2d c0       	rjmp	.+90     	; 0x86 <__bad_interrupt>
+      2c:	2c c0       	rjmp	.+88     	; 0x86 <__bad_interrupt>
+      2e:	2b c0       	rjmp	.+86     	; 0x86 <__bad_interrupt>
+      30:	2a c0       	rjmp	.+84     	; 0x86 <__bad_interrupt>
+      32:	29 c0       	rjmp	.+82     	; 0x86 <__bad_interrupt>
+
+00000034 <__ctors_start>:
+      34:	87 01       	movw	r16, r14
+      36:	1c 02       	muls	r17, r28
+
+00000038 <__ctors_end>:
+      38:	8e 01       	movw	r16, r28
+      3a:	23 02       	muls	r18, r19
+
+0000003c <__dtors_end>:
+      3c:	11 24       	eor	r1, r1
+      3e:	1f be       	out	0x3f, r1	; 63
+      40:	cf ef       	ldi	r28, 0xFF	; 255
+      42:	d4 e0       	ldi	r29, 0x04	; 4
+      44:	de bf       	out	0x3e, r29	; 62
+      46:	cd bf       	out	0x3d, r28	; 61
+
+00000048 <__do_copy_data>:
+      48:	11 e0       	ldi	r17, 0x01	; 1
+      4a:	a0 e0       	ldi	r26, 0x00	; 0
+      4c:	b1 e0       	ldi	r27, 0x01	; 1
+      4e:	ec e5       	ldi	r30, 0x5C	; 92
+      50:	f5 e1       	ldi	r31, 0x15	; 21
+      52:	02 c0       	rjmp	.+4      	; 0x58 <__do_copy_data+0x10>
+      54:	05 90       	lpm	r0, Z+
+      56:	0d 92       	st	X+, r0
+      58:	aa 34       	cpi	r26, 0x4A	; 74
+      5a:	b1 07       	cpc	r27, r17
+      5c:	d9 f7       	brne	.-10     	; 0x54 <__do_copy_data+0xc>
+
+0000005e <__do_clear_bss>:
+      5e:	22 e0       	ldi	r18, 0x02	; 2
+      60:	aa e4       	ldi	r26, 0x4A	; 74
+      62:	b1 e0       	ldi	r27, 0x01	; 1
+      64:	01 c0       	rjmp	.+2      	; 0x68 <.do_clear_bss_start>
+
+00000066 <.do_clear_bss_loop>:
+      66:	1d 92       	st	X+, r1
+
+00000068 <.do_clear_bss_start>:
+      68:	a9 34       	cpi	r26, 0x49	; 73
+      6a:	b2 07       	cpc	r27, r18
+      6c:	e1 f7       	brne	.-8      	; 0x66 <.do_clear_bss_loop>
+
+0000006e <__do_global_ctors>:
+      6e:	10 e0       	ldi	r17, 0x00	; 0
+      70:	c8 e3       	ldi	r28, 0x38	; 56
+      72:	d0 e0       	ldi	r29, 0x00	; 0
+      74:	03 c0       	rjmp	.+6      	; 0x7c <__do_global_ctors+0xe>
+      76:	22 97       	sbiw	r28, 0x02	; 2
+      78:	fe 01       	movw	r30, r28
+      7a:	54 da       	rcall	.-2904   	; 0xfffff524 <__eeprom_end+0xff7ef524>
+      7c:	c4 33       	cpi	r28, 0x34	; 52
+      7e:	d1 07       	cpc	r29, r17
+      80:	d1 f7       	brne	.-12     	; 0x76 <__do_global_ctors+0x8>
+      82:	37 d1       	rcall	.+622    	; 0x2f2 <main>
+      84:	5f ca       	rjmp	.-2882   	; 0xfffff544 <__eeprom_end+0xff7ef544>
+
+00000086 <__bad_interrupt>:
+      86:	bc cf       	rjmp	.-136    	; 0x0 <__vectors>
+
+00000088 <_Z19VerticalMotorUpdateh>:
+//#define DEBUG
+
+extern GLOBAL_SERVICES_TABLE gST;
+
+BYTE UCSR0B_copy = 0;
+void VerticalMotorUpdate(UINT state){ PORTB = (PINB&0xC0)|(state&0x3f);}
+      88:	93 b1       	in	r25, 0x03	; 3
+      8a:	8f 73       	andi	r24, 0x3F	; 63
+      8c:	90 7c       	andi	r25, 0xC0	; 192
+      8e:	98 2b       	or	r25, r24
+      90:	95 b9       	out	0x05, r25	; 5
+      92:	08 95       	ret
+
+00000094 <_Z21HorizontalMotorUpdateh>:
+  4,
+  VerticalMotorUpdate
+
+};
+
+void HorizontalMotorUpdate(UINT state){ PORTD = (state&0xFC)|(PIND&0x03);}
+      94:	99 b1       	in	r25, 0x09	; 9
+      96:	8c 7f       	andi	r24, 0xFC	; 252
+      98:	93 70       	andi	r25, 0x03	; 3
+      9a:	98 2b       	or	r25, r24
+      9c:	9b b9       	out	0x0b, r25	; 11
+      9e:	08 95       	ret
+
+000000a0 <_Z14SendHeadStatusv>:
+};
+
+PACKET p;
+
+void SendHeadStatus(){
+  p.angles.h = (uint32_t) (( horizontalMotor.GetAngle() + ((15) *200 / 2)) * (0xFFFFFFFF/(30*200/2)));
+      a0:	84 e5       	ldi	r24, 0x54	; 84
+      a2:	91 e0       	ldi	r25, 0x01	; 1
+      a4:	16 d3       	rcall	.+1580   	; 0x6d2 <_ZN11MotorDriver8GetAngleEv>
+      a6:	9b 01       	movw	r18, r22
+      a8:	ac 01       	movw	r20, r24
+      aa:	24 52       	subi	r18, 0x24	; 36
+      ac:	3a 4f       	sbci	r19, 0xFA	; 250
+      ae:	4f 4f       	sbci	r20, 0xFF	; 255
+      b0:	5f 4f       	sbci	r21, 0xFF	; 255
+      b2:	67 e6       	ldi	r22, 0x67	; 103
+      b4:	78 ed       	ldi	r23, 0xD8	; 216
+      b6:	85 e1       	ldi	r24, 0x15	; 21
+      b8:	90 e0       	ldi	r25, 0x00	; 0
+      ba:	db d9       	rcall	.-3146   	; 0xfffff472 <__eeprom_end+0xff7ef472>
+      bc:	60 93 4a 01 	sts	0x014A, r22
+      c0:	70 93 4b 01 	sts	0x014B, r23
+      c4:	80 93 4c 01 	sts	0x014C, r24
+      c8:	90 93 4d 01 	sts	0x014D, r25
+  p.angles.v = (uint32_t) (( verticalMotor.GetAngle()   + ((7.5)*200 / 2)) * (0xFFFFFFFF/(15*200/2)));
+      cc:	88 e7       	ldi	r24, 0x78	; 120
+      ce:	91 e0       	ldi	r25, 0x01	; 1
+      d0:	00 d3       	rcall	.+1536   	; 0x6d2 <_ZN11MotorDriver8GetAngleEv>
+      d2:	e0 d8       	rcall	.-3648   	; 0xfffff294 <__eeprom_end+0xff7ef294>
+      d4:	20 e0       	ldi	r18, 0x00	; 0
+      d6:	30 e8       	ldi	r19, 0x80	; 128
+      d8:	4b e3       	ldi	r20, 0x3B	; 59
+      da:	54 e4       	ldi	r21, 0x44	; 68
+      dc:	49 d8       	rcall	.-3950   	; 0xfffff170 <__eeprom_end+0xff7ef170>
+      de:	2c e3       	ldi	r18, 0x3C	; 60
+      e0:	33 ec       	ldi	r19, 0xC3	; 195
+      e2:	4e e2       	ldi	r20, 0x2E	; 46
+      e4:	5a e4       	ldi	r21, 0x4A	; 74
+      e6:	62 d9       	rcall	.-3388   	; 0xfffff3ac <__eeprom_end+0xff7ef3ac>
+      e8:	a7 d8       	rcall	.-3762   	; 0xfffff238 <__eeprom_end+0xff7ef238>
+      ea:	60 93 4e 01 	sts	0x014E, r22
+      ee:	70 93 4f 01 	sts	0x014F, r23
+      f2:	80 93 50 01 	sts	0x0150, r24
+      f6:	90 93 51 01 	sts	0x0151, r25
+  gST.serial->SendPacket((p.raw));
+      fa:	6a e4       	ldi	r22, 0x4A	; 74
+      fc:	71 e0       	ldi	r23, 0x01	; 1
+      fe:	80 91 9c 01 	lds	r24, 0x019C
+     102:	90 91 9d 01 	lds	r25, 0x019D
+     106:	93 d3       	rcall	.+1830   	; 0x82e <_ZN19SerialCommunication10SendPacketEPh>
+     108:	08 95       	ret
+
+0000010a <_Z18SetUpVerticalMotorv>:
+{
+	while( gST.serial->GetState() != Active ){}
+}
+
+void SetUpVerticalMotor()
+{
+     10a:	0f 93       	push	r16
+     10c:	1f 93       	push	r17
+  verticalMotor.SetMotorStates(&verticalMotorStates);
+     10e:	65 e2       	ldi	r22, 0x25	; 37
+     110:	71 e0       	ldi	r23, 0x01	; 1
+     112:	88 e7       	ldi	r24, 0x78	; 120
+     114:	91 e0       	ldi	r25, 0x01	; 1
+     116:	c4 d1       	rcall	.+904    	; 0x4a0 <_ZN11MotorDriver14SetMotorStatesEP13_MOTOR_STATES>
+  verticalMotor.SetGearRatio(1);
+     118:	61 e0       	ldi	r22, 0x01	; 1
+     11a:	88 e7       	ldi	r24, 0x78	; 120
+     11c:	91 e0       	ldi	r25, 0x01	; 1
+     11e:	c4 d1       	rcall	.+904    	; 0x4a8 <_ZN11MotorDriver12SetGearRatioEh>
+  verticalMotor.SetStepsPerRevolution(200);
+     120:	68 ec       	ldi	r22, 0xC8	; 200
+     122:	70 e0       	ldi	r23, 0x00	; 0
+     124:	88 e7       	ldi	r24, 0x78	; 120
+     126:	91 e0       	ldi	r25, 0x01	; 1
+     128:	c2 d1       	rcall	.+900    	; 0x4ae <_ZN11MotorDriver21SetStepsPerRevolutionEj>
+  verticalMotor.SetTreshold(10);
+     12a:	4a e0       	ldi	r20, 0x0A	; 10
+     12c:	50 e0       	ldi	r21, 0x00	; 0
+     12e:	60 e0       	ldi	r22, 0x00	; 0
+     130:	70 e0       	ldi	r23, 0x00	; 0
+     132:	88 e7       	ldi	r24, 0x78	; 120
+     134:	91 e0       	ldi	r25, 0x01	; 1
+     136:	db d1       	rcall	.+950    	; 0x4ee <_ZN11MotorDriver11SetTresholdEl>
+  verticalMotor.SetLimitAngles((-7.5)*200/2,(7.5)*200/2);
+     138:	0e ee       	ldi	r16, 0xEE	; 238
+     13a:	12 e0       	ldi	r17, 0x02	; 2
+     13c:	20 e0       	ldi	r18, 0x00	; 0
+     13e:	30 e0       	ldi	r19, 0x00	; 0
+     140:	42 e1       	ldi	r20, 0x12	; 18
+     142:	5d ef       	ldi	r21, 0xFD	; 253
+     144:	6f ef       	ldi	r22, 0xFF	; 255
+     146:	7f ef       	ldi	r23, 0xFF	; 255
+     148:	88 e7       	ldi	r24, 0x78	; 120
+     14a:	91 e0       	ldi	r25, 0x01	; 1
+     14c:	ae d2       	rcall	.+1372   	; 0x6aa <_ZN11MotorDriver14SetLimitAnglesEll>
+  verticalMotor.SetTimeot(MICROSECONDS_PERIOD(501));
+     14e:	48 e0       	ldi	r20, 0x08	; 8
+     150:	55 ea       	ldi	r21, 0xA5	; 165
+     152:	67 e0       	ldi	r22, 0x07	; 7
+     154:	70 e0       	ldi	r23, 0x00	; 0
+     156:	88 e7       	ldi	r24, 0x78	; 120
+     158:	91 e0       	ldi	r25, 0x01	; 1
+     15a:	cb d2       	rcall	.+1430   	; 0x6f2 <_ZN11MotorDriver9SetTimeotEm>
+  verticalMotor.Start();
+     15c:	88 e7       	ldi	r24, 0x78	; 120
+     15e:	91 e0       	ldi	r25, 0x01	; 1
+     160:	a9 d1       	rcall	.+850    	; 0x4b4 <_ZN11MotorDriver5StartEv>
+}
+     162:	1f 91       	pop	r17
+     164:	0f 91       	pop	r16
+     166:	08 95       	ret
+
+00000168 <_Z20SetUpHorizontalMotorv>:
+
+void SetUpHorizontalMotor()
+{
+     168:	0f 93       	push	r16
+     16a:	1f 93       	push	r17
+	horizontalMotor.SetMotorStates(&horizontalMotorStates);
+     16c:	60 e0       	ldi	r22, 0x00	; 0
+     16e:	71 e0       	ldi	r23, 0x01	; 1
+     170:	84 e5       	ldi	r24, 0x54	; 84
+     172:	91 e0       	ldi	r25, 0x01	; 1
+     174:	95 d1       	rcall	.+810    	; 0x4a0 <_ZN11MotorDriver14SetMotorStatesEP13_MOTOR_STATES>
+  horizontalMotor.SetGearRatio(1);
+     176:	61 e0       	ldi	r22, 0x01	; 1
+     178:	84 e5       	ldi	r24, 0x54	; 84
+     17a:	91 e0       	ldi	r25, 0x01	; 1
+     17c:	95 d1       	rcall	.+810    	; 0x4a8 <_ZN11MotorDriver12SetGearRatioEh>
+  horizontalMotor.SetStepsPerRevolution(200);
+     17e:	68 ec       	ldi	r22, 0xC8	; 200
+     180:	70 e0       	ldi	r23, 0x00	; 0
+     182:	84 e5       	ldi	r24, 0x54	; 84
+     184:	91 e0       	ldi	r25, 0x01	; 1
+     186:	93 d1       	rcall	.+806    	; 0x4ae <_ZN11MotorDriver21SetStepsPerRevolutionEj>
+  horizontalMotor.SetTreshold(10);
+     188:	4a e0       	ldi	r20, 0x0A	; 10
+     18a:	50 e0       	ldi	r21, 0x00	; 0
+     18c:	60 e0       	ldi	r22, 0x00	; 0
+     18e:	70 e0       	ldi	r23, 0x00	; 0
+     190:	84 e5       	ldi	r24, 0x54	; 84
+     192:	91 e0       	ldi	r25, 0x01	; 1
+     194:	ac d1       	rcall	.+856    	; 0x4ee <_ZN11MotorDriver11SetTresholdEl>
+  horizontalMotor.SetLimitAngles( (-15)*200/2 , (15)*200/2);
+     196:	0c ed       	ldi	r16, 0xDC	; 220
+     198:	15 e0       	ldi	r17, 0x05	; 5
+     19a:	20 e0       	ldi	r18, 0x00	; 0
+     19c:	30 e0       	ldi	r19, 0x00	; 0
+     19e:	44 e2       	ldi	r20, 0x24	; 36
+     1a0:	5a ef       	ldi	r21, 0xFA	; 250
+     1a2:	6f ef       	ldi	r22, 0xFF	; 255
+     1a4:	7f ef       	ldi	r23, 0xFF	; 255
+     1a6:	84 e5       	ldi	r24, 0x54	; 84
+     1a8:	91 e0       	ldi	r25, 0x01	; 1
+     1aa:	7f d2       	rcall	.+1278   	; 0x6aa <_ZN11MotorDriver14SetLimitAnglesEll>
+  horizontalMotor.SetTimeot(MICROSECONDS_PERIOD(500));
+     1ac:	40 e2       	ldi	r20, 0x20	; 32
+     1ae:	51 ea       	ldi	r21, 0xA1	; 161
+     1b0:	67 e0       	ldi	r22, 0x07	; 7
+     1b2:	70 e0       	ldi	r23, 0x00	; 0
+     1b4:	84 e5       	ldi	r24, 0x54	; 84
+     1b6:	91 e0       	ldi	r25, 0x01	; 1
+     1b8:	9c d2       	rcall	.+1336   	; 0x6f2 <_ZN11MotorDriver9SetTimeotEm>
+  horizontalMotor.Start();
+     1ba:	84 e5       	ldi	r24, 0x54	; 84
+     1bc:	91 e0       	ldi	r25, 0x01	; 1
+     1be:	7a d1       	rcall	.+756    	; 0x4b4 <_ZN11MotorDriver5StartEv>
+}
+     1c0:	1f 91       	pop	r17
+     1c2:	0f 91       	pop	r16
+     1c4:	08 95       	ret
+
+000001c6 <_Z14PacketReceivedPh>:
+  p.angles.h = (uint32_t) (( horizontalMotor.GetAngle() + ((15) *200 / 2)) * (0xFFFFFFFF/(30*200/2)));
+  p.angles.v = (uint32_t) (( verticalMotor.GetAngle()   + ((7.5)*200 / 2)) * (0xFFFFFFFF/(15*200/2)));
+  gST.serial->SendPacket((p.raw));
+}
+
+void PacketReceived(BYTE packet[10]){
+     1c6:	cf 93       	push	r28
+     1c8:	df 93       	push	r29
+     1ca:	ec 01       	movw	r28, r24
+  PACKET *p = (PACKET*)((void*)packet);
+  horizontalMotor.SetAngle( ( ( p->angles.h / (ANGLE)(0xAEC33*2)  )) - (ANGLE)(3000/2) );
+     1cc:	68 81       	ld	r22, Y
+     1ce:	79 81       	ldd	r23, Y+1	; 0x01
+     1d0:	8a 81       	ldd	r24, Y+2	; 0x02
+     1d2:	9b 81       	ldd	r25, Y+3	; 0x03
+     1d4:	26 e6       	ldi	r18, 0x66	; 102
+     1d6:	38 ed       	ldi	r19, 0xD8	; 216
+     1d8:	45 e1       	ldi	r20, 0x15	; 21
+     1da:	50 e0       	ldi	r21, 0x00	; 0
+     1dc:	59 d9       	rcall	.-3406   	; 0xfffff490 <__eeprom_end+0xff7ef490>
+     1de:	ba 01       	movw	r22, r20
+     1e0:	a9 01       	movw	r20, r18
+     1e2:	4c 5d       	subi	r20, 0xDC	; 220
+     1e4:	55 40       	sbci	r21, 0x05	; 5
+     1e6:	61 09       	sbc	r22, r1
+     1e8:	71 09       	sbc	r23, r1
+     1ea:	84 e5       	ldi	r24, 0x54	; 84
+     1ec:	91 e0       	ldi	r25, 0x01	; 1
+     1ee:	6b d2       	rcall	.+1238   	; 0x6c6 <_ZN11MotorDriver8SetAngleEl>
+  verticalMotor.SetAngle(   ( ( p->angles.v / (ANGLE)(0x15D867*2) )) - (ANGLE)(1500/2) ) ;
+     1f0:	6c 81       	ldd	r22, Y+4	; 0x04
+     1f2:	7d 81       	ldd	r23, Y+5	; 0x05
+     1f4:	8e 81       	ldd	r24, Y+6	; 0x06
+     1f6:	9f 81       	ldd	r25, Y+7	; 0x07
+     1f8:	2e ec       	ldi	r18, 0xCE	; 206
+     1fa:	30 eb       	ldi	r19, 0xB0	; 176
+     1fc:	4b e2       	ldi	r20, 0x2B	; 43
+     1fe:	50 e0       	ldi	r21, 0x00	; 0
+     200:	47 d9       	rcall	.-3442   	; 0xfffff490 <__eeprom_end+0xff7ef490>
+     202:	ba 01       	movw	r22, r20
+     204:	a9 01       	movw	r20, r18
+     206:	4e 5e       	subi	r20, 0xEE	; 238
+     208:	52 40       	sbci	r21, 0x02	; 2
+     20a:	61 09       	sbc	r22, r1
+     20c:	71 09       	sbc	r23, r1
+     20e:	88 e7       	ldi	r24, 0x78	; 120
+     210:	91 e0       	ldi	r25, 0x01	; 1
+     212:	59 d2       	rcall	.+1202   	; 0x6c6 <_ZN11MotorDriver8SetAngleEl>
+}
+     214:	df 91       	pop	r29
+     216:	cf 91       	pop	r28
+     218:	08 95       	ret
+
+0000021a <_Z11SetUpMotorsv>:
+
+void SetUpMotors()
+{
+	SetUpVerticalMotor();
+     21a:	77 df       	rcall	.-274    	; 0x10a <_Z18SetUpVerticalMotorv>
+  SetUpHorizontalMotor();
+     21c:	a5 df       	rcall	.-182    	; 0x168 <_Z20SetUpHorizontalMotorv>
+     21e:	08 95       	ret
+
+00000220 <_Z10SetupPortsv>:
+}
+
+void SetupPorts()
+{
+	DDRB = 0xFF;
+     220:	8f ef       	ldi	r24, 0xFF	; 255
+     222:	84 b9       	out	0x04, r24	; 4
+  DDRD = 0xFF;
+     224:	8a b9       	out	0x0a, r24	; 10
+  DDRC = 0x00;
+     226:	17 b8       	out	0x07, r1	; 7
+  PORTC = 0xFF;
+     228:	88 b9       	out	0x08, r24	; 8
+  PORTD = 0x00;
+     22a:	1b b8       	out	0x0b, r1	; 11
+  PORTB= 0x00;
+     22c:	15 b8       	out	0x05, r1	; 5
+     22e:	08 95       	ret
+
+00000230 <_Z7TheLoopv>:
+}
+
+
+void TheLoop()
+{  
+  gST.timer->CheckEvents();
+     230:	80 91 9e 01 	lds	r24, 0x019E
+     234:	90 91 9f 01 	lds	r25, 0x019F
+     238:	4e d7       	rcall	.+3740   	; 0x10d6 <_ZN20TimerEventDispatcher11CheckEventsEv>
+  
+  if(BIT_VAL(UCSR0A,RXC0)){
+     23a:	80 91 c0 00 	lds	r24, 0x00C0
+     23e:	88 23       	and	r24, r24
+     240:	2c f4       	brge	.+10     	; 0x24c <_Z7TheLoopv+0x1c>
+    gST.serial->ReceiveData();
+     242:	80 91 9c 01 	lds	r24, 0x019C
+     246:	90 91 9d 01 	lds	r25, 0x019D
+     24a:	5b d3       	rcall	.+1718   	; 0x902 <_ZN19SerialCommunication11ReceiveDataEv>
+  }    
+  
+  if(PINC!=0xFF){
+     24c:	86 b1       	in	r24, 0x06	; 6
+     24e:	8f 3f       	cpi	r24, 0xFF	; 255
+     250:	09 f4       	brne	.+2      	; 0x254 <_Z7TheLoopv+0x24>
+     252:	4e c0       	rjmp	.+156    	; 0x2f0 <_Z7TheLoopv+0xc0>
+    if((~PINC)&(1<<5)){
+     254:	35 99       	sbic	0x06, 5	; 6
+     256:	06 c0       	rjmp	.+12     	; 0x264 <_Z7TheLoopv+0x34>
+      horizontalMotor.SetZero();
+     258:	84 e5       	ldi	r24, 0x54	; 84
+     25a:	91 e0       	ldi	r25, 0x01	; 1
+     25c:	40 d2       	rcall	.+1152   	; 0x6de <_ZN11MotorDriver7SetZeroEv>
+      verticalMotor.SetZero();
+     25e:	88 e7       	ldi	r24, 0x78	; 120
+     260:	91 e0       	ldi	r25, 0x01	; 1
+     262:	3d d2       	rcall	.+1146   	; 0x6de <_ZN11MotorDriver7SetZeroEv>
+    }
+    if((~PINC)&(1<<4))
+     264:	34 99       	sbic	0x06, 4	; 6
+     266:	0c c0       	rjmp	.+24     	; 0x280 <_Z7TheLoopv+0x50>
+      verticalMotor.SetAngle( verticalMotor.GetAngle() + 64 );
+     268:	88 e7       	ldi	r24, 0x78	; 120
+     26a:	91 e0       	ldi	r25, 0x01	; 1
+     26c:	32 d2       	rcall	.+1124   	; 0x6d2 <_ZN11MotorDriver8GetAngleEv>
+     26e:	ab 01       	movw	r20, r22
+     270:	bc 01       	movw	r22, r24
+     272:	40 5c       	subi	r20, 0xC0	; 192
+     274:	5f 4f       	sbci	r21, 0xFF	; 255
+     276:	6f 4f       	sbci	r22, 0xFF	; 255
+     278:	7f 4f       	sbci	r23, 0xFF	; 255
+     27a:	88 e7       	ldi	r24, 0x78	; 120
+     27c:	91 e0       	ldi	r25, 0x01	; 1
+     27e:	23 d2       	rcall	.+1094   	; 0x6c6 <_ZN11MotorDriver8SetAngleEl>
+	
+    if((~PINC)&(1<<3)){
+     280:	33 99       	sbic	0x06, 3	; 6
+     282:	0c c0       	rjmp	.+24     	; 0x29c <_Z7TheLoopv+0x6c>
+      horizontalMotor.SetAngle(0);
+     284:	40 e0       	ldi	r20, 0x00	; 0
+     286:	50 e0       	ldi	r21, 0x00	; 0
+     288:	ba 01       	movw	r22, r20
+     28a:	84 e5       	ldi	r24, 0x54	; 84
+     28c:	91 e0       	ldi	r25, 0x01	; 1
+     28e:	1b d2       	rcall	.+1078   	; 0x6c6 <_ZN11MotorDriver8SetAngleEl>
+      verticalMotor.SetAngle(0);
+     290:	40 e0       	ldi	r20, 0x00	; 0
+     292:	50 e0       	ldi	r21, 0x00	; 0
+     294:	ba 01       	movw	r22, r20
+     296:	88 e7       	ldi	r24, 0x78	; 120
+     298:	91 e0       	ldi	r25, 0x01	; 1
+     29a:	15 d2       	rcall	.+1066   	; 0x6c6 <_ZN11MotorDriver8SetAngleEl>
+    }
+    if((~PINC)&(1<<2))
+     29c:	32 99       	sbic	0x06, 2	; 6
+     29e:	0c c0       	rjmp	.+24     	; 0x2b8 <_Z7TheLoopv+0x88>
+      horizontalMotor.SetAngle( horizontalMotor.GetAngle() - 64 );
+     2a0:	84 e5       	ldi	r24, 0x54	; 84
+     2a2:	91 e0       	ldi	r25, 0x01	; 1
+     2a4:	16 d2       	rcall	.+1068   	; 0x6d2 <_ZN11MotorDriver8GetAngleEv>
+     2a6:	ab 01       	movw	r20, r22
+     2a8:	bc 01       	movw	r22, r24
+     2aa:	40 54       	subi	r20, 0x40	; 64
+     2ac:	51 09       	sbc	r21, r1
+     2ae:	61 09       	sbc	r22, r1
+     2b0:	71 09       	sbc	r23, r1
+     2b2:	84 e5       	ldi	r24, 0x54	; 84
+     2b4:	91 e0       	ldi	r25, 0x01	; 1
+     2b6:	07 d2       	rcall	.+1038   	; 0x6c6 <_ZN11MotorDriver8SetAngleEl>
+	
+    if((~PINC)&(1<<1))
+     2b8:	31 99       	sbic	0x06, 1	; 6
+     2ba:	0c c0       	rjmp	.+24     	; 0x2d4 <_Z7TheLoopv+0xa4>
+      verticalMotor.SetAngle( verticalMotor.GetAngle() - 64 );
+     2bc:	88 e7       	ldi	r24, 0x78	; 120
+     2be:	91 e0       	ldi	r25, 0x01	; 1
+     2c0:	08 d2       	rcall	.+1040   	; 0x6d2 <_ZN11MotorDriver8GetAngleEv>
+     2c2:	ab 01       	movw	r20, r22
+     2c4:	bc 01       	movw	r22, r24
+     2c6:	40 54       	subi	r20, 0x40	; 64
+     2c8:	51 09       	sbc	r21, r1
+     2ca:	61 09       	sbc	r22, r1
+     2cc:	71 09       	sbc	r23, r1
+     2ce:	88 e7       	ldi	r24, 0x78	; 120
+     2d0:	91 e0       	ldi	r25, 0x01	; 1
+     2d2:	f9 d1       	rcall	.+1010   	; 0x6c6 <_ZN11MotorDriver8SetAngleEl>
+	
+    if((~PINC)&(1<<0))
+     2d4:	30 99       	sbic	0x06, 0	; 6
+     2d6:	0c c0       	rjmp	.+24     	; 0x2f0 <_Z7TheLoopv+0xc0>
+      horizontalMotor.SetAngle( horizontalMotor.GetAngle() + 64 );
+     2d8:	84 e5       	ldi	r24, 0x54	; 84
+     2da:	91 e0       	ldi	r25, 0x01	; 1
+     2dc:	fa d1       	rcall	.+1012   	; 0x6d2 <_ZN11MotorDriver8GetAngleEv>
+     2de:	ab 01       	movw	r20, r22
+     2e0:	bc 01       	movw	r22, r24
+     2e2:	40 5c       	subi	r20, 0xC0	; 192
+     2e4:	5f 4f       	sbci	r21, 0xFF	; 255
+     2e6:	6f 4f       	sbci	r22, 0xFF	; 255
+     2e8:	7f 4f       	sbci	r23, 0xFF	; 255
+     2ea:	84 e5       	ldi	r24, 0x54	; 84
+     2ec:	91 e0       	ldi	r25, 0x01	; 1
+     2ee:	eb d1       	rcall	.+982    	; 0x6c6 <_ZN11MotorDriver8SetAngleEl>
+     2f0:	08 95       	ret
+
+000002f2 <main>:
+}
+
+
+int main(void)
+{
+  SetupPorts();
+     2f2:	96 df       	rcall	.-212    	; 0x220 <_Z10SetupPortsv>
+  InitGlobalServicesTable();
+     2f4:	22 d0       	rcall	.+68     	; 0x33a <_Z23InitGlobalServicesTablev>
+  SetUpMotors();
+     2f6:	91 df       	rcall	.-222    	; 0x21a <_Z11SetUpMotorsv>
+  gST.serial->TxBufferSentEventHandler = SendHeadStatus;
+     2f8:	e0 91 9c 01 	lds	r30, 0x019C
+     2fc:	f0 91 9d 01 	lds	r31, 0x019D
+     300:	80 e5       	ldi	r24, 0x50	; 80
+     302:	90 e0       	ldi	r25, 0x00	; 0
+     304:	91 83       	std	Z+1, r25	; 0x01
+     306:	80 83       	st	Z, r24
+  SendHeadStatus();
+     308:	cb de       	rcall	.-618    	; 0xa0 <_Z14SendHeadStatusv>
+  
+  while(1)
+    TheLoop();
+     30a:	92 df       	rcall	.-220    	; 0x230 <_Z7TheLoopv>
+     30c:	fe cf       	rjmp	.-4      	; 0x30a <main+0x18>
+
+0000030e <_GLOBAL__sub_I_UCSR0B_copy>:
+// xxeb bebb
+// 0000 0001 -> 0x01
+// 0000 1000 -> 0x08
+// 0000 0010 -> 0x02
+// 0001 0000 -> 0x10
+MotorDriver verticalMotor = MotorDriver();
+     30e:	88 e7       	ldi	r24, 0x78	; 120
+     310:	91 e0       	ldi	r25, 0x01	; 1
+     312:	a0 d0       	rcall	.+320    	; 0x454 <_ZN11MotorDriverC1Ev>
+MotorDriver horizontalMotor= MotorDriver();
+     314:	84 e5       	ldi	r24, 0x54	; 84
+     316:	91 e0       	ldi	r25, 0x01	; 1
+     318:	9d d0       	rcall	.+314    	; 0x454 <_ZN11MotorDriverC1Ev>
+     31a:	08 95       	ret
+
+0000031c <_GLOBAL__sub_D_UCSR0B_copy>:
+     31c:	84 e5       	ldi	r24, 0x54	; 84
+     31e:	91 e0       	ldi	r25, 0x01	; 1
+     320:	be d0       	rcall	.+380    	; 0x49e <_ZN11MotorDriverD1Ev>
+// xxeb bebb
+// 0000 0001 -> 0x01
+// 0000 1000 -> 0x08
+// 0000 0010 -> 0x02
+// 0001 0000 -> 0x10
+MotorDriver verticalMotor = MotorDriver();
+     322:	88 e7       	ldi	r24, 0x78	; 120
+     324:	91 e0       	ldi	r25, 0x01	; 1
+     326:	bb d0       	rcall	.+374    	; 0x49e <_ZN11MotorDriverD1Ev>
+     328:	08 95       	ret
+
+0000032a <_Z18SerialEventGatewayP12_TIMER_EVENTPv>:
+TimerEventDispatcher timer;
+SerialCommunication serial;
+
+GLOBAL_SERVICES_TABLE gST;
+
+void SerialEventGateway(TIMER_EVENT *e, void *c){
+     32a:	ab 01       	movw	r20, r22
+	gST.serial->ManageCommunication(e,c);
+     32c:	bc 01       	movw	r22, r24
+     32e:	80 91 9c 01 	lds	r24, 0x019C
+     332:	90 91 9d 01 	lds	r25, 0x019D
+     336:	3b d3       	rcall	.+1654   	; 0x9ae <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv>
+     338:	08 95       	ret
+
+0000033a <_Z23InitGlobalServicesTablev>:
+}
+
+
+Status InitGlobalServicesTable(){
+     33a:	ef 92       	push	r14
+     33c:	ff 92       	push	r15
+     33e:	0f 93       	push	r16
+     340:	1f 93       	push	r17
+     342:	cf 93       	push	r28
+     344:	df 93       	push	r29
+     346:	cd b7       	in	r28, 0x3d	; 61
+     348:	de b7       	in	r29, 0x3e	; 62
+     34a:	c8 5a       	subi	r28, 0xA8	; 168
+     34c:	d1 09       	sbc	r29, r1
+     34e:	0f b6       	in	r0, 0x3f	; 63
+     350:	f8 94       	cli
+     352:	de bf       	out	0x3e, r29	; 62
+     354:	0f be       	out	0x3f, r0	; 63
+     356:	cd bf       	out	0x3d, r28	; 61
+	timer = TimerEventDispatcher();
+     358:	ce 01       	movw	r24, r28
+     35a:	8a 96       	adiw	r24, 0x2a	; 42
+     35c:	c6 d5       	rcall	.+2956   	; 0xeea <_ZN20TimerEventDispatcherC1Ev>
+     35e:	8f e7       	ldi	r24, 0x7F	; 127
+     360:	fe 01       	movw	r30, r28
+     362:	ba 96       	adiw	r30, 0x2a	; 42
+     364:	a9 ec       	ldi	r26, 0xC9	; 201
+     366:	b1 e0       	ldi	r27, 0x01	; 1
+     368:	01 90       	ld	r0, Z+
+     36a:	0d 92       	st	X+, r0
+     36c:	8a 95       	dec	r24
+     36e:	e1 f7       	brne	.-8      	; 0x368 <_Z23InitGlobalServicesTablev+0x2e>
+
+#ifndef TIMER_TIMEOUT
+#define TIMER_TIMEOUT MICROSECONDS_PERIOD(500)
+#endif
+
+class TimerEventDispatcher{
+     370:	ce 01       	movw	r24, r28
+     372:	8a 96       	adiw	r24, 0x2a	; 42
+     374:	b9 d5       	rcall	.+2930   	; 0xee8 <_ZN11TimerDriverD1Ev>
+	serial = SerialCommunication();
+     376:	ce 01       	movw	r24, r28
+     378:	01 96       	adiw	r24, 0x01	; 1
+     37a:	c1 d1       	rcall	.+898    	; 0x6fe <_ZN19SerialCommunicationC1Ev>
+     37c:	89 e2       	ldi	r24, 0x29	; 41
+     37e:	fe 01       	movw	r30, r28
+     380:	31 96       	adiw	r30, 0x01	; 1
+     382:	a0 ea       	ldi	r26, 0xA0	; 160
+     384:	b1 e0       	ldi	r27, 0x01	; 1
+     386:	01 90       	ld	r0, Z+
+     388:	0d 92       	st	X+, r0
+     38a:	8a 95       	dec	r24
+     38c:	e1 f7       	brne	.-8      	; 0x386 <_Z23InitGlobalServicesTablev+0x4c>
+#define PING_SIGNAL 0x11
+#define PONG_SIGNAL 0x11
+#define KEEP_ALIVE_BYTE 0x55
+
+typedef void (*TX_BUFFER_SENT)() ;
+class SerialCommunication{
+     38e:	ce 01       	movw	r24, r28
+     390:	4e 96       	adiw	r24, 0x1e	; 30
+     392:	2d d3       	rcall	.+1626   	; 0x9ee <_ZN12SerialDriverD1Ev>
+	timer.CreateEvent(
+				Interval,
+				MILISECONDS_PERIOD(100),
+				SerialEventGateway,
+				NULL
+			);
+     394:	e1 2c       	mov	r14, r1
+     396:	f1 2c       	mov	r15, r1
+     398:	05 e9       	ldi	r16, 0x95	; 149
+     39a:	11 e0       	ldi	r17, 0x01	; 1
+     39c:	20 e0       	ldi	r18, 0x00	; 0
+     39e:	31 ee       	ldi	r19, 0xE1	; 225
+     3a0:	45 ef       	ldi	r20, 0xF5	; 245
+     3a2:	55 e0       	ldi	r21, 0x05	; 5
+     3a4:	61 e0       	ldi	r22, 0x01	; 1
+     3a6:	89 ec       	ldi	r24, 0xC9	; 201
+     3a8:	91 e0       	ldi	r25, 0x01	; 1
+     3aa:	0e d6       	rcall	.+3100   	; 0xfc8 <_ZN20TimerEventDispatcher11CreateEventE14TimerEventTypemPFvP12_TIMER_EVENTPvES3_>
+	serial.Start();
+     3ac:	80 ea       	ldi	r24, 0xA0	; 160
+     3ae:	91 e0       	ldi	r25, 0x01	; 1
+     3b0:	34 d2       	rcall	.+1128   	; 0x81a <_ZN19SerialCommunication5StartEv>
+	gST.timer = & timer;
+     3b2:	89 ec       	ldi	r24, 0xC9	; 201
+     3b4:	91 e0       	ldi	r25, 0x01	; 1
+     3b6:	90 93 9f 01 	sts	0x019F, r25
+     3ba:	80 93 9e 01 	sts	0x019E, r24
+	gST.serial = & serial;
+     3be:	80 ea       	ldi	r24, 0xA0	; 160
+     3c0:	91 e0       	ldi	r25, 0x01	; 1
+     3c2:	90 93 9d 01 	sts	0x019D, r25
+     3c6:	80 93 9c 01 	sts	0x019C, r24
+	
+	sei();
+     3ca:	78 94       	sei
+	
+	return Success;
+}
+     3cc:	80 e0       	ldi	r24, 0x00	; 0
+     3ce:	c8 55       	subi	r28, 0x58	; 88
+     3d0:	df 4f       	sbci	r29, 0xFF	; 255
+     3d2:	0f b6       	in	r0, 0x3f	; 63
+     3d4:	f8 94       	cli
+     3d6:	de bf       	out	0x3e, r29	; 62
+     3d8:	0f be       	out	0x3f, r0	; 63
+     3da:	cd bf       	out	0x3d, r28	; 61
+     3dc:	df 91       	pop	r29
+     3de:	cf 91       	pop	r28
+     3e0:	1f 91       	pop	r17
+     3e2:	0f 91       	pop	r16
+     3e4:	ff 90       	pop	r15
+     3e6:	ef 90       	pop	r14
+     3e8:	08 95       	ret
+
+000003ea <__vector_14>:
+
+ISR(TIMER0_COMPA_vect){
+     3ea:	1f 92       	push	r1
+     3ec:	0f 92       	push	r0
+     3ee:	0f b6       	in	r0, 0x3f	; 63
+     3f0:	0f 92       	push	r0
+     3f2:	11 24       	eor	r1, r1
+     3f4:	2f 93       	push	r18
+     3f6:	3f 93       	push	r19
+     3f8:	4f 93       	push	r20
+     3fa:	5f 93       	push	r21
+     3fc:	6f 93       	push	r22
+     3fe:	7f 93       	push	r23
+     400:	8f 93       	push	r24
+     402:	9f 93       	push	r25
+     404:	af 93       	push	r26
+     406:	bf 93       	push	r27
+     408:	ef 93       	push	r30
+     40a:	ff 93       	push	r31
+	gST.timer->SysTimerOverflow();
+     40c:	80 91 9e 01 	lds	r24, 0x019E
+     410:	90 91 9f 01 	lds	r25, 0x019F
+     414:	01 d6       	rcall	.+3074   	; 0x1018 <_ZN20TimerEventDispatcher16SysTimerOverflowEv>
+}
+     416:	ff 91       	pop	r31
+     418:	ef 91       	pop	r30
+     41a:	bf 91       	pop	r27
+     41c:	af 91       	pop	r26
+     41e:	9f 91       	pop	r25
+     420:	8f 91       	pop	r24
+     422:	7f 91       	pop	r23
+     424:	6f 91       	pop	r22
+     426:	5f 91       	pop	r21
+     428:	4f 91       	pop	r20
+     42a:	3f 91       	pop	r19
+     42c:	2f 91       	pop	r18
+     42e:	0f 90       	pop	r0
+     430:	0f be       	out	0x3f, r0	; 63
+     432:	0f 90       	pop	r0
+     434:	1f 90       	pop	r1
+     436:	18 95       	reti
+
+00000438 <_GLOBAL__sub_I_timer>:
+ *  Author: m
+ */ 
+
+#include "GlobalServicesTable.h"
+
+TimerEventDispatcher timer;
+     438:	89 ec       	ldi	r24, 0xC9	; 201
+     43a:	91 e0       	ldi	r25, 0x01	; 1
+     43c:	56 d5       	rcall	.+2732   	; 0xeea <_ZN20TimerEventDispatcherC1Ev>
+SerialCommunication serial;
+     43e:	80 ea       	ldi	r24, 0xA0	; 160
+     440:	91 e0       	ldi	r25, 0x01	; 1
+     442:	5d d1       	rcall	.+698    	; 0x6fe <_ZN19SerialCommunicationC1Ev>
+     444:	08 95       	ret
+
+00000446 <_GLOBAL__sub_D_timer>:
+     446:	8d eb       	ldi	r24, 0xBD	; 189
+     448:	91 e0       	ldi	r25, 0x01	; 1
+     44a:	d1 d2       	rcall	.+1442   	; 0x9ee <_ZN12SerialDriverD1Ev>
+     44c:	89 ec       	ldi	r24, 0xC9	; 201
+     44e:	91 e0       	ldi	r25, 0x01	; 1
+     450:	4b d5       	rcall	.+2710   	; 0xee8 <_ZN11TimerDriverD1Ev>
+     452:	08 95       	ret
+
+00000454 <_ZN11MotorDriverC1Ev>:
+void DispatchMotorDriverEvent(TIMER_EVENT *e, void *c){
+  ((MotorDriver*) c)->TimerEventHandler();
+}
+
+// default constructor
+MotorDriver::MotorDriver()
+     454:	fc 01       	movw	r30, r24
+     456:	10 82       	st	Z, r1
+     458:	11 82       	std	Z+1, r1	; 0x01
+     45a:	12 82       	std	Z+2, r1	; 0x02
+     45c:	13 82       	std	Z+3, r1	; 0x03
+     45e:	14 82       	std	Z+4, r1	; 0x04
+     460:	15 82       	std	Z+5, r1	; 0x05
+     462:	16 82       	std	Z+6, r1	; 0x06
+     464:	17 82       	std	Z+7, r1	; 0x07
+     466:	10 86       	std	Z+8, r1	; 0x08
+     468:	11 86       	std	Z+9, r1	; 0x09
+     46a:	12 86       	std	Z+10, r1	; 0x0a
+     46c:	13 86       	std	Z+11, r1	; 0x0b
+     46e:	81 e0       	ldi	r24, 0x01	; 1
+     470:	84 87       	std	Z+12, r24	; 0x0c
+     472:	85 87       	std	Z+13, r24	; 0x0d
+     474:	42 e0       	ldi	r20, 0x02	; 2
+     476:	50 e0       	ldi	r21, 0x00	; 0
+     478:	60 e0       	ldi	r22, 0x00	; 0
+     47a:	70 e0       	ldi	r23, 0x00	; 0
+     47c:	46 87       	std	Z+14, r20	; 0x0e
+     47e:	57 87       	std	Z+15, r21	; 0x0f
+     480:	60 8b       	std	Z+16, r22	; 0x10
+     482:	71 8b       	std	Z+17, r23	; 0x11
+     484:	40 e6       	ldi	r20, 0x60	; 96
+     486:	53 ee       	ldi	r21, 0xE3	; 227
+     488:	66 e1       	ldi	r22, 0x16	; 22
+     48a:	70 e0       	ldi	r23, 0x00	; 0
+     48c:	42 8b       	std	Z+18, r20	; 0x12
+     48e:	53 8b       	std	Z+19, r21	; 0x13
+     490:	64 8b       	std	Z+20, r22	; 0x14
+     492:	75 8b       	std	Z+21, r23	; 0x15
+     494:	17 8a       	std	Z+23, r1	; 0x17
+     496:	16 8a       	std	Z+22, r1	; 0x16
+     498:	13 8e       	std	Z+27, r1	; 0x1b
+     49a:	12 8e       	std	Z+26, r1	; 0x1a
+     49c:	08 95       	ret
+
+0000049e <_ZN11MotorDriverD1Ev>:
+{
+} //MotorDriver
+
+// default destructor
+MotorDriver::~MotorDriver()
+     49e:	08 95       	ret
+
+000004a0 <_ZN11MotorDriver14SetMotorStatesEP13_MOTOR_STATES>:
+} //~MotorDriver
+
+
+void MotorDriver::SetMotorStates(MOTOR_STATES *states)
+{
+	_states = states;
+     4a0:	fc 01       	movw	r30, r24
+     4a2:	71 8f       	std	Z+25, r23	; 0x19
+     4a4:	60 8f       	std	Z+24, r22	; 0x18
+     4a6:	08 95       	ret
+
+000004a8 <_ZN11MotorDriver12SetGearRatioEh>:
+}
+
+void MotorDriver::SetGearRatio(UINT ratio)
+{
+	_ratio = ratio;
+     4a8:	fc 01       	movw	r30, r24
+     4aa:	65 87       	std	Z+13, r22	; 0x0d
+     4ac:	08 95       	ret
+
+000004ae <_ZN11MotorDriver21SetStepsPerRevolutionEj>:
+}
+
+void MotorDriver::SetStepsPerRevolution(uint16_t steps)
+{
+	_stepsPerRevolution = steps;
+     4ae:	fc 01       	movw	r30, r24
+     4b0:	64 87       	std	Z+12, r22	; 0x0c
+     4b2:	08 95       	ret
+
+000004b4 <_ZN11MotorDriver5StartEv>:
+}
+
+void MotorDriver::Start()
+{
+     4b4:	ef 92       	push	r14
+     4b6:	ff 92       	push	r15
+     4b8:	0f 93       	push	r16
+     4ba:	1f 93       	push	r17
+     4bc:	cf 93       	push	r28
+     4be:	df 93       	push	r29
+     4c0:	ec 01       	movw	r28, r24
+	_intervalEvent = gST.timer->CreateEvent(
+                                  ExternalInteval,
+                                  _timeout,
+                                  DispatchMotorDriverEvent,
+                                  (void*)this
+                              );
+     4c2:	2a 89       	ldd	r18, Y+18	; 0x12
+     4c4:	3b 89       	ldd	r19, Y+19	; 0x13
+     4c6:	4c 89       	ldd	r20, Y+20	; 0x14
+     4c8:	5d 89       	ldd	r21, Y+21	; 0x15
+     4ca:	7c 01       	movw	r14, r24
+     4cc:	02 e5       	ldi	r16, 0x52	; 82
+     4ce:	13 e0       	ldi	r17, 0x03	; 3
+     4d0:	63 e0       	ldi	r22, 0x03	; 3
+     4d2:	80 91 9e 01 	lds	r24, 0x019E
+     4d6:	90 91 9f 01 	lds	r25, 0x019F
+     4da:	76 d5       	rcall	.+2796   	; 0xfc8 <_ZN20TimerEventDispatcher11CreateEventE14TimerEventTypemPFvP12_TIMER_EVENTPvES3_>
+     4dc:	9f 8b       	std	Y+23, r25	; 0x17
+     4de:	8e 8b       	std	Y+22, r24	; 0x16
+}
+     4e0:	df 91       	pop	r29
+     4e2:	cf 91       	pop	r28
+     4e4:	1f 91       	pop	r17
+     4e6:	0f 91       	pop	r16
+     4e8:	ff 90       	pop	r15
+     4ea:	ef 90       	pop	r14
+     4ec:	08 95       	ret
+
+000004ee <_ZN11MotorDriver11SetTresholdEl>:
+  } 
+}
+
+void MotorDriver::SetTreshold(ANGLE a)
+{
+	_treshold = a;
+     4ee:	fc 01       	movw	r30, r24
+     4f0:	46 87       	std	Z+14, r20	; 0x0e
+     4f2:	57 87       	std	Z+15, r21	; 0x0f
+     4f4:	60 8b       	std	Z+16, r22	; 0x10
+     4f6:	71 8b       	std	Z+17, r23	; 0x11
+     4f8:	08 95       	ret
+
+000004fa <_ZN11MotorDriver8HitBreakEv>:
+}
+
+void MotorDriver::HitBreak()
+{
+	_states->StateUpdateMethod(_states->BreakState);
+     4fa:	fc 01       	movw	r30, r24
+     4fc:	a0 8d       	ldd	r26, Z+24	; 0x18
+     4fe:	b1 8d       	ldd	r27, Z+25	; 0x19
+     500:	93 96       	adiw	r26, 0x23	; 35
+     502:	ed 91       	ld	r30, X+
+     504:	fc 91       	ld	r31, X
+     506:	94 97       	sbiw	r26, 0x24	; 36
+     508:	8c 91       	ld	r24, X
+     50a:	09 95       	icall
+     50c:	08 95       	ret
+
+0000050e <_ZN11MotorDriver9StepRightEv>:
+}
+
+void MotorDriver::StepRight()
+{
+     50e:	0f 93       	push	r16
+     510:	1f 93       	push	r17
+     512:	cf 93       	push	r28
+     514:	df 93       	push	r29
+     516:	ec 01       	movw	r28, r24
+  
+  if( _position > _rightAngleLimit){
+     518:	08 81       	ld	r16, Y
+     51a:	19 81       	ldd	r17, Y+1	; 0x01
+     51c:	2a 81       	ldd	r18, Y+2	; 0x02
+     51e:	3b 81       	ldd	r19, Y+3	; 0x03
+     520:	48 a1       	ldd	r20, Y+32	; 0x20
+     522:	59 a1       	ldd	r21, Y+33	; 0x21
+     524:	6a a1       	ldd	r22, Y+34	; 0x22
+     526:	7b a1       	ldd	r23, Y+35	; 0x23
+     528:	40 17       	cp	r20, r16
+     52a:	51 07       	cpc	r21, r17
+     52c:	62 07       	cpc	r22, r18
+     52e:	73 07       	cpc	r23, r19
+     530:	14 f4       	brge	.+4      	; 0x536 <_ZN11MotorDriver9StepRightEv+0x28>
+    HitBreak();
+     532:	e3 df       	rcall	.-58     	; 0x4fa <_ZN11MotorDriver8HitBreakEv>
+    return;
+     534:	26 c0       	rjmp	.+76     	; 0x582 <_ZN11MotorDriver9StepRightEv+0x74>
+  }
+
+_currentStateNumber++;
+     536:	8a 8d       	ldd	r24, Y+26	; 0x1a
+     538:	9b 8d       	ldd	r25, Y+27	; 0x1b
+     53a:	01 96       	adiw	r24, 0x01	; 1
+     53c:	9b 8f       	std	Y+27, r25	; 0x1b
+     53e:	8a 8f       	std	Y+26, r24	; 0x1a
+if(_currentStateNumber>=_states->StepsNumber)
+     540:	2a 8d       	ldd	r18, Y+26	; 0x1a
+     542:	3b 8d       	ldd	r19, Y+27	; 0x1b
+     544:	e8 8d       	ldd	r30, Y+24	; 0x18
+     546:	f9 8d       	ldd	r31, Y+25	; 0x19
+     548:	82 a1       	ldd	r24, Z+34	; 0x22
+     54a:	90 e0       	ldi	r25, 0x00	; 0
+     54c:	28 17       	cp	r18, r24
+     54e:	39 07       	cpc	r19, r25
+     550:	14 f0       	brlt	.+4      	; 0x556 <_ZN11MotorDriver9StepRightEv+0x48>
+  _currentStateNumber=0;
+     552:	1b 8e       	std	Y+27, r1	; 0x1b
+     554:	1a 8e       	std	Y+26, r1	; 0x1a
+
+_states->StateUpdateMethod(_states->Steps[_currentStateNumber]);
+     556:	aa 8d       	ldd	r26, Y+26	; 0x1a
+     558:	bb 8d       	ldd	r27, Y+27	; 0x1b
+     55a:	ae 0f       	add	r26, r30
+     55c:	bf 1f       	adc	r27, r31
+     55e:	03 a0       	ldd	r0, Z+35	; 0x23
+     560:	f4 a1       	ldd	r31, Z+36	; 0x24
+     562:	e0 2d       	mov	r30, r0
+     564:	12 96       	adiw	r26, 0x02	; 2
+     566:	8c 91       	ld	r24, X
+     568:	09 95       	icall
+_position ++;
+     56a:	48 81       	ld	r20, Y
+     56c:	59 81       	ldd	r21, Y+1	; 0x01
+     56e:	6a 81       	ldd	r22, Y+2	; 0x02
+     570:	7b 81       	ldd	r23, Y+3	; 0x03
+     572:	4f 5f       	subi	r20, 0xFF	; 255
+     574:	5f 4f       	sbci	r21, 0xFF	; 255
+     576:	6f 4f       	sbci	r22, 0xFF	; 255
+     578:	7f 4f       	sbci	r23, 0xFF	; 255
+     57a:	48 83       	st	Y, r20
+     57c:	59 83       	std	Y+1, r21	; 0x01
+     57e:	6a 83       	std	Y+2, r22	; 0x02
+     580:	7b 83       	std	Y+3, r23	; 0x03
+
+}
+     582:	df 91       	pop	r29
+     584:	cf 91       	pop	r28
+     586:	1f 91       	pop	r17
+     588:	0f 91       	pop	r16
+     58a:	08 95       	ret
+
+0000058c <_ZN11MotorDriver8StepLeftEv>:
+
+void MotorDriver::StepLeft()
+{
+     58c:	0f 93       	push	r16
+     58e:	1f 93       	push	r17
+     590:	cf 93       	push	r28
+     592:	df 93       	push	r29
+     594:	ec 01       	movw	r28, r24
+  if( _position < _leftAngleLimit){
+     596:	08 81       	ld	r16, Y
+     598:	19 81       	ldd	r17, Y+1	; 0x01
+     59a:	2a 81       	ldd	r18, Y+2	; 0x02
+     59c:	3b 81       	ldd	r19, Y+3	; 0x03
+     59e:	4c 8d       	ldd	r20, Y+28	; 0x1c
+     5a0:	5d 8d       	ldd	r21, Y+29	; 0x1d
+     5a2:	6e 8d       	ldd	r22, Y+30	; 0x1e
+     5a4:	7f 8d       	ldd	r23, Y+31	; 0x1f
+     5a6:	04 17       	cp	r16, r20
+     5a8:	15 07       	cpc	r17, r21
+     5aa:	26 07       	cpc	r18, r22
+     5ac:	37 07       	cpc	r19, r23
+     5ae:	14 f4       	brge	.+4      	; 0x5b4 <_ZN11MotorDriver8StepLeftEv+0x28>
+    HitBreak();
+     5b0:	a4 df       	rcall	.-184    	; 0x4fa <_ZN11MotorDriver8HitBreakEv>
+    return;
+     5b2:	29 c0       	rjmp	.+82     	; 0x606 <_ZN11MotorDriver8StepLeftEv+0x7a>
+  }
+
+  if(_currentStateNumber==0)
+     5b4:	8a 8d       	ldd	r24, Y+26	; 0x1a
+     5b6:	9b 8d       	ldd	r25, Y+27	; 0x1b
+     5b8:	89 2b       	or	r24, r25
+     5ba:	41 f4       	brne	.+16     	; 0x5cc <_ZN11MotorDriver8StepLeftEv+0x40>
+    _currentStateNumber=_states->StepsNumber-1;
+     5bc:	e8 8d       	ldd	r30, Y+24	; 0x18
+     5be:	f9 8d       	ldd	r31, Y+25	; 0x19
+     5c0:	82 a1       	ldd	r24, Z+34	; 0x22
+     5c2:	90 e0       	ldi	r25, 0x00	; 0
+     5c4:	01 97       	sbiw	r24, 0x01	; 1
+     5c6:	9b 8f       	std	Y+27, r25	; 0x1b
+     5c8:	8a 8f       	std	Y+26, r24	; 0x1a
+     5ca:	05 c0       	rjmp	.+10     	; 0x5d6 <_ZN11MotorDriver8StepLeftEv+0x4a>
+  else
+    _currentStateNumber--;
+     5cc:	8a 8d       	ldd	r24, Y+26	; 0x1a
+     5ce:	9b 8d       	ldd	r25, Y+27	; 0x1b
+     5d0:	01 97       	sbiw	r24, 0x01	; 1
+     5d2:	9b 8f       	std	Y+27, r25	; 0x1b
+     5d4:	8a 8f       	std	Y+26, r24	; 0x1a
+  
+  _states->StateUpdateMethod(_states->Steps[_currentStateNumber]);
+     5d6:	e8 8d       	ldd	r30, Y+24	; 0x18
+     5d8:	f9 8d       	ldd	r31, Y+25	; 0x19
+     5da:	aa 8d       	ldd	r26, Y+26	; 0x1a
+     5dc:	bb 8d       	ldd	r27, Y+27	; 0x1b
+     5de:	ae 0f       	add	r26, r30
+     5e0:	bf 1f       	adc	r27, r31
+     5e2:	03 a0       	ldd	r0, Z+35	; 0x23
+     5e4:	f4 a1       	ldd	r31, Z+36	; 0x24
+     5e6:	e0 2d       	mov	r30, r0
+     5e8:	12 96       	adiw	r26, 0x02	; 2
+     5ea:	8c 91       	ld	r24, X
+     5ec:	09 95       	icall
+  _position--;
+     5ee:	48 81       	ld	r20, Y
+     5f0:	59 81       	ldd	r21, Y+1	; 0x01
+     5f2:	6a 81       	ldd	r22, Y+2	; 0x02
+     5f4:	7b 81       	ldd	r23, Y+3	; 0x03
+     5f6:	41 50       	subi	r20, 0x01	; 1
+     5f8:	51 09       	sbc	r21, r1
+     5fa:	61 09       	sbc	r22, r1
+     5fc:	71 09       	sbc	r23, r1
+     5fe:	48 83       	st	Y, r20
+     600:	59 83       	std	Y+1, r21	; 0x01
+     602:	6a 83       	std	Y+2, r22	; 0x02
+     604:	7b 83       	std	Y+3, r23	; 0x03
+    
+}
+     606:	df 91       	pop	r29
+     608:	cf 91       	pop	r28
+     60a:	1f 91       	pop	r17
+     60c:	0f 91       	pop	r16
+     60e:	08 95       	ret
+
+00000610 <_ZN11MotorDriver17TimerEventHandlerEv>:
+                                  (void*)this
+                              );
+}
+
+void MotorDriver::TimerEventHandler()
+{
+     610:	0f 93       	push	r16
+     612:	1f 93       	push	r17
+     614:	fc 01       	movw	r30, r24
+  if(ABS(_position - _desiredPosition)<_treshold){
+     616:	40 81       	ld	r20, Z
+     618:	51 81       	ldd	r21, Z+1	; 0x01
+     61a:	62 81       	ldd	r22, Z+2	; 0x02
+     61c:	73 81       	ldd	r23, Z+3	; 0x03
+     61e:	04 81       	ldd	r16, Z+4	; 0x04
+     620:	15 81       	ldd	r17, Z+5	; 0x05
+     622:	26 81       	ldd	r18, Z+6	; 0x06
+     624:	37 81       	ldd	r19, Z+7	; 0x07
+     626:	40 1b       	sub	r20, r16
+     628:	51 0b       	sbc	r21, r17
+     62a:	62 0b       	sbc	r22, r18
+     62c:	73 0b       	sbc	r23, r19
+     62e:	6a f4       	brpl	.+26     	; 0x64a <_ZN11MotorDriver17TimerEventHandlerEv+0x3a>
+     630:	04 81       	ldd	r16, Z+4	; 0x04
+     632:	15 81       	ldd	r17, Z+5	; 0x05
+     634:	26 81       	ldd	r18, Z+6	; 0x06
+     636:	37 81       	ldd	r19, Z+7	; 0x07
+     638:	40 81       	ld	r20, Z
+     63a:	51 81       	ldd	r21, Z+1	; 0x01
+     63c:	62 81       	ldd	r22, Z+2	; 0x02
+     63e:	73 81       	ldd	r23, Z+3	; 0x03
+     640:	04 1b       	sub	r16, r20
+     642:	15 0b       	sbc	r17, r21
+     644:	26 0b       	sbc	r18, r22
+     646:	37 0b       	sbc	r19, r23
+     648:	0c c0       	rjmp	.+24     	; 0x662 <_ZN11MotorDriver17TimerEventHandlerEv+0x52>
+     64a:	00 81       	ld	r16, Z
+     64c:	11 81       	ldd	r17, Z+1	; 0x01
+     64e:	22 81       	ldd	r18, Z+2	; 0x02
+     650:	33 81       	ldd	r19, Z+3	; 0x03
+     652:	44 81       	ldd	r20, Z+4	; 0x04
+     654:	55 81       	ldd	r21, Z+5	; 0x05
+     656:	66 81       	ldd	r22, Z+6	; 0x06
+     658:	77 81       	ldd	r23, Z+7	; 0x07
+     65a:	04 1b       	sub	r16, r20
+     65c:	15 0b       	sbc	r17, r21
+     65e:	26 0b       	sbc	r18, r22
+     660:	37 0b       	sbc	r19, r23
+     662:	46 85       	ldd	r20, Z+14	; 0x0e
+     664:	57 85       	ldd	r21, Z+15	; 0x0f
+     666:	60 89       	ldd	r22, Z+16	; 0x10
+     668:	71 89       	ldd	r23, Z+17	; 0x11
+     66a:	04 17       	cp	r16, r20
+     66c:	15 07       	cpc	r17, r21
+     66e:	26 07       	cpc	r18, r22
+     670:	37 07       	cpc	r19, r23
+     672:	1c f4       	brge	.+6      	; 0x67a <_ZN11MotorDriver17TimerEventHandlerEv+0x6a>
+    HitBreak();     
+     674:	cf 01       	movw	r24, r30
+     676:	41 df       	rcall	.-382    	; 0x4fa <_ZN11MotorDriver8HitBreakEv>
+     678:	12 c0       	rjmp	.+36     	; 0x69e <_ZN11MotorDriver17TimerEventHandlerEv+0x8e>
+  } else if(_desiredPosition<_position) {
+     67a:	04 81       	ldd	r16, Z+4	; 0x04
+     67c:	15 81       	ldd	r17, Z+5	; 0x05
+     67e:	26 81       	ldd	r18, Z+6	; 0x06
+     680:	37 81       	ldd	r19, Z+7	; 0x07
+     682:	40 81       	ld	r20, Z
+     684:	51 81       	ldd	r21, Z+1	; 0x01
+     686:	62 81       	ldd	r22, Z+2	; 0x02
+     688:	73 81       	ldd	r23, Z+3	; 0x03
+     68a:	04 17       	cp	r16, r20
+     68c:	15 07       	cpc	r17, r21
+     68e:	26 07       	cpc	r18, r22
+     690:	37 07       	cpc	r19, r23
+     692:	1c f4       	brge	.+6      	; 0x69a <_ZN11MotorDriver17TimerEventHandlerEv+0x8a>
+    StepLeft();
+     694:	cf 01       	movw	r24, r30
+     696:	7a df       	rcall	.-268    	; 0x58c <_ZN11MotorDriver8StepLeftEv>
+     698:	02 c0       	rjmp	.+4      	; 0x69e <_ZN11MotorDriver17TimerEventHandlerEv+0x8e>
+  } else {
+    StepRight();
+     69a:	cf 01       	movw	r24, r30
+     69c:	38 df       	rcall	.-400    	; 0x50e <_ZN11MotorDriver9StepRightEv>
+  } 
+}
+     69e:	1f 91       	pop	r17
+     6a0:	0f 91       	pop	r16
+     6a2:	08 95       	ret
+
+000006a4 <_Z24DispatchMotorDriverEventP12_TIMER_EVENTPv>:
+#define ABS(x) (((x)<0)?(-(x)):((x)))
+
+#include "MotorDriver.h"
+#include "DebugLib.h"
+
+void DispatchMotorDriverEvent(TIMER_EVENT *e, void *c){
+     6a4:	cb 01       	movw	r24, r22
+  ((MotorDriver*) c)->TimerEventHandler();
+     6a6:	b4 df       	rcall	.-152    	; 0x610 <_ZN11MotorDriver17TimerEventHandlerEv>
+     6a8:	08 95       	ret
+
+000006aa <_ZN11MotorDriver14SetLimitAnglesEll>:
+  _position--;
+    
+}
+
+void MotorDriver::SetLimitAngles(ANGLE left, ANGLE right)
+{
+     6aa:	0f 93       	push	r16
+     6ac:	1f 93       	push	r17
+	_leftAngleLimit = left;
+     6ae:	fc 01       	movw	r30, r24
+     6b0:	44 8f       	std	Z+28, r20	; 0x1c
+     6b2:	55 8f       	std	Z+29, r21	; 0x1d
+     6b4:	66 8f       	std	Z+30, r22	; 0x1e
+     6b6:	77 8f       	std	Z+31, r23	; 0x1f
+  _rightAngleLimit = right;
+     6b8:	00 a3       	std	Z+32, r16	; 0x20
+     6ba:	11 a3       	std	Z+33, r17	; 0x21
+     6bc:	22 a3       	std	Z+34, r18	; 0x22
+     6be:	33 a3       	std	Z+35, r19	; 0x23
+}
+     6c0:	1f 91       	pop	r17
+     6c2:	0f 91       	pop	r16
+     6c4:	08 95       	ret
+
+000006c6 <_ZN11MotorDriver8SetAngleEl>:
+
+void MotorDriver::SetAngle(ANGLE a)
+{
+	_desiredPosition = a;
+     6c6:	fc 01       	movw	r30, r24
+     6c8:	44 83       	std	Z+4, r20	; 0x04
+     6ca:	55 83       	std	Z+5, r21	; 0x05
+     6cc:	66 83       	std	Z+6, r22	; 0x06
+     6ce:	77 83       	std	Z+7, r23	; 0x07
+     6d0:	08 95       	ret
+
+000006d2 <_ZN11MotorDriver8GetAngleEv>:
+}
+
+ANGLE MotorDriver::GetAngle()
+{
+	return _position;
+     6d2:	fc 01       	movw	r30, r24
+     6d4:	60 81       	ld	r22, Z
+     6d6:	71 81       	ldd	r23, Z+1	; 0x01
+     6d8:	82 81       	ldd	r24, Z+2	; 0x02
+     6da:	93 81       	ldd	r25, Z+3	; 0x03
+}
+     6dc:	08 95       	ret
+
+000006de <_ZN11MotorDriver7SetZeroEv>:
+
+void MotorDriver::SetZero()
+{
+  _desiredPosition=0;
+     6de:	fc 01       	movw	r30, r24
+     6e0:	14 82       	std	Z+4, r1	; 0x04
+     6e2:	15 82       	std	Z+5, r1	; 0x05
+     6e4:	16 82       	std	Z+6, r1	; 0x06
+     6e6:	17 82       	std	Z+7, r1	; 0x07
+	_position = 0;
+     6e8:	10 82       	st	Z, r1
+     6ea:	11 82       	std	Z+1, r1	; 0x01
+     6ec:	12 82       	std	Z+2, r1	; 0x02
+     6ee:	13 82       	std	Z+3, r1	; 0x03
+     6f0:	08 95       	ret
+
+000006f2 <_ZN11MotorDriver9SetTimeotEm>:
+}
+
+void MotorDriver::SetTimeot(NANOSECONDS timeout)
+{
+	_timeout = timeout;
+     6f2:	fc 01       	movw	r30, r24
+     6f4:	42 8b       	std	Z+18, r20	; 0x12
+     6f6:	53 8b       	std	Z+19, r21	; 0x13
+     6f8:	64 8b       	std	Z+20, r22	; 0x14
+     6fa:	75 8b       	std	Z+21, r23	; 0x15
+     6fc:	08 95       	ret
+
+000006fe <_ZN19SerialCommunicationC1Ev>:
+#define IS_TX_BUFFER_READY() (BIT_VAL(UCSR0A,TXC0))
+extern GLOBAL_SERVICES_TABLE gST;
+extern BYTE UCSR0B_copy;
+extern void PacketReceived(BYTE packet[10]);
+
+ SerialCommunication::SerialCommunication()
+     6fe:	1f 93       	push	r17
+     700:	cf 93       	push	r28
+     702:	df 93       	push	r29
+     704:	ec 01       	movw	r28, r24
+     706:	19 82       	std	Y+1, r1	; 0x01
+     708:	18 82       	st	Y, r1
+     70a:	11 e0       	ldi	r17, 0x01	; 1
+     70c:	1a 83       	std	Y+2, r17	; 0x02
+     70e:	1b 82       	std	Y+3, r1	; 0x03
+     710:	1c 82       	std	Y+4, r1	; 0x04
+     712:	1d 82       	std	Y+5, r1	; 0x05
+     714:	8a e0       	ldi	r24, 0x0A	; 10
+     716:	8e 83       	std	Y+6, r24	; 0x06
+     718:	1f 82       	std	Y+7, r1	; 0x07
+     71a:	1a 8a       	std	Y+18, r1	; 0x12
+     71c:	1d 8a       	std	Y+21, r1	; 0x15
+     71e:	1e 8a       	std	Y+22, r1	; 0x16
+     720:	1f 8a       	std	Y+23, r1	; 0x17
+     722:	18 8e       	std	Y+24, r1	; 0x18
+     724:	19 8e       	std	Y+25, r1	; 0x19
+     726:	1a 8e       	std	Y+26, r1	; 0x1a
+     728:	1b 8e       	std	Y+27, r1	; 0x1b
+     72a:	1c 8e       	std	Y+28, r1	; 0x1c
+     72c:	ce 01       	movw	r24, r28
+     72e:	4d 96       	adiw	r24, 0x1d	; 29
+     730:	55 d1       	rcall	.+682    	; 0x9dc <_ZN12SerialDriverC1Ev>
+{
+  _state = Stopped;
+     732:	1a 83       	std	Y+2, r17	; 0x02
+}
+     734:	df 91       	pop	r29
+     736:	cf 91       	pop	r28
+     738:	1f 91       	pop	r17
+     73a:	08 95       	ret
+
+0000073c <_ZN19SerialCommunication15_HandshakeStateEv>:
+{
+  return _state;
+}
+
+void SerialCommunication::_HandshakeState()
+{
+     73c:	fc 01       	movw	r30, r24
+  if(_handshakeStep<4){
+     73e:	83 81       	ldd	r24, Z+3	; 0x03
+     740:	84 30       	cpi	r24, 0x04	; 4
+     742:	90 f4       	brcc	.+36     	; 0x768 <_ZN19SerialCommunication15_HandshakeStateEv+0x2c>
+    if (IS_RX_DATA_AVAIABLE()){
+     744:	80 91 c0 00 	lds	r24, 0x00C0
+     748:	88 23       	and	r24, r24
+     74a:	5c f4       	brge	.+22     	; 0x762 <_ZN19SerialCommunication15_HandshakeStateEv+0x26>
+        if(UDR0 == PONG_SIGNAL)
+     74c:	80 91 c6 00 	lds	r24, 0x00C6
+     750:	81 31       	cpi	r24, 0x11	; 17
+     752:	21 f4       	brne	.+8      	; 0x75c <_ZN19SerialCommunication15_HandshakeStateEv+0x20>
+          _handshakeStep++;
+     754:	83 81       	ldd	r24, Z+3	; 0x03
+     756:	8f 5f       	subi	r24, 0xFF	; 255
+     758:	83 83       	std	Z+3, r24	; 0x03
+     75a:	08 95       	ret
+        else
+          _state = WaitingForHandshake;      
+     75c:	82 e0       	ldi	r24, 0x02	; 2
+     75e:	82 83       	std	Z+2, r24	; 0x02
+     760:	08 95       	ret
+      } else
+        _state = WaitingForHandshake;     
+     762:	82 e0       	ldi	r24, 0x02	; 2
+     764:	82 83       	std	Z+2, r24	; 0x02
+     766:	08 95       	ret
+    } else if(_handshakeStep<9){
+     768:	83 81       	ldd	r24, Z+3	; 0x03
+     76a:	89 30       	cpi	r24, 0x09	; 9
+     76c:	58 f4       	brcc	.+22     	; 0x784 <_ZN19SerialCommunication15_HandshakeStateEv+0x48>
+      if( IS_RX_DATA_AVAIABLE() )
+     76e:	80 91 c0 00 	lds	r24, 0x00C0
+     772:	88 23       	and	r24, r24
+     774:	1c f4       	brge	.+6      	; 0x77c <_ZN19SerialCommunication15_HandshakeStateEv+0x40>
+        _state = WaitingForHandshake;
+     776:	82 e0       	ldi	r24, 0x02	; 2
+     778:	82 83       	std	Z+2, r24	; 0x02
+     77a:	08 95       	ret
+      else
+         _handshakeStep++;
+     77c:	83 81       	ldd	r24, Z+3	; 0x03
+     77e:	8f 5f       	subi	r24, 0xFF	; 255
+     780:	83 83       	std	Z+3, r24	; 0x03
+     782:	08 95       	ret
+    } else if(_handshakeStep<14){
+     784:	83 81       	ldd	r24, Z+3	; 0x03
+     786:	8e 30       	cpi	r24, 0x0E	; 14
+     788:	80 f4       	brcc	.+32     	; 0x7aa <_ZN19SerialCommunication15_HandshakeStateEv+0x6e>
+      if (IS_RX_DATA_AVAIABLE()){
+     78a:	80 91 c0 00 	lds	r24, 0x00C0
+     78e:	88 23       	and	r24, r24
+     790:	4c f4       	brge	.+18     	; 0x7a4 <_ZN19SerialCommunication15_HandshakeStateEv+0x68>
+        UDR0 = (UDR0+1);
+     792:	a6 ec       	ldi	r26, 0xC6	; 198
+     794:	b0 e0       	ldi	r27, 0x00	; 0
+     796:	8c 91       	ld	r24, X
+     798:	8f 5f       	subi	r24, 0xFF	; 255
+     79a:	8c 93       	st	X, r24
+        _handshakeStep++;
+     79c:	83 81       	ldd	r24, Z+3	; 0x03
+     79e:	8f 5f       	subi	r24, 0xFF	; 255
+     7a0:	83 83       	std	Z+3, r24	; 0x03
+     7a2:	08 95       	ret
+      } else
+        _state = WaitingForHandshake;
+     7a4:	82 e0       	ldi	r24, 0x02	; 2
+     7a6:	82 83       	std	Z+2, r24	; 0x02
+     7a8:	08 95       	ret
+    } else {    
+      _ticsFromLastReceivedByte=1;
+     7aa:	81 e0       	ldi	r24, 0x01	; 1
+     7ac:	84 83       	std	Z+4, r24	; 0x04
+      _ticsFromLastTransmittedByte=1;
+     7ae:	85 83       	std	Z+5, r24	; 0x05
+      _state = Active;
+     7b0:	84 e0       	ldi	r24, 0x04	; 4
+     7b2:	82 83       	std	Z+2, r24	; 0x02
+     7b4:	08 95       	ret
+
+000007b6 <_ZN19SerialCommunication12_SetupSerialEv>:
+    }
+}
+
+void SerialCommunication::_SetupSerial()
+{
+     7b6:	cf 93       	push	r28
+     7b8:	df 93       	push	r29
+  _serial.SetDataSize(EightBits);
+     7ba:	ec 01       	movw	r28, r24
+     7bc:	6d 96       	adiw	r28, 0x1d	; 29
+     7be:	63 e0       	ldi	r22, 0x03	; 3
+     7c0:	ce 01       	movw	r24, r28
+     7c2:	16 d1       	rcall	.+556    	; 0x9f0 <_ZN12SerialDriver11SetDataSizeE8DataSize>
+  _serial.SetBaudRate(9600);
+     7c4:	40 e8       	ldi	r20, 0x80	; 128
+     7c6:	55 e2       	ldi	r21, 0x25	; 37
+     7c8:	60 e0       	ldi	r22, 0x00	; 0
+     7ca:	70 e0       	ldi	r23, 0x00	; 0
+     7cc:	ce 01       	movw	r24, r28
+     7ce:	82 d1       	rcall	.+772    	; 0xad4 <_ZN12SerialDriver11SetBaudRateEm>
+  _serial.SetMode(Async);
+     7d0:	60 e0       	ldi	r22, 0x00	; 0
+     7d2:	ce 01       	movw	r24, r28
+     7d4:	3c d1       	rcall	.+632    	; 0xa4e <_ZN12SerialDriver7SetModeE10SerialMode>
+  _serial.SetParity(Disabled);
+     7d6:	60 e0       	ldi	r22, 0x00	; 0
+     7d8:	ce 01       	movw	r24, r28
+     7da:	4c d1       	rcall	.+664    	; 0xa74 <_ZN12SerialDriver9SetParityE6Parity>
+  _serial.SetStopBits(One);
+     7dc:	60 e0       	ldi	r22, 0x00	; 0
+     7de:	ce 01       	movw	r24, r28
+     7e0:	61 d1       	rcall	.+706    	; 0xaa4 <_ZN12SerialDriver11SetStopBitsE8StopBits>
+  _serial.EnableCommunication();
+     7e2:	ce 01       	movw	r24, r28
+     7e4:	72 d1       	rcall	.+740    	; 0xaca <_ZN12SerialDriver19EnableCommunicationEv>
+  _serial.SendStatusRegisters();
+     7e6:	ce 01       	movw	r24, r28
+     7e8:	43 d2       	rcall	.+1158   	; 0xc70 <_ZN12SerialDriver19SendStatusRegistersEv>
+}
+     7ea:	df 91       	pop	r29
+     7ec:	cf 91       	pop	r28
+     7ee:	08 95       	ret
+
+000007f0 <_ZN19SerialCommunication25_WaitingForHandshakeStateEv>:
+
+
+void SerialCommunication::_WaitingForHandshakeState()
+{
+  BYTE input;
+  if( IS_RX_DATA_AVAIABLE() ){
+     7f0:	20 91 c0 00 	lds	r18, 0x00C0
+     7f4:	22 23       	and	r18, r18
+     7f6:	6c f4       	brge	.+26     	; 0x812 <_ZN19SerialCommunication25_WaitingForHandshakeStateEv+0x22>
+    if( UDR0 == PONG_SIGNAL ){
+     7f8:	20 91 c6 00 	lds	r18, 0x00C6
+     7fc:	21 31       	cpi	r18, 0x11	; 17
+     7fe:	29 f4       	brne	.+10     	; 0x80a <_ZN19SerialCommunication25_WaitingForHandshakeStateEv+0x1a>
+      _handshakeStep = 0;
+     800:	fc 01       	movw	r30, r24
+     802:	13 82       	std	Z+3, r1	; 0x03
+      _state = Handshaking;
+     804:	23 e0       	ldi	r18, 0x03	; 3
+     806:	22 83       	std	Z+2, r18	; 0x02
+     808:	08 95       	ret
+    } else
+      UDR0 = PING_SIGNAL;
+     80a:	81 e1       	ldi	r24, 0x11	; 17
+     80c:	80 93 c6 00 	sts	0x00C6, r24
+     810:	08 95       	ret
+  } else
+    UDR0 = PING_SIGNAL;
+     812:	81 e1       	ldi	r24, 0x11	; 17
+     814:	80 93 c6 00 	sts	0x00C6, r24
+     818:	08 95       	ret
+
+0000081a <_ZN19SerialCommunication5StartEv>:
+
+  lock = false;
+}  
+
+Status SerialCommunication::Start()
+{
+     81a:	cf 93       	push	r28
+     81c:	df 93       	push	r29
+     81e:	ec 01       	movw	r28, r24
+  _SetupSerial();
+     820:	ca df       	rcall	.-108    	; 0x7b6 <_ZN19SerialCommunication12_SetupSerialEv>
+  _state = WaitingForHandshake;
+     822:	82 e0       	ldi	r24, 0x02	; 2
+     824:	8a 83       	std	Y+2, r24	; 0x02
+  return Success;
+}
+     826:	80 e0       	ldi	r24, 0x00	; 0
+     828:	df 91       	pop	r29
+     82a:	cf 91       	pop	r28
+     82c:	08 95       	ret
+
+0000082e <_ZN19SerialCommunication10SendPacketEPh>:
+	if(_autoRestore)
+    RestoreConnection();
+}
+
+void SerialCommunication::SendPacket(BYTE *packet)
+{
+     82e:	fc 01       	movw	r30, r24
+  if(_txDataAvaliable)
+     830:	82 89       	ldd	r24, Z+18	; 0x12
+     832:	81 11       	cpse	r24, r1
+     834:	05 c0       	rjmp	.+10     	; 0x840 <_ZN19SerialCommunication10SendPacketEPh+0x12>
+    return;
+    
+	_txBuffer = packet;
+     836:	74 8b       	std	Z+20, r23	; 0x14
+     838:	63 8b       	std	Z+19, r22	; 0x13
+  _txBufferPosition=0;
+     83a:	15 8a       	std	Z+21, r1	; 0x15
+  _txDataAvaliable = true;
+     83c:	81 e0       	ldi	r24, 0x01	; 1
+     83e:	82 8b       	std	Z+18, r24	; 0x12
+     840:	08 95       	ret
+
+00000842 <_ZN19SerialCommunication10_ClearDataEv>:
+  _ClearData();
+  _state = WaitingForHandshake;
+}
+
+void SerialCommunication::_ClearData()
+{
+     842:	fc 01       	movw	r30, r24
+  _txDataAvaliable = false;
+     844:	12 8a       	std	Z+18, r1	; 0x12
+  _txBufferPosition = 0;
+     846:	15 8a       	std	Z+21, r1	; 0x15
+  _txBuffer = NULL;
+     848:	14 8a       	std	Z+20, r1	; 0x14
+     84a:	13 8a       	std	Z+19, r1	; 0x13
+  _rxBufferPosition = 0;
+     84c:	17 82       	std	Z+7, r1	; 0x07
+  _handshakeStep = 0;
+     84e:	13 82       	std	Z+3, r1	; 0x03
+     850:	08 95       	ret
+
+00000852 <_ZN19SerialCommunication17RestoreConnectionEv>:
+  _txBufferPosition=0;
+  _txDataAvaliable = true;
+}
+
+void SerialCommunication::RestoreConnection()
+{
+     852:	cf 93       	push	r28
+     854:	df 93       	push	r29
+     856:	ec 01       	movw	r28, r24
+  _ClearData();
+     858:	f4 df       	rcall	.-24     	; 0x842 <_ZN19SerialCommunication10_ClearDataEv>
+  _state = WaitingForHandshake;
+     85a:	82 e0       	ldi	r24, 0x02	; 2
+     85c:	8a 83       	std	Y+2, r24	; 0x02
+}
+     85e:	df 91       	pop	r29
+     860:	cf 91       	pop	r28
+     862:	08 95       	ret
+
+00000864 <_ZN19SerialCommunication12_BrokenStateEv>:
+
+}
+
+void SerialCommunication::_BrokenState()
+{
+	if(_autoRestore)
+     864:	fc 01       	movw	r30, r24
+     866:	26 89       	ldd	r18, Z+22	; 0x16
+     868:	21 11       	cpse	r18, r1
+    RestoreConnection();
+     86a:	f3 df       	rcall	.-26     	; 0x852 <_ZN19SerialCommunication17RestoreConnectionEv>
+     86c:	08 95       	ret
+
+0000086e <_ZN19SerialCommunication25CheckForKeepAliveResponseEv>:
+  _handshakeStep = 0;
+}
+
+void SerialCommunication::CheckForKeepAliveResponse()
+{
+  if(UDR0 == KEEP_ALIVE_BYTE)
+     86e:	20 91 c6 00 	lds	r18, 0x00C6
+     872:	25 35       	cpi	r18, 0x55	; 85
+     874:	21 f4       	brne	.+8      	; 0x87e <_ZN19SerialCommunication25CheckForKeepAliveResponseEv+0x10>
+    _state = Active;
+     876:	24 e0       	ldi	r18, 0x04	; 4
+     878:	fc 01       	movw	r30, r24
+     87a:	22 83       	std	Z+2, r18	; 0x02
+     87c:	08 95       	ret
+  else
+    _state = Broken;
+     87e:	25 e0       	ldi	r18, 0x05	; 5
+     880:	fc 01       	movw	r30, r24
+     882:	22 83       	std	Z+2, r18	; 0x02
+     884:	08 95       	ret
+
+00000886 <_ZN19SerialCommunication21CheckForKeepAliveByteEv>:
+}
+
+void SerialCommunication::CheckForKeepAliveByte()
+{
+  if(UDR0 == KEEP_ALIVE_BYTE){
+     886:	20 91 c6 00 	lds	r18, 0x00C6
+     88a:	25 35       	cpi	r18, 0x55	; 85
+     88c:	39 f4       	brne	.+14     	; 0x89c <_ZN19SerialCommunication21CheckForKeepAliveByteEv+0x16>
+    _ticsFromLastTransmittedByte=0;
+     88e:	fc 01       	movw	r30, r24
+     890:	15 82       	std	Z+5, r1	; 0x05
+    UDR0 = KEEP_ALIVE_BYTE;
+     892:	20 93 c6 00 	sts	0x00C6, r18
+    _state = Active;
+     896:	24 e0       	ldi	r18, 0x04	; 4
+     898:	22 83       	std	Z+2, r18	; 0x02
+     89a:	08 95       	ret
+    } else
+    _state = Broken;
+     89c:	25 e0       	ldi	r18, 0x05	; 5
+     89e:	fc 01       	movw	r30, r24
+     8a0:	22 83       	std	Z+2, r18	; 0x02
+     8a2:	08 95       	ret
+
+000008a4 <_ZN19SerialCommunication12_ReceiveByteEv>:
+}
+
+void SerialCommunication::_ReceiveByte()
+{
+     8a4:	fc 01       	movw	r30, r24
+	_rxBuffer[_rxBufferPosition] = UDR0;
+     8a6:	87 81       	ldd	r24, Z+7	; 0x07
+     8a8:	90 91 c6 00 	lds	r25, 0x00C6
+     8ac:	df 01       	movw	r26, r30
+     8ae:	a8 0f       	add	r26, r24
+     8b0:	b1 1d       	adc	r27, r1
+     8b2:	18 96       	adiw	r26, 0x08	; 8
+     8b4:	9c 93       	st	X, r25
+    _rxBufferPosition++;
+     8b6:	8f 5f       	subi	r24, 0xFF	; 255
+     8b8:	87 83       	std	Z+7, r24	; 0x07
+    _ticsFromLastReceivedByte = 0;
+     8ba:	14 82       	std	Z+4, r1	; 0x04
+    if(_rxBufferPosition==_bytesPerPacket){
+     8bc:	96 81       	ldd	r25, Z+6	; 0x06
+     8be:	89 13       	cpse	r24, r25
+     8c0:	04 c0       	rjmp	.+8      	; 0x8ca <_ZN19SerialCommunication12_ReceiveByteEv+0x26>
+      _rxBufferPosition = 0;
+     8c2:	17 82       	std	Z+7, r1	; 0x07
+      PacketReceived(_rxBuffer);
+     8c4:	cf 01       	movw	r24, r30
+     8c6:	08 96       	adiw	r24, 0x08	; 8
+     8c8:	7e dc       	rcall	.-1796   	; 0x1c6 <_Z14PacketReceivedPh>
+     8ca:	08 95       	ret
+
+000008cc <_ZN19SerialCommunication9_SendByteEv>:
+    }
+}
+
+void SerialCommunication::_SendByte()
+{
+     8cc:	fc 01       	movw	r30, r24
+	if(_txDataAvaliable){
+     8ce:	82 89       	ldd	r24, Z+18	; 0x12
+     8d0:	88 23       	and	r24, r24
+     8d2:	b1 f0       	breq	.+44     	; 0x900 <_ZN19SerialCommunication9_SendByteEv+0x34>
+      UDR0 = _txBuffer[_txBufferPosition];
+     8d4:	85 89       	ldd	r24, Z+21	; 0x15
+     8d6:	a3 89       	ldd	r26, Z+19	; 0x13
+     8d8:	b4 89       	ldd	r27, Z+20	; 0x14
+     8da:	a8 0f       	add	r26, r24
+     8dc:	b1 1d       	adc	r27, r1
+     8de:	8c 91       	ld	r24, X
+     8e0:	80 93 c6 00 	sts	0x00C6, r24
+      _txBufferPosition++;
+     8e4:	85 89       	ldd	r24, Z+21	; 0x15
+     8e6:	8f 5f       	subi	r24, 0xFF	; 255
+     8e8:	85 8b       	std	Z+21, r24	; 0x15
+      _ticsFromLastTransmittedByte = 0;
+     8ea:	15 82       	std	Z+5, r1	; 0x05
+      if(_txBufferPosition==_bytesPerPacket){
+     8ec:	96 81       	ldd	r25, Z+6	; 0x06
+     8ee:	89 13       	cpse	r24, r25
+     8f0:	07 c0       	rjmp	.+14     	; 0x900 <_ZN19SerialCommunication9_SendByteEv+0x34>
+        _txDataAvaliable = false;
+     8f2:	12 8a       	std	Z+18, r1	; 0x12
+        if(TxBufferSentEventHandler!=NULL)
+     8f4:	01 90       	ld	r0, Z+
+     8f6:	f0 81       	ld	r31, Z
+     8f8:	e0 2d       	mov	r30, r0
+     8fa:	30 97       	sbiw	r30, 0x00	; 0
+     8fc:	09 f0       	breq	.+2      	; 0x900 <_ZN19SerialCommunication9_SendByteEv+0x34>
+        TxBufferSentEventHandler();
+     8fe:	09 95       	icall
+     900:	08 95       	ret
+
+00000902 <_ZN19SerialCommunication11ReceiveDataEv>:
+    default: return;
+  }
+}
+
+
+void SerialCommunication::ReceiveData(){
+     902:	cf 93       	push	r28
+     904:	df 93       	push	r29
+     906:	ec 01       	movw	r28, r24
+  BYTE input;
+  static bool lock = false;
+  if( lock || !IS_RX_DATA_AVAIABLE() 
+     908:	80 91 48 02 	lds	r24, 0x0248
+     90c:	81 11       	cpse	r24, r1
+     90e:	1d c0       	rjmp	.+58     	; 0x94a <_ZN19SerialCommunication11ReceiveDataEv+0x48>
+     910:	80 91 c0 00 	lds	r24, 0x00C0
+     914:	88 23       	and	r24, r24
+     916:	cc f4       	brge	.+50     	; 0x94a <_ZN19SerialCommunication11ReceiveDataEv+0x48>
+    )
+    return;
+  else
+    lock=true;
+     918:	81 e0       	ldi	r24, 0x01	; 1
+     91a:	80 93 48 02 	sts	0x0248, r24
+
+  _ticsFromLastReceivedByte=0;
+     91e:	1c 82       	std	Y+4, r1	; 0x04
+  
+  if(_state == WaitingForKeepAliveByte)
+     920:	8a 81       	ldd	r24, Y+2	; 0x02
+     922:	87 30       	cpi	r24, 0x07	; 7
+     924:	19 f4       	brne	.+6      	; 0x92c <_ZN19SerialCommunication11ReceiveDataEv+0x2a>
+    CheckForKeepAliveByte();
+     926:	ce 01       	movw	r24, r28
+     928:	ae df       	rcall	.-164    	; 0x886 <_ZN19SerialCommunication21CheckForKeepAliveByteEv>
+     92a:	0d c0       	rjmp	.+26     	; 0x946 <_ZN19SerialCommunication11ReceiveDataEv+0x44>
+  else if(_state == WaitingForKeepAliveResponse)
+     92c:	8a 81       	ldd	r24, Y+2	; 0x02
+     92e:	86 30       	cpi	r24, 0x06	; 6
+     930:	19 f4       	brne	.+6      	; 0x938 <_ZN19SerialCommunication11ReceiveDataEv+0x36>
+    CheckForKeepAliveResponse();
+     932:	ce 01       	movw	r24, r28
+     934:	9c df       	rcall	.-200    	; 0x86e <_ZN19SerialCommunication25CheckForKeepAliveResponseEv>
+     936:	07 c0       	rjmp	.+14     	; 0x946 <_ZN19SerialCommunication11ReceiveDataEv+0x44>
+  else if (_state == Active) {
+     938:	8a 81       	ldd	r24, Y+2	; 0x02
+     93a:	84 30       	cpi	r24, 0x04	; 4
+     93c:	21 f4       	brne	.+8      	; 0x946 <_ZN19SerialCommunication11ReceiveDataEv+0x44>
+    _ReceiveByte();
+     93e:	ce 01       	movw	r24, r28
+     940:	b1 df       	rcall	.-158    	; 0x8a4 <_ZN19SerialCommunication12_ReceiveByteEv>
+    _SendByte();
+     942:	ce 01       	movw	r24, r28
+     944:	c3 df       	rcall	.-122    	; 0x8cc <_ZN19SerialCommunication9_SendByteEv>
+  }
+
+  lock = false;
+     946:	10 92 48 02 	sts	0x0248, r1
+}  
+     94a:	df 91       	pop	r29
+     94c:	cf 91       	pop	r28
+     94e:	08 95       	ret
+
+00000950 <_ZN19SerialCommunication17_CheckRxLineStateEv>:
+      }
+    }
+}
+
+void SerialCommunication::_CheckRxLineState()
+{
+     950:	fc 01       	movw	r30, r24
+	_ticsFromLastReceivedByte++;
+     952:	84 81       	ldd	r24, Z+4	; 0x04
+     954:	8f 5f       	subi	r24, 0xFF	; 255
+     956:	84 83       	std	Z+4, r24	; 0x04
+  if(_ticsFromLastReceivedByte==5)
+     958:	84 81       	ldd	r24, Z+4	; 0x04
+     95a:	85 30       	cpi	r24, 0x05	; 5
+     95c:	19 f4       	brne	.+6      	; 0x964 <_ZN19SerialCommunication17_CheckRxLineStateEv+0x14>
+    _state = WaitingForKeepAliveByte;
+     95e:	87 e0       	ldi	r24, 0x07	; 7
+     960:	82 83       	std	Z+2, r24	; 0x02
+     962:	08 95       	ret
+  else if(_ticsFromLastReceivedByte==10){
+     964:	84 81       	ldd	r24, Z+4	; 0x04
+     966:	8a 30       	cpi	r24, 0x0A	; 10
+     968:	11 f4       	brne	.+4      	; 0x96e <_ZN19SerialCommunication17_CheckRxLineStateEv+0x1e>
+    _state = Broken;
+     96a:	85 e0       	ldi	r24, 0x05	; 5
+     96c:	82 83       	std	Z+2, r24	; 0x02
+     96e:	08 95       	ret
+
+00000970 <_ZN19SerialCommunication17_CheckTxLineStateEv>:
+  }
+}
+
+void SerialCommunication::_CheckTxLineState()
+{
+     970:	fc 01       	movw	r30, r24
+	_ticsFromLastTransmittedByte++;
+     972:	85 81       	ldd	r24, Z+5	; 0x05
+     974:	8f 5f       	subi	r24, 0xFF	; 255
+     976:	85 83       	std	Z+5, r24	; 0x05
+  if(_ticsFromLastTransmittedByte==4){
+     978:	85 81       	ldd	r24, Z+5	; 0x05
+     97a:	84 30       	cpi	r24, 0x04	; 4
+     97c:	31 f4       	brne	.+12     	; 0x98a <_ZN19SerialCommunication17_CheckTxLineStateEv+0x1a>
+    UDR0 = KEEP_ALIVE_BYTE;
+     97e:	85 e5       	ldi	r24, 0x55	; 85
+     980:	80 93 c6 00 	sts	0x00C6, r24
+    _state = WaitingForKeepAliveResponse;
+     984:	86 e0       	ldi	r24, 0x06	; 6
+     986:	82 83       	std	Z+2, r24	; 0x02
+     988:	08 95       	ret
+  } else if (_ticsFromLastTransmittedByte==10){
+     98a:	85 81       	ldd	r24, Z+5	; 0x05
+     98c:	8a 30       	cpi	r24, 0x0A	; 10
+     98e:	11 f4       	brne	.+4      	; 0x994 <_ZN19SerialCommunication17_CheckTxLineStateEv+0x24>
+    _state = Broken;
+     990:	85 e0       	ldi	r24, 0x05	; 5
+     992:	82 83       	std	Z+2, r24	; 0x02
+     994:	08 95       	ret
+
+00000996 <_ZN19SerialCommunication12_ActiveStateEv>:
+  _state = WaitingForHandshake;
+  return Success;
+}
+
+void SerialCommunication::_ActiveState()
+{
+     996:	cf 93       	push	r28
+     998:	df 93       	push	r29
+     99a:	ec 01       	movw	r28, r24
+  _CheckRxLineState();
+     99c:	d9 df       	rcall	.-78     	; 0x950 <_ZN19SerialCommunication17_CheckRxLineStateEv>
+  if(_state==Active)
+     99e:	8a 81       	ldd	r24, Y+2	; 0x02
+     9a0:	84 30       	cpi	r24, 0x04	; 4
+     9a2:	11 f4       	brne	.+4      	; 0x9a8 <_ZN19SerialCommunication12_ActiveStateEv+0x12>
+    _CheckTxLineState();
+     9a4:	ce 01       	movw	r24, r28
+     9a6:	e4 df       	rcall	.-56     	; 0x970 <_ZN19SerialCommunication17_CheckTxLineStateEv>
+
+}
+     9a8:	df 91       	pop	r29
+     9aa:	cf 91       	pop	r28
+     9ac:	08 95       	ret
+
+000009ae <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv>:
+    UDR0 = PING_SIGNAL;
+}
+
+void SerialCommunication::ManageCommunication(TIMER_EVENT *e, void *c)
+{
+  switch(_state){
+     9ae:	fc 01       	movw	r30, r24
+     9b0:	22 81       	ldd	r18, Z+2	; 0x02
+     9b2:	24 30       	cpi	r18, 0x04	; 4
+     9b4:	89 f0       	breq	.+34     	; 0x9d8 <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv+0x2a>
+     9b6:	28 f4       	brcc	.+10     	; 0x9c2 <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv+0x14>
+     9b8:	22 30       	cpi	r18, 0x02	; 2
+     9ba:	41 f0       	breq	.+16     	; 0x9cc <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv+0x1e>
+     9bc:	23 30       	cpi	r18, 0x03	; 3
+     9be:	41 f0       	breq	.+16     	; 0x9d0 <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv+0x22>
+     9c0:	08 95       	ret
+     9c2:	25 30       	cpi	r18, 0x05	; 5
+     9c4:	39 f0       	breq	.+14     	; 0x9d4 <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv+0x26>
+     9c6:	28 30       	cpi	r18, 0x08	; 8
+     9c8:	40 f4       	brcc	.+16     	; 0x9da <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv+0x2c>
+     9ca:	06 c0       	rjmp	.+12     	; 0x9d8 <_ZN19SerialCommunication19ManageCommunicationEP12_TIMER_EVENTPv+0x2a>
+    case WaitingForHandshake:           _WaitingForHandshakeState();  break;
+     9cc:	11 df       	rcall	.-478    	; 0x7f0 <_ZN19SerialCommunication25_WaitingForHandshakeStateEv>
+     9ce:	08 95       	ret
+    case Handshaking:                   _HandshakeState();            break;
+     9d0:	b5 de       	rcall	.-662    	; 0x73c <_ZN19SerialCommunication15_HandshakeStateEv>
+     9d2:	08 95       	ret
+    case Broken:                        _BrokenState();               break;
+     9d4:	47 df       	rcall	.-370    	; 0x864 <_ZN19SerialCommunication12_BrokenStateEv>
+     9d6:	08 95       	ret
+    
+    case WaitingForKeepAliveResponse :
+    case WaitingForKeepAliveByte     :
+    case Active:                        
+      _ActiveState();
+     9d8:	de df       	rcall	.-68     	; 0x996 <_ZN19SerialCommunication12_ActiveStateEv>
+     9da:	08 95       	ret
+
+000009dc <_ZN12SerialDriverC1Ev>:
+
+
+#include "SerialDriver.h"
+
+// default constructor
+SerialDriver::SerialDriver()
+     9dc:	fc 01       	movw	r30, r24
+{
+  _controlRegisters[0]=0;
+     9de:	10 82       	st	Z, r1
+  _controlRegisters[1]=0;
+     9e0:	11 82       	std	Z+1, r1	; 0x01
+  _controlRegisters[2]=0;
+     9e2:	12 82       	std	Z+2, r1	; 0x02
+  _baudRate = 0;
+     9e4:	13 82       	std	Z+3, r1	; 0x03
+     9e6:	14 82       	std	Z+4, r1	; 0x04
+     9e8:	15 82       	std	Z+5, r1	; 0x05
+     9ea:	16 82       	std	Z+6, r1	; 0x06
+     9ec:	08 95       	ret
+
+000009ee <_ZN12SerialDriverD1Ev>:
+} //Serial
+
+// default destructor
+SerialDriver::~SerialDriver()
+     9ee:	08 95       	ret
+
+000009f0 <_ZN12SerialDriver11SetDataSizeE8DataSize>:
+{
+} //~Serial
+
+ void SerialDriver::SetDataSize(DataSize size)
+{
+     9f0:	fc 01       	movw	r30, r24
+  
+  BYTE valB = 0x00;
+  BYTE valC = 0x00;
+  
+  
+  if(size == FiveBits){
+     9f2:	61 11       	cpse	r22, r1
+     9f4:	05 c0       	rjmp	.+10     	; 0xa00 <_ZN12SerialDriver11SetDataSizeE8DataSize+0x10>
+    valB = 0;
+    valC = 0;
+    _dataSize = 5;
+     9f6:	85 e0       	ldi	r24, 0x05	; 5
+     9f8:	87 83       	std	Z+7, r24	; 0x07
+  BYTE valC = 0x00;
+  
+  
+  if(size == FiveBits){
+    valB = 0;
+    valC = 0;
+     9fa:	20 e0       	ldi	r18, 0x00	; 0
+  BYTE valB = 0x00;
+  BYTE valC = 0x00;
+  
+  
+  if(size == FiveBits){
+    valB = 0;
+     9fc:	80 e0       	ldi	r24, 0x00	; 0
+     9fe:	1e c0       	rjmp	.+60     	; 0xa3c <_ZN12SerialDriver11SetDataSizeE8DataSize+0x4c>
+    valC = 0;
+    _dataSize = 5;
+  } else if (size == SixBits){
+     a00:	61 30       	cpi	r22, 0x01	; 1
+     a02:	29 f4       	brne	.+10     	; 0xa0e <_ZN12SerialDriver11SetDataSizeE8DataSize+0x1e>
+    valB = 0;
+    valC = (1<<UCSZ00);
+    _dataSize = 6;
+     a04:	86 e0       	ldi	r24, 0x06	; 6
+     a06:	87 83       	std	Z+7, r24	; 0x07
+    valB = 0;
+    valC = 0;
+    _dataSize = 5;
+  } else if (size == SixBits){
+    valB = 0;
+    valC = (1<<UCSZ00);
+     a08:	22 e0       	ldi	r18, 0x02	; 2
+  if(size == FiveBits){
+    valB = 0;
+    valC = 0;
+    _dataSize = 5;
+  } else if (size == SixBits){
+    valB = 0;
+     a0a:	80 e0       	ldi	r24, 0x00	; 0
+     a0c:	17 c0       	rjmp	.+46     	; 0xa3c <_ZN12SerialDriver11SetDataSizeE8DataSize+0x4c>
+    valC = (1<<UCSZ00);
+    _dataSize = 6;
+  } else if (size == SevenBits){
+     a0e:	62 30       	cpi	r22, 0x02	; 2
+     a10:	29 f4       	brne	.+10     	; 0xa1c <_ZN12SerialDriver11SetDataSizeE8DataSize+0x2c>
+    valB = 0;
+    valC = (1<<UCSZ01);
+    _dataSize = 7;
+     a12:	87 e0       	ldi	r24, 0x07	; 7
+     a14:	87 83       	std	Z+7, r24	; 0x07
+    valB = 0;
+    valC = (1<<UCSZ00);
+    _dataSize = 6;
+  } else if (size == SevenBits){
+    valB = 0;
+    valC = (1<<UCSZ01);
+     a16:	24 e0       	ldi	r18, 0x04	; 4
+  } else if (size == SixBits){
+    valB = 0;
+    valC = (1<<UCSZ00);
+    _dataSize = 6;
+  } else if (size == SevenBits){
+    valB = 0;
+     a18:	80 e0       	ldi	r24, 0x00	; 0
+     a1a:	10 c0       	rjmp	.+32     	; 0xa3c <_ZN12SerialDriver11SetDataSizeE8DataSize+0x4c>
+    valC = (1<<UCSZ01);
+    _dataSize = 7;
+  } else if (size == EightBits){
+     a1c:	63 30       	cpi	r22, 0x03	; 3
+     a1e:	29 f4       	brne	.+10     	; 0xa2a <_ZN12SerialDriver11SetDataSizeE8DataSize+0x3a>
+    valB = 0;
+    valC = (1<<UCSZ00) | (1<<UCSZ01);
+    _dataSize =8;
+     a20:	88 e0       	ldi	r24, 0x08	; 8
+     a22:	87 83       	std	Z+7, r24	; 0x07
+    valB = 0;
+    valC = (1<<UCSZ01);
+    _dataSize = 7;
+  } else if (size == EightBits){
+    valB = 0;
+    valC = (1<<UCSZ00) | (1<<UCSZ01);
+     a24:	26 e0       	ldi	r18, 0x06	; 6
+  } else if (size == SevenBits){
+    valB = 0;
+    valC = (1<<UCSZ01);
+    _dataSize = 7;
+  } else if (size == EightBits){
+    valB = 0;
+     a26:	80 e0       	ldi	r24, 0x00	; 0
+     a28:	09 c0       	rjmp	.+18     	; 0xa3c <_ZN12SerialDriver11SetDataSizeE8DataSize+0x4c>
+    valC = (1<<UCSZ00) | (1<<UCSZ01);
+    _dataSize =8;
+  } else if (size == NineBits){
+     a2a:	64 30       	cpi	r22, 0x04	; 4
+     a2c:	29 f4       	brne	.+10     	; 0xa38 <_ZN12SerialDriver11SetDataSizeE8DataSize+0x48>
+    valB = (1<<UCSZ02);
+    valC = (1<<UCSZ00) | (1<<UCSZ01);
+    _dataSize = 9;
+     a2e:	89 e0       	ldi	r24, 0x09	; 9
+     a30:	87 83       	std	Z+7, r24	; 0x07
+    valB = 0;
+    valC = (1<<UCSZ00) | (1<<UCSZ01);
+    _dataSize =8;
+  } else if (size == NineBits){
+    valB = (1<<UCSZ02);
+    valC = (1<<UCSZ00) | (1<<UCSZ01);
+     a32:	26 e0       	ldi	r18, 0x06	; 6
+  } else if (size == EightBits){
+    valB = 0;
+    valC = (1<<UCSZ00) | (1<<UCSZ01);
+    _dataSize =8;
+  } else if (size == NineBits){
+    valB = (1<<UCSZ02);
+     a34:	84 e0       	ldi	r24, 0x04	; 4
+     a36:	02 c0       	rjmp	.+4      	; 0xa3c <_ZN12SerialDriver11SetDataSizeE8DataSize+0x4c>
+    NUMBER2MASK(UCSZ00)
+    | NUMBER2MASK(UCSZ01)
+  ;
+  
+  BYTE valB = 0x00;
+  BYTE valC = 0x00;
+     a38:	20 e0       	ldi	r18, 0x00	; 0
+  BYTE maskC =
+    NUMBER2MASK(UCSZ00)
+    | NUMBER2MASK(UCSZ01)
+  ;
+  
+  BYTE valB = 0x00;
+     a3a:	80 e0       	ldi	r24, 0x00	; 0
+    valB = (1<<UCSZ02);
+    valC = (1<<UCSZ00) | (1<<UCSZ01);
+    _dataSize = 9;
+  }
+
+  _controlRegisters[1] = CP_BITS(valB,_controlRegisters[1],maskB);
+     a3c:	91 81       	ldd	r25, Z+1	; 0x01
+     a3e:	9b 7f       	andi	r25, 0xFB	; 251
+     a40:	98 2b       	or	r25, r24
+     a42:	91 83       	std	Z+1, r25	; 0x01
+  _controlRegisters[2] = CP_BITS(valC,_controlRegisters[2],maskC);
+     a44:	82 81       	ldd	r24, Z+2	; 0x02
+     a46:	89 7f       	andi	r24, 0xF9	; 249
+     a48:	82 2b       	or	r24, r18
+     a4a:	82 83       	std	Z+2, r24	; 0x02
+     a4c:	08 95       	ret
+
+00000a4e <_ZN12SerialDriver7SetModeE10SerialMode>:
+void SerialDriver::SetMode(SerialMode mode)
+{
+  BYTE maskC = (1<<UMSEL00) | (1<<UMSEL01);
+  BYTE valC =0;
+  
+  if(mode == Async){
+     a4e:	66 23       	and	r22, r22
+     a50:	31 f0       	breq	.+12     	; 0xa5e <_ZN12SerialDriver7SetModeE10SerialMode+0x10>
+    valC =0;
+  }else if(mode == Sync){
+     a52:	61 30       	cpi	r22, 0x01	; 1
+     a54:	31 f0       	breq	.+12     	; 0xa62 <_ZN12SerialDriver7SetModeE10SerialMode+0x14>
+    valC = (1<<UMSEL00);
+  }else if(mode == SpiMaster){
+     a56:	62 30       	cpi	r22, 0x02	; 2
+     a58:	31 f0       	breq	.+12     	; 0xa66 <_ZN12SerialDriver7SetModeE10SerialMode+0x18>
+}
+
+void SerialDriver::SetMode(SerialMode mode)
+{
+  BYTE maskC = (1<<UMSEL00) | (1<<UMSEL01);
+  BYTE valC =0;
+     a5a:	30 e0       	ldi	r19, 0x00	; 0
+     a5c:	05 c0       	rjmp	.+10     	; 0xa68 <_ZN12SerialDriver7SetModeE10SerialMode+0x1a>
+  
+  if(mode == Async){
+    valC =0;
+     a5e:	30 e0       	ldi	r19, 0x00	; 0
+     a60:	03 c0       	rjmp	.+6      	; 0xa68 <_ZN12SerialDriver7SetModeE10SerialMode+0x1a>
+  }else if(mode == Sync){
+    valC = (1<<UMSEL00);
+     a62:	30 e4       	ldi	r19, 0x40	; 64
+     a64:	01 c0       	rjmp	.+2      	; 0xa68 <_ZN12SerialDriver7SetModeE10SerialMode+0x1a>
+  }else if(mode == SpiMaster){
+    valC = (1<<UMSEL00) | (1<<UMSEL01);
+     a66:	30 ec       	ldi	r19, 0xC0	; 192
+  }
+  
+  _controlRegisters[2] = CP_BITS(valC,_controlRegisters[2],maskC);
+     a68:	fc 01       	movw	r30, r24
+     a6a:	22 81       	ldd	r18, Z+2	; 0x02
+     a6c:	2f 73       	andi	r18, 0x3F	; 63
+     a6e:	23 2b       	or	r18, r19
+     a70:	22 83       	std	Z+2, r18	; 0x02
+     a72:	08 95       	ret
+
+00000a74 <_ZN12SerialDriver9SetParityE6Parity>:
+}
+
+void SerialDriver::SetParity(Parity parity)
+{
+     a74:	fc 01       	movw	r30, r24
+  BYTE maskC = NUMBER2MASK(UPM00) | NUMBER2MASK(UPM01);
+  BYTE valC = 0;
+  
+  if(parity == Disabled){
+     a76:	61 11       	cpse	r22, r1
+     a78:	03 c0       	rjmp	.+6      	; 0xa80 <_ZN12SerialDriver9SetParityE6Parity+0xc>
+    valC =0;
+    _parity=false;
+     a7a:	11 86       	std	Z+9, r1	; 0x09
+{
+  BYTE maskC = NUMBER2MASK(UPM00) | NUMBER2MASK(UPM01);
+  BYTE valC = 0;
+  
+  if(parity == Disabled){
+    valC =0;
+     a7c:	90 e0       	ldi	r25, 0x00	; 0
+     a7e:	0d c0       	rjmp	.+26     	; 0xa9a <_ZN12SerialDriver9SetParityE6Parity+0x26>
+    _parity=false;
+  } else if (parity == Even) {
+     a80:	61 30       	cpi	r22, 0x01	; 1
+     a82:	21 f4       	brne	.+8      	; 0xa8c <_ZN12SerialDriver9SetParityE6Parity+0x18>
+    valC = (1<<UPM01);
+    _parity = true;
+     a84:	81 e0       	ldi	r24, 0x01	; 1
+     a86:	81 87       	std	Z+9, r24	; 0x09
+  
+  if(parity == Disabled){
+    valC =0;
+    _parity=false;
+  } else if (parity == Even) {
+    valC = (1<<UPM01);
+     a88:	90 e2       	ldi	r25, 0x20	; 32
+     a8a:	07 c0       	rjmp	.+14     	; 0xa9a <_ZN12SerialDriver9SetParityE6Parity+0x26>
+    _parity = true;
+  } else if (parity == Odd) {
+     a8c:	62 30       	cpi	r22, 0x02	; 2
+     a8e:	21 f4       	brne	.+8      	; 0xa98 <_ZN12SerialDriver9SetParityE6Parity+0x24>
+    valC = (1<<UPM00) | (1<<UPM01);
+    _parity = true;
+     a90:	81 e0       	ldi	r24, 0x01	; 1
+     a92:	81 87       	std	Z+9, r24	; 0x09
+    _parity=false;
+  } else if (parity == Even) {
+    valC = (1<<UPM01);
+    _parity = true;
+  } else if (parity == Odd) {
+    valC = (1<<UPM00) | (1<<UPM01);
+     a94:	90 e3       	ldi	r25, 0x30	; 48
+     a96:	01 c0       	rjmp	.+2      	; 0xa9a <_ZN12SerialDriver9SetParityE6Parity+0x26>
+}
+
+void SerialDriver::SetParity(Parity parity)
+{
+  BYTE maskC = NUMBER2MASK(UPM00) | NUMBER2MASK(UPM01);
+  BYTE valC = 0;
+     a98:	90 e0       	ldi	r25, 0x00	; 0
+  } else if (parity == Odd) {
+    valC = (1<<UPM00) | (1<<UPM01);
+    _parity = true;
+  }
+  
+  _controlRegisters[2] = CP_BITS(valC,_controlRegisters[2],maskC);
+     a9a:	82 81       	ldd	r24, Z+2	; 0x02
+     a9c:	8f 7c       	andi	r24, 0xCF	; 207
+     a9e:	89 2b       	or	r24, r25
+     aa0:	82 83       	std	Z+2, r24	; 0x02
+     aa2:	08 95       	ret
+
+00000aa4 <_ZN12SerialDriver11SetStopBitsE8StopBits>:
+}
+
+void SerialDriver::SetStopBits(StopBits stopBits)
+{
+     aa4:	fc 01       	movw	r30, r24
+  BYTE maskC = NUMBER2MASK(USBS0);
+  BYTE valC = 0;
+  
+  if(stopBits == One){
+     aa6:	61 11       	cpse	r22, r1
+     aa8:	04 c0       	rjmp	.+8      	; 0xab2 <_ZN12SerialDriver11SetStopBitsE8StopBits+0xe>
+    valC = 0;
+    _stopBits=1;
+     aaa:	81 e0       	ldi	r24, 0x01	; 1
+     aac:	80 87       	std	Z+8, r24	; 0x08
+{
+  BYTE maskC = NUMBER2MASK(USBS0);
+  BYTE valC = 0;
+  
+  if(stopBits == One){
+    valC = 0;
+     aae:	90 e0       	ldi	r25, 0x00	; 0
+     ab0:	07 c0       	rjmp	.+14     	; 0xac0 <_ZN12SerialDriver11SetStopBitsE8StopBits+0x1c>
+    _stopBits=1;
+  } else if(stopBits == Two){
+     ab2:	61 30       	cpi	r22, 0x01	; 1
+     ab4:	21 f4       	brne	.+8      	; 0xabe <_ZN12SerialDriver11SetStopBitsE8StopBits+0x1a>
+    valC = (1<<USBS0);
+    _stopBits=2;
+     ab6:	82 e0       	ldi	r24, 0x02	; 2
+     ab8:	80 87       	std	Z+8, r24	; 0x08
+  
+  if(stopBits == One){
+    valC = 0;
+    _stopBits=1;
+  } else if(stopBits == Two){
+    valC = (1<<USBS0);
+     aba:	98 e0       	ldi	r25, 0x08	; 8
+     abc:	01 c0       	rjmp	.+2      	; 0xac0 <_ZN12SerialDriver11SetStopBitsE8StopBits+0x1c>
+}
+
+void SerialDriver::SetStopBits(StopBits stopBits)
+{
+  BYTE maskC = NUMBER2MASK(USBS0);
+  BYTE valC = 0;
+     abe:	90 e0       	ldi	r25, 0x00	; 0
+  } else if(stopBits == Two){
+    valC = (1<<USBS0);
+    _stopBits=2;
+  }
+  
+  _controlRegisters[2] = CP_BITS(valC,_controlRegisters[2],maskC);
+     ac0:	82 81       	ldd	r24, Z+2	; 0x02
+     ac2:	87 7f       	andi	r24, 0xF7	; 247
+     ac4:	89 2b       	or	r24, r25
+     ac6:	82 83       	std	Z+2, r24	; 0x02
+     ac8:	08 95       	ret
+
+00000aca <_ZN12SerialDriver19EnableCommunicationEv>:
+
+}
+
+void SerialDriver::EnableCommunication()
+{
+  _controlRegisters[1] |= (1<<TXEN0) | (1<<RXEN0);
+     aca:	fc 01       	movw	r30, r24
+     acc:	21 81       	ldd	r18, Z+1	; 0x01
+     ace:	28 61       	ori	r18, 0x18	; 24
+     ad0:	21 83       	std	Z+1, r18	; 0x01
+     ad2:	08 95       	ret
+
+00000ad4 <_ZN12SerialDriver11SetBaudRateEm>:
+  _controlRegisters[0] &= (~(1<<MPCM0));
+}
+
+void SerialDriver::SetBaudRate(uint32_t bitsPerSecond)
+{
+  _baudRate = bitsPerSecond;
+     ad4:	fc 01       	movw	r30, r24
+     ad6:	43 83       	std	Z+3, r20	; 0x03
+     ad8:	54 83       	std	Z+4, r21	; 0x04
+     ada:	65 83       	std	Z+5, r22	; 0x05
+     adc:	76 83       	std	Z+6, r23	; 0x06
+     ade:	08 95       	ret
+
+00000ae0 <_ZN12SerialDriver26_CalculateBaudRateRegisterEv>:
+}
+
+void SerialDriver::_CalculateBaudRateRegister()
+{
+     ae0:	8f 92       	push	r8
+     ae2:	9f 92       	push	r9
+     ae4:	af 92       	push	r10
+     ae6:	bf 92       	push	r11
+     ae8:	cf 92       	push	r12
+     aea:	df 92       	push	r13
+     aec:	ef 92       	push	r14
+     aee:	ff 92       	push	r15
+     af0:	cf 93       	push	r28
+     af2:	df 93       	push	r29
+     af4:	ec 01       	movw	r28, r24
+  int32_t baudRateRegister = 0;
+  int32_t calculatedBaudRate =0;
+  
+  baudRateRegister = ((uint32_t)(F_CPU*100) / (16*_baudRate)) -1;
+     af6:	8b 80       	ldd	r8, Y+3	; 0x03
+     af8:	9c 80       	ldd	r9, Y+4	; 0x04
+     afa:	ad 80       	ldd	r10, Y+5	; 0x05
+     afc:	be 80       	ldd	r11, Y+6	; 0x06
+     afe:	d5 01       	movw	r26, r10
+     b00:	c4 01       	movw	r24, r8
+     b02:	88 0f       	add	r24, r24
+     b04:	99 1f       	adc	r25, r25
+     b06:	aa 1f       	adc	r26, r26
+     b08:	bb 1f       	adc	r27, r27
+     b0a:	88 0f       	add	r24, r24
+     b0c:	99 1f       	adc	r25, r25
+     b0e:	aa 1f       	adc	r26, r26
+     b10:	bb 1f       	adc	r27, r27
+     b12:	9c 01       	movw	r18, r24
+     b14:	ad 01       	movw	r20, r26
+     b16:	22 0f       	add	r18, r18
+     b18:	33 1f       	adc	r19, r19
+     b1a:	44 1f       	adc	r20, r20
+     b1c:	55 1f       	adc	r21, r21
+     b1e:	22 0f       	add	r18, r18
+     b20:	33 1f       	adc	r19, r19
+     b22:	44 1f       	adc	r20, r20
+     b24:	55 1f       	adc	r21, r21
+     b26:	60 e0       	ldi	r22, 0x00	; 0
+     b28:	71 ee       	ldi	r23, 0xE1	; 225
+     b2a:	85 ef       	ldi	r24, 0xF5	; 245
+     b2c:	95 e0       	ldi	r25, 0x05	; 5
+     b2e:	b0 d4       	rcall	.+2400   	; 0x1490 <__udivmodsi4>
+     b30:	69 01       	movw	r12, r18
+     b32:	7a 01       	movw	r14, r20
+     b34:	81 e0       	ldi	r24, 0x01	; 1
+     b36:	c8 1a       	sub	r12, r24
+     b38:	d1 08       	sbc	r13, r1
+     b3a:	e1 08       	sbc	r14, r1
+     b3c:	f1 08       	sbc	r15, r1
+  baudRateRegister = (baudRateRegister % 100) > 50 ? (baudRateRegister / 100)+1 : baudRateRegister / 100;
+     b3e:	c7 01       	movw	r24, r14
+     b40:	b6 01       	movw	r22, r12
+     b42:	24 e6       	ldi	r18, 0x64	; 100
+     b44:	30 e0       	ldi	r19, 0x00	; 0
+     b46:	40 e0       	ldi	r20, 0x00	; 0
+     b48:	50 e0       	ldi	r21, 0x00	; 0
+     b4a:	c4 d4       	rcall	.+2440   	; 0x14d4 <__divmodsi4>
+     b4c:	63 33       	cpi	r22, 0x33	; 51
+     b4e:	71 05       	cpc	r23, r1
+     b50:	81 05       	cpc	r24, r1
+     b52:	91 05       	cpc	r25, r1
+     b54:	7c f0       	brlt	.+30     	; 0xb74 <_ZN12SerialDriver26_CalculateBaudRateRegisterEv+0x94>
+     b56:	c7 01       	movw	r24, r14
+     b58:	b6 01       	movw	r22, r12
+     b5a:	24 e6       	ldi	r18, 0x64	; 100
+     b5c:	30 e0       	ldi	r19, 0x00	; 0
+     b5e:	40 e0       	ldi	r20, 0x00	; 0
+     b60:	50 e0       	ldi	r21, 0x00	; 0
+     b62:	b8 d4       	rcall	.+2416   	; 0x14d4 <__divmodsi4>
+     b64:	69 01       	movw	r12, r18
+     b66:	7a 01       	movw	r14, r20
+     b68:	8f ef       	ldi	r24, 0xFF	; 255
+     b6a:	c8 1a       	sub	r12, r24
+     b6c:	d8 0a       	sbc	r13, r24
+     b6e:	e8 0a       	sbc	r14, r24
+     b70:	f8 0a       	sbc	r15, r24
+     b72:	09 c0       	rjmp	.+18     	; 0xb86 <_ZN12SerialDriver26_CalculateBaudRateRegisterEv+0xa6>
+     b74:	c7 01       	movw	r24, r14
+     b76:	b6 01       	movw	r22, r12
+     b78:	24 e6       	ldi	r18, 0x64	; 100
+     b7a:	30 e0       	ldi	r19, 0x00	; 0
+     b7c:	40 e0       	ldi	r20, 0x00	; 0
+     b7e:	50 e0       	ldi	r21, 0x00	; 0
+     b80:	a9 d4       	rcall	.+2386   	; 0x14d4 <__divmodsi4>
+     b82:	69 01       	movw	r12, r18
+     b84:	7a 01       	movw	r14, r20
+  
+  calculatedBaudRate = (uint32_t)F_CPU / (16 * (baudRateRegister+1));
+     b86:	d7 01       	movw	r26, r14
+     b88:	c6 01       	movw	r24, r12
+     b8a:	01 96       	adiw	r24, 0x01	; 1
+     b8c:	a1 1d       	adc	r26, r1
+     b8e:	b1 1d       	adc	r27, r1
+     b90:	88 0f       	add	r24, r24
+     b92:	99 1f       	adc	r25, r25
+     b94:	aa 1f       	adc	r26, r26
+     b96:	bb 1f       	adc	r27, r27
+     b98:	88 0f       	add	r24, r24
+     b9a:	99 1f       	adc	r25, r25
+     b9c:	aa 1f       	adc	r26, r26
+     b9e:	bb 1f       	adc	r27, r27
+     ba0:	9c 01       	movw	r18, r24
+     ba2:	ad 01       	movw	r20, r26
+     ba4:	22 0f       	add	r18, r18
+     ba6:	33 1f       	adc	r19, r19
+     ba8:	44 1f       	adc	r20, r20
+     baa:	55 1f       	adc	r21, r21
+     bac:	22 0f       	add	r18, r18
+     bae:	33 1f       	adc	r19, r19
+     bb0:	44 1f       	adc	r20, r20
+     bb2:	55 1f       	adc	r21, r21
+     bb4:	60 e4       	ldi	r22, 0x40	; 64
+     bb6:	72 e4       	ldi	r23, 0x42	; 66
+     bb8:	8f e0       	ldi	r24, 0x0F	; 15
+     bba:	90 e0       	ldi	r25, 0x00	; 0
+     bbc:	69 d4       	rcall	.+2258   	; 0x1490 <__udivmodsi4>
+  
+  int32_t error = ((calculatedBaudRate*128) - (baudRateRegister*128))/baudRateRegister;
+     bbe:	da 01       	movw	r26, r20
+     bc0:	c9 01       	movw	r24, r18
+     bc2:	8c 19       	sub	r24, r12
+     bc4:	9d 09       	sbc	r25, r13
+     bc6:	ae 09       	sbc	r26, r14
+     bc8:	bf 09       	sbc	r27, r15
+     bca:	88 0f       	add	r24, r24
+     bcc:	99 1f       	adc	r25, r25
+     bce:	aa 1f       	adc	r26, r26
+     bd0:	bb 1f       	adc	r27, r27
+     bd2:	88 0f       	add	r24, r24
+     bd4:	99 1f       	adc	r25, r25
+     bd6:	aa 1f       	adc	r26, r26
+     bd8:	bb 1f       	adc	r27, r27
+     bda:	88 0f       	add	r24, r24
+     bdc:	99 1f       	adc	r25, r25
+     bde:	aa 1f       	adc	r26, r26
+     be0:	bb 1f       	adc	r27, r27
+     be2:	88 0f       	add	r24, r24
+     be4:	99 1f       	adc	r25, r25
+     be6:	aa 1f       	adc	r26, r26
+     be8:	bb 1f       	adc	r27, r27
+     bea:	88 0f       	add	r24, r24
+     bec:	99 1f       	adc	r25, r25
+     bee:	aa 1f       	adc	r26, r26
+     bf0:	bb 1f       	adc	r27, r27
+     bf2:	88 0f       	add	r24, r24
+     bf4:	99 1f       	adc	r25, r25
+     bf6:	aa 1f       	adc	r26, r26
+     bf8:	bb 1f       	adc	r27, r27
+     bfa:	bc 01       	movw	r22, r24
+     bfc:	cd 01       	movw	r24, r26
+     bfe:	66 0f       	add	r22, r22
+     c00:	77 1f       	adc	r23, r23
+     c02:	88 1f       	adc	r24, r24
+     c04:	99 1f       	adc	r25, r25
+     c06:	a7 01       	movw	r20, r14
+     c08:	96 01       	movw	r18, r12
+     c0a:	64 d4       	rcall	.+2248   	; 0x14d4 <__divmodsi4>
+  
+  if(error > 2*(100/128) || error < -2*(100/128)){
+     c0c:	23 2b       	or	r18, r19
+     c0e:	24 2b       	or	r18, r20
+     c10:	25 2b       	or	r18, r21
+     c12:	f1 f0       	breq	.+60     	; 0xc50 <_ZN12SerialDriver26_CalculateBaudRateRegisterEv+0x170>
+    baudRateRegister = ((uint32_t)F_CPU / (8*_baudRate)) -1;
+     c14:	88 0c       	add	r8, r8
+     c16:	99 1c       	adc	r9, r9
+     c18:	aa 1c       	adc	r10, r10
+     c1a:	bb 1c       	adc	r11, r11
+     c1c:	88 0c       	add	r8, r8
+     c1e:	99 1c       	adc	r9, r9
+     c20:	aa 1c       	adc	r10, r10
+     c22:	bb 1c       	adc	r11, r11
+     c24:	a5 01       	movw	r20, r10
+     c26:	94 01       	movw	r18, r8
+     c28:	22 0f       	add	r18, r18
+     c2a:	33 1f       	adc	r19, r19
+     c2c:	44 1f       	adc	r20, r20
+     c2e:	55 1f       	adc	r21, r21
+     c30:	60 e4       	ldi	r22, 0x40	; 64
+     c32:	72 e4       	ldi	r23, 0x42	; 66
+     c34:	8f e0       	ldi	r24, 0x0F	; 15
+     c36:	90 e0       	ldi	r25, 0x00	; 0
+     c38:	2b d4       	rcall	.+2134   	; 0x1490 <__udivmodsi4>
+     c3a:	69 01       	movw	r12, r18
+     c3c:	7a 01       	movw	r14, r20
+     c3e:	81 e0       	ldi	r24, 0x01	; 1
+     c40:	c8 1a       	sub	r12, r24
+     c42:	d1 08       	sbc	r13, r1
+     c44:	e1 08       	sbc	r14, r1
+     c46:	f1 08       	sbc	r15, r1
+  _baudRateRegister[0] = baudRateRegister;
+  _baudRateRegister[1] = (baudRateRegister >> 8);
+}
+
+void SerialDriver::_Enable2xMode(){
+  _controlRegisters[0] |=  (1<<U2X0);
+     c48:	88 81       	ld	r24, Y
+     c4a:	82 60       	ori	r24, 0x02	; 2
+     c4c:	88 83       	st	Y, r24
+     c4e:	03 c0       	rjmp	.+6      	; 0xc56 <_ZN12SerialDriver26_CalculateBaudRateRegisterEv+0x176>
+}
+
+void SerialDriver::_Disable2xMode(){
+  _controlRegisters[0] |=  (~(1<<U2X0));
+     c50:	88 81       	ld	r24, Y
+     c52:	8d 6f       	ori	r24, 0xFD	; 253
+     c54:	88 83       	st	Y, r24
+    _Enable2xMode();
+  } else {
+    _Disable2xMode();
+  }
+  
+  _baudRateRegister[0] = baudRateRegister;
+     c56:	ca 86       	std	Y+10, r12	; 0x0a
+  _baudRateRegister[1] = (baudRateRegister >> 8);
+     c58:	db 86       	std	Y+11, r13	; 0x0b
+}
+     c5a:	df 91       	pop	r29
+     c5c:	cf 91       	pop	r28
+     c5e:	ff 90       	pop	r15
+     c60:	ef 90       	pop	r14
+     c62:	df 90       	pop	r13
+     c64:	cf 90       	pop	r12
+     c66:	bf 90       	pop	r11
+     c68:	af 90       	pop	r10
+     c6a:	9f 90       	pop	r9
+     c6c:	8f 90       	pop	r8
+     c6e:	08 95       	ret
+
+00000c70 <_ZN12SerialDriver19SendStatusRegistersEv>:
+  
+  _controlRegisters[2] = CP_BITS(valC,_controlRegisters[2],maskC);
+}
+
+void SerialDriver::SendStatusRegisters()
+{
+     c70:	cf 93       	push	r28
+     c72:	df 93       	push	r29
+     c74:	ec 01       	movw	r28, r24
+  _CalculateBaudRateRegister();
+     c76:	34 df       	rcall	.-408    	; 0xae0 <_ZN12SerialDriver26_CalculateBaudRateRegisterEv>
+  UCSR0A = _controlRegisters[0];
+     c78:	88 81       	ld	r24, Y
+     c7a:	80 93 c0 00 	sts	0x00C0, r24
+  UCSR0B = _controlRegisters[1];
+     c7e:	89 81       	ldd	r24, Y+1	; 0x01
+     c80:	80 93 c1 00 	sts	0x00C1, r24
+  UCSR0C = _controlRegisters[2];
+     c84:	8a 81       	ldd	r24, Y+2	; 0x02
+     c86:	80 93 c2 00 	sts	0x00C2, r24
+  UBRR0L = _baudRateRegister[0];
+     c8a:	8a 85       	ldd	r24, Y+10	; 0x0a
+     c8c:	80 93 c4 00 	sts	0x00C4, r24
+  UBRR0H = _baudRateRegister[1];
+     c90:	8b 85       	ldd	r24, Y+11	; 0x0b
+     c92:	80 93 c5 00 	sts	0x00C5, r24
+
+}
+     c96:	df 91       	pop	r29
+     c98:	cf 91       	pop	r28
+     c9a:	08 95       	ret
+
+00000c9c <_ZN11TimerDriver14SetClockSourceE11ClockSource>:
+
+#include "TimerDriver.h"
+
+void TimerDriver::SetClockSource(ClockSource source)
+{
+  switch(source){
+     c9c:	61 11       	cpse	r22, r1
+     c9e:	02 c0       	rjmp	.+4      	; 0xca4 <_ZN11TimerDriver14SetClockSourceE11ClockSource+0x8>
+    case Internal:
+      _clockSource = source;
+     ca0:	fc 01       	movw	r30, r24
+     ca2:	11 82       	std	Z+1, r1	; 0x01
+     ca4:	08 95       	ret
+
+00000ca6 <_ZN11TimerDriver19SetOverflowIntervalEm>:
+      break;
+  }
+}
+
+void TimerDriver::SetOverflowInterval(NANOSECONDS time)
+{
+     ca6:	4f 92       	push	r4
+     ca8:	5f 92       	push	r5
+     caa:	6f 92       	push	r6
+     cac:	7f 92       	push	r7
+     cae:	8f 92       	push	r8
+     cb0:	9f 92       	push	r9
+     cb2:	af 92       	push	r10
+     cb4:	bf 92       	push	r11
+     cb6:	cf 92       	push	r12
+     cb8:	df 92       	push	r13
+     cba:	ef 92       	push	r14
+     cbc:	ff 92       	push	r15
+     cbe:	cf 93       	push	r28
+     cc0:	df 93       	push	r29
+     cc2:	ec 01       	movw	r28, r24
+     cc4:	2a 01       	movw	r4, r20
+     cc6:	3b 01       	movw	r6, r22
+  NANOSECONDS cpuPeriod = (uint64_t)1000000000 / (uint64_t)F_CPU;
+  uint64_t cpuPeriodsNumber = time / cpuPeriod;
+     cc8:	cb 01       	movw	r24, r22
+     cca:	ba 01       	movw	r22, r20
+     ccc:	28 ee       	ldi	r18, 0xE8	; 232
+     cce:	33 e0       	ldi	r19, 0x03	; 3
+     cd0:	40 e0       	ldi	r20, 0x00	; 0
+     cd2:	50 e0       	ldi	r21, 0x00	; 0
+     cd4:	dd d3       	rcall	.+1978   	; 0x1490 <__udivmodsi4>
+     cd6:	49 01       	movw	r8, r18
+     cd8:	5a 01       	movw	r10, r20
+  
+  if(cpuPeriodsNumber >= ((uint64_t)1 << (COUNTER_RESOLUTION + 10))){
+     cda:	39 2d       	mov	r19, r9
+     cdc:	4a 2d       	mov	r20, r10
+     cde:	5b 2d       	mov	r21, r11
+     ce0:	60 e0       	ldi	r22, 0x00	; 0
+     ce2:	70 e0       	ldi	r23, 0x00	; 0
+     ce4:	80 e0       	ldi	r24, 0x00	; 0
+     ce6:	90 e0       	ldi	r25, 0x00	; 0
+     ce8:	2f 3f       	cpi	r18, 0xFF	; 255
+     cea:	ef ef       	ldi	r30, 0xFF	; 255
+     cec:	3e 07       	cpc	r19, r30
+     cee:	e3 e0       	ldi	r30, 0x03	; 3
+     cf0:	4e 07       	cpc	r20, r30
+     cf2:	51 05       	cpc	r21, r1
+     cf4:	61 05       	cpc	r22, r1
+     cf6:	71 05       	cpc	r23, r1
+     cf8:	81 05       	cpc	r24, r1
+     cfa:	91 05       	cpc	r25, r1
+     cfc:	11 f0       	breq	.+4      	; 0xd02 <_ZN11TimerDriver19SetOverflowIntervalEm+0x5c>
+     cfe:	08 f0       	brcs	.+2      	; 0xd02 <_ZN11TimerDriver19SetOverflowIntervalEm+0x5c>
+     d00:	7a c0       	rjmp	.+244    	; 0xdf6 <_ZN11TimerDriver19SetOverflowIntervalEm+0x150>
+    return; // nah
+    
+  } else if(cpuPeriodsNumber >= ((uint64_t)1 << (COUNTER_RESOLUTION + 8))){
+     d02:	2f 3f       	cpi	r18, 0xFF	; 255
+     d04:	3f 4f       	sbci	r19, 0xFF	; 255
+     d06:	41 05       	cpc	r20, r1
+     d08:	51 05       	cpc	r21, r1
+     d0a:	61 05       	cpc	r22, r1
+     d0c:	71 05       	cpc	r23, r1
+     d0e:	81 05       	cpc	r24, r1
+     d10:	91 05       	cpc	r25, r1
+     d12:	61 f0       	breq	.+24     	; 0xd2c <_ZN11TimerDriver19SetOverflowIntervalEm+0x86>
+     d14:	58 f0       	brcs	.+22     	; 0xd2c <_ZN11TimerDriver19SetOverflowIntervalEm+0x86>
+    
+    _prescalerValue = TwoToThePowerOfTen;
+     d16:	85 e0       	ldi	r24, 0x05	; 5
+     d18:	8a 83       	std	Y+2, r24	; 0x02
+    _counterClkPeriod =  cpuPeriod * ((uint64_t)1 << (10));
+     d1a:	80 e0       	ldi	r24, 0x00	; 0
+     d1c:	90 ea       	ldi	r25, 0xA0	; 160
+     d1e:	af e0       	ldi	r26, 0x0F	; 15
+     d20:	b0 e0       	ldi	r27, 0x00	; 0
+     d22:	88 87       	std	Y+8, r24	; 0x08
+     d24:	99 87       	std	Y+9, r25	; 0x09
+     d26:	aa 87       	std	Y+10, r26	; 0x0a
+     d28:	bb 87       	std	Y+11, r27	; 0x0b
+     d2a:	61 c0       	rjmp	.+194    	; 0xdee <_ZN11TimerDriver19SetOverflowIntervalEm+0x148>
+    
+  } else if(cpuPeriodsNumber >= ((uint64_t)1 << (COUNTER_RESOLUTION + 6))){
+     d2c:	28 2d       	mov	r18, r8
+     d2e:	39 2d       	mov	r19, r9
+     d30:	4a 2d       	mov	r20, r10
+     d32:	5b 2d       	mov	r21, r11
+     d34:	60 e0       	ldi	r22, 0x00	; 0
+     d36:	70 e0       	ldi	r23, 0x00	; 0
+     d38:	80 e0       	ldi	r24, 0x00	; 0
+     d3a:	90 e0       	ldi	r25, 0x00	; 0
+     d3c:	2f 3f       	cpi	r18, 0xFF	; 255
+     d3e:	3f 43       	sbci	r19, 0x3F	; 63
+     d40:	41 05       	cpc	r20, r1
+     d42:	51 05       	cpc	r21, r1
+     d44:	61 05       	cpc	r22, r1
+     d46:	71 05       	cpc	r23, r1
+     d48:	81 05       	cpc	r24, r1
+     d4a:	91 05       	cpc	r25, r1
+     d4c:	61 f0       	breq	.+24     	; 0xd66 <_ZN11TimerDriver19SetOverflowIntervalEm+0xc0>
+     d4e:	58 f0       	brcs	.+22     	; 0xd66 <_ZN11TimerDriver19SetOverflowIntervalEm+0xc0>
+    
+    _prescalerValue = TwoToThePowerOfEight;
+     d50:	84 e0       	ldi	r24, 0x04	; 4
+     d52:	8a 83       	std	Y+2, r24	; 0x02
+    _counterClkPeriod = cpuPeriod * ((uint64_t)1 << (8));
+     d54:	80 e0       	ldi	r24, 0x00	; 0
+     d56:	98 ee       	ldi	r25, 0xE8	; 232
+     d58:	a3 e0       	ldi	r26, 0x03	; 3
+     d5a:	b0 e0       	ldi	r27, 0x00	; 0
+     d5c:	88 87       	std	Y+8, r24	; 0x08
+     d5e:	99 87       	std	Y+9, r25	; 0x09
+     d60:	aa 87       	std	Y+10, r26	; 0x0a
+     d62:	bb 87       	std	Y+11, r27	; 0x0b
+     d64:	44 c0       	rjmp	.+136    	; 0xdee <_ZN11TimerDriver19SetOverflowIntervalEm+0x148>
+    
+  } else if(cpuPeriodsNumber >= ((uint64_t)1 << (COUNTER_RESOLUTION + 3))){
+     d66:	28 2d       	mov	r18, r8
+     d68:	39 2d       	mov	r19, r9
+     d6a:	4a 2d       	mov	r20, r10
+     d6c:	5b 2d       	mov	r21, r11
+     d6e:	60 e0       	ldi	r22, 0x00	; 0
+     d70:	70 e0       	ldi	r23, 0x00	; 0
+     d72:	80 e0       	ldi	r24, 0x00	; 0
+     d74:	90 e0       	ldi	r25, 0x00	; 0
+     d76:	2f 3f       	cpi	r18, 0xFF	; 255
+     d78:	37 40       	sbci	r19, 0x07	; 7
+     d7a:	41 05       	cpc	r20, r1
+     d7c:	51 05       	cpc	r21, r1
+     d7e:	61 05       	cpc	r22, r1
+     d80:	71 05       	cpc	r23, r1
+     d82:	81 05       	cpc	r24, r1
+     d84:	91 05       	cpc	r25, r1
+     d86:	61 f0       	breq	.+24     	; 0xda0 <_ZN11TimerDriver19SetOverflowIntervalEm+0xfa>
+     d88:	58 f0       	brcs	.+22     	; 0xda0 <_ZN11TimerDriver19SetOverflowIntervalEm+0xfa>
+    
+    _prescalerValue = TwoToThePowerOfSix;
+     d8a:	83 e0       	ldi	r24, 0x03	; 3
+     d8c:	8a 83       	std	Y+2, r24	; 0x02
+    _counterClkPeriod = cpuPeriod * ((uint64_t)1 << (6));
+     d8e:	80 e0       	ldi	r24, 0x00	; 0
+     d90:	9a ef       	ldi	r25, 0xFA	; 250
+     d92:	a0 e0       	ldi	r26, 0x00	; 0
+     d94:	b0 e0       	ldi	r27, 0x00	; 0
+     d96:	88 87       	std	Y+8, r24	; 0x08
+     d98:	99 87       	std	Y+9, r25	; 0x09
+     d9a:	aa 87       	std	Y+10, r26	; 0x0a
+     d9c:	bb 87       	std	Y+11, r27	; 0x0b
+     d9e:	27 c0       	rjmp	.+78     	; 0xdee <_ZN11TimerDriver19SetOverflowIntervalEm+0x148>
+    
+  } else if(cpuPeriodsNumber >= ((uint64_t)1 << (COUNTER_RESOLUTION))){
+     da0:	28 2d       	mov	r18, r8
+     da2:	39 2d       	mov	r19, r9
+     da4:	4a 2d       	mov	r20, r10
+     da6:	5b 2d       	mov	r21, r11
+     da8:	60 e0       	ldi	r22, 0x00	; 0
+     daa:	70 e0       	ldi	r23, 0x00	; 0
+     dac:	80 e0       	ldi	r24, 0x00	; 0
+     dae:	90 e0       	ldi	r25, 0x00	; 0
+     db0:	2f 3f       	cpi	r18, 0xFF	; 255
+     db2:	31 05       	cpc	r19, r1
+     db4:	41 05       	cpc	r20, r1
+     db6:	51 05       	cpc	r21, r1
+     db8:	61 05       	cpc	r22, r1
+     dba:	71 05       	cpc	r23, r1
+     dbc:	81 05       	cpc	r24, r1
+     dbe:	91 05       	cpc	r25, r1
+     dc0:	61 f0       	breq	.+24     	; 0xdda <_ZN11TimerDriver19SetOverflowIntervalEm+0x134>
+     dc2:	58 f0       	brcs	.+22     	; 0xdda <_ZN11TimerDriver19SetOverflowIntervalEm+0x134>
+    
+    _prescalerValue = TwoToThePowerOfThree;
+     dc4:	82 e0       	ldi	r24, 0x02	; 2
+     dc6:	8a 83       	std	Y+2, r24	; 0x02
+    _counterClkPeriod = cpuPeriod * ((uint64_t)1 << (3));
+     dc8:	80 e4       	ldi	r24, 0x40	; 64
+     dca:	9f e1       	ldi	r25, 0x1F	; 31
+     dcc:	a0 e0       	ldi	r26, 0x00	; 0
+     dce:	b0 e0       	ldi	r27, 0x00	; 0
+     dd0:	88 87       	std	Y+8, r24	; 0x08
+     dd2:	99 87       	std	Y+9, r25	; 0x09
+     dd4:	aa 87       	std	Y+10, r26	; 0x0a
+     dd6:	bb 87       	std	Y+11, r27	; 0x0b
+     dd8:	0a c0       	rjmp	.+20     	; 0xdee <_ZN11TimerDriver19SetOverflowIntervalEm+0x148>
+    
+  } else {
+
+    _prescalerValue = NoPrescaling;
+     dda:	81 e0       	ldi	r24, 0x01	; 1
+     ddc:	8a 83       	std	Y+2, r24	; 0x02
+    _counterClkPeriod = cpuPeriod * ((uint64_t)1 << (0));
+     dde:	88 ee       	ldi	r24, 0xE8	; 232
+     de0:	93 e0       	ldi	r25, 0x03	; 3
+     de2:	a0 e0       	ldi	r26, 0x00	; 0
+     de4:	b0 e0       	ldi	r27, 0x00	; 0
+     de6:	88 87       	std	Y+8, r24	; 0x08
+     de8:	99 87       	std	Y+9, r25	; 0x09
+     dea:	aa 87       	std	Y+10, r26	; 0x0a
+     dec:	bb 87       	std	Y+11, r27	; 0x0b
+    
+  }
+
+  _overflowTimeout = time;  
+     dee:	4c 86       	std	Y+12, r4	; 0x0c
+     df0:	5d 86       	std	Y+13, r5	; 0x0d
+     df2:	6e 86       	std	Y+14, r6	; 0x0e
+     df4:	7f 86       	std	Y+15, r7	; 0x0f
+}
+     df6:	df 91       	pop	r29
+     df8:	cf 91       	pop	r28
+     dfa:	ff 90       	pop	r15
+     dfc:	ef 90       	pop	r14
+     dfe:	df 90       	pop	r13
+     e00:	cf 90       	pop	r12
+     e02:	bf 90       	pop	r11
+     e04:	af 90       	pop	r10
+     e06:	9f 90       	pop	r9
+     e08:	8f 90       	pop	r8
+     e0a:	7f 90       	pop	r7
+     e0c:	6f 90       	pop	r6
+     e0e:	5f 90       	pop	r5
+     e10:	4f 90       	pop	r4
+     e12:	08 95       	ret
+
+00000e14 <_ZN11TimerDriver29_UpdateOutputCompareRegistersEv>:
+  _UpdateOutputCompareRegisters();
+  _UpdateInterruptsRegisters();
+}
+
+void TimerDriver::_UpdateOutputCompareRegisters(){
+  OCR0A = _outputCompareA;
+     e14:	fc 01       	movw	r30, r24
+     e16:	20 89       	ldd	r18, Z+16	; 0x10
+     e18:	27 bd       	out	0x27, r18	; 39
+  OCR0B = _outputCompareB;
+     e1a:	81 89       	ldd	r24, Z+17	; 0x11
+     e1c:	88 bd       	out	0x28, r24	; 40
+     e1e:	08 95       	ret
+
+00000e20 <_ZN11TimerDriver25_ComputeInterruptRegisterEv>:
+      | NUMBER2MASK(TOV0);
+  BYTE interruptRegisterVal =
+      NUMBER2MASK(OCF0A);
+      //| NUMBER2MASK(OCF0B)
+      //| NUMBER2MASK(TOV0)
+  _interruptRegister = CP_BITS(
+     e20:	fc 01       	movw	r30, r24
+     e22:	27 81       	ldd	r18, Z+7	; 0x07
+     e24:	28 7f       	andi	r18, 0xF8	; 248
+     e26:	22 60       	ori	r18, 0x02	; 2
+     e28:	27 83       	std	Z+7, r18	; 0x07
+     e2a:	08 95       	ret
+
+00000e2c <_ZN11TimerDriver27_ComputeInterruptsRegistersEv>:
+  OCR0A = _outputCompareA;
+  OCR0B = _outputCompareB;
+}
+
+void TimerDriver::_ComputeInterruptsRegisters(){
+  _interruptRegister = 0;
+     e2c:	fc 01       	movw	r30, r24
+     e2e:	17 82       	std	Z+7, r1	; 0x07
+      | NUMBER2MASK(TOIE0);
+  BYTE interruptMaskRegisterVal =
+      NUMBER2MASK(OCIE0A);
+      //| NUMBER2MASK(OCIE0B)
+      //| NUMBER2MASK(TOIE0);
+  _interruptMaskRegister = CP_BITS(
+     e30:	22 e0       	ldi	r18, 0x02	; 2
+     e32:	26 83       	std	Z+6, r18	; 0x06
+
+void TimerDriver::_ComputeInterruptsRegisters(){
+  _interruptRegister = 0;
+  _interruptMaskRegister = 0;
+  _ComputeInterruptMaskRegister();
+  _ComputeInterruptRegister();
+     e34:	f5 df       	rcall	.-22     	; 0xe20 <_ZN11TimerDriver25_ComputeInterruptRegisterEv>
+     e36:	08 95       	ret
+
+00000e38 <_ZN11TimerDriver38_ComputeWaveFormGenerationModeRegisterEv>:
+  _ComputeOutputCompareRegisters();
+  _ComputeClockSourceRegister();
+  _ComputeWaveFormGenerationModeRegister();
+}
+
+void TimerDriver::_ComputeWaveFormGenerationModeRegister(){
+     e38:	fc 01       	movw	r30, r24
+  BYTE regAMask = NUMBER2MASK(WGM00) | NUMBER2MASK(WGM01);
+  BYTE regBMask = NUMBER2MASK(WGM02);
+  BYTE regAVal = (1<<WGM01);
+  BYTE regBVal = 0;
+  _controlRegister[0] = CP_BITS(regAVal,_controlRegister[0],regAMask);
+     e3a:	84 81       	ldd	r24, Z+4	; 0x04
+     e3c:	8c 7f       	andi	r24, 0xFC	; 252
+     e3e:	82 60       	ori	r24, 0x02	; 2
+     e40:	84 83       	std	Z+4, r24	; 0x04
+  _controlRegister[1] = CP_BITS(regBVal,_controlRegister[1],regBMask);
+     e42:	85 81       	ldd	r24, Z+5	; 0x05
+     e44:	87 7f       	andi	r24, 0xF7	; 247
+     e46:	85 83       	std	Z+5, r24	; 0x05
+     e48:	08 95       	ret
+
+00000e4a <_ZN11TimerDriver27_ComputeClockSourceRegisterEv>:
+}
+
+void TimerDriver::_ComputeClockSourceRegister(){
+     e4a:	fc 01       	movw	r30, r24
+  BYTE mask = NUMBER2MASK(CS00) | NUMBER2MASK(CS01) | NUMBER2MASK(CS02);
+  BYTE val = 0;
+  if (_clockSource == Internal)
+     e4c:	81 81       	ldd	r24, Z+1	; 0x01
+     e4e:	81 11       	cpse	r24, r1
+     e50:	02 c0       	rjmp	.+4      	; 0xe56 <_ZN11TimerDriver27_ComputeClockSourceRegisterEv+0xc>
+    val = _prescalerValue;
+     e52:	92 81       	ldd	r25, Z+2	; 0x02
+     e54:	01 c0       	rjmp	.+2      	; 0xe58 <_ZN11TimerDriver27_ComputeClockSourceRegisterEv+0xe>
+  _controlRegister[1] = CP_BITS(regBVal,_controlRegister[1],regBMask);
+}
+
+void TimerDriver::_ComputeClockSourceRegister(){
+  BYTE mask = NUMBER2MASK(CS00) | NUMBER2MASK(CS01) | NUMBER2MASK(CS02);
+  BYTE val = 0;
+     e56:	90 e0       	ldi	r25, 0x00	; 0
+  if (_clockSource == Internal)
+    val = _prescalerValue;
+   
+  _controlRegister[1] = CP_BITS(val,_controlRegister[1],mask);
+     e58:	97 70       	andi	r25, 0x07	; 7
+     e5a:	85 81       	ldd	r24, Z+5	; 0x05
+     e5c:	88 7f       	andi	r24, 0xF8	; 248
+     e5e:	89 2b       	or	r24, r25
+     e60:	85 83       	std	Z+5, r24	; 0x05
+     e62:	08 95       	ret
+
+00000e64 <_ZN11TimerDriver30_ComputeOutputCompareRegistersEv>:
+}
+
+void TimerDriver::_ComputeOutputCompareRegisters()
+{
+     e64:	cf 93       	push	r28
+     e66:	df 93       	push	r29
+     e68:	ec 01       	movw	r28, r24
+  _outputCompareA =  _overflowTimeout / _counterClkPeriod;
+     e6a:	6c 85       	ldd	r22, Y+12	; 0x0c
+     e6c:	7d 85       	ldd	r23, Y+13	; 0x0d
+     e6e:	8e 85       	ldd	r24, Y+14	; 0x0e
+     e70:	9f 85       	ldd	r25, Y+15	; 0x0f
+     e72:	28 85       	ldd	r18, Y+8	; 0x08
+     e74:	39 85       	ldd	r19, Y+9	; 0x09
+     e76:	4a 85       	ldd	r20, Y+10	; 0x0a
+     e78:	5b 85       	ldd	r21, Y+11	; 0x0b
+     e7a:	0a d3       	rcall	.+1556   	; 0x1490 <__udivmodsi4>
+     e7c:	28 8b       	std	Y+16, r18	; 0x10
+  _outputCompareB = 0x0;
+     e7e:	19 8a       	std	Y+17, r1	; 0x11
+}
+     e80:	df 91       	pop	r29
+     e82:	cf 91       	pop	r28
+     e84:	08 95       	ret
+
+00000e86 <_ZN11TimerDriver34_ComputeOutputCompareModeRegistersEv>:
+
+void TimerDriver::_ComputeOutputCompareBControlRegister()
+{
+  BYTE mask = NUMBER2MASK(COM0B0) | NUMBER2MASK(COM0B1);
+  BYTE val = 0;
+  _controlRegister[0] = CP_BITS(val,_controlRegister[0],mask);
+     e86:	fc 01       	movw	r30, r24
+     e88:	24 81       	ldd	r18, Z+4	; 0x04
+     e8a:	2f 70       	andi	r18, 0x0F	; 15
+     e8c:	24 83       	std	Z+4, r18	; 0x04
+     e8e:	08 95       	ret
+
+00000e90 <_ZN11TimerDriver23_ComputeCotrolRegistersEv>:
+    );
+}
+
+
+void TimerDriver::_ComputeCotrolRegisters()
+{
+     e90:	cf 93       	push	r28
+     e92:	df 93       	push	r29
+     e94:	ec 01       	movw	r28, r24
+  _controlRegister[0]=0;
+     e96:	1c 82       	std	Y+4, r1	; 0x04
+  _controlRegister[1]=0;
+     e98:	1d 82       	std	Y+5, r1	; 0x05
+  _ComputeOutputCompareModeRegisters();
+     e9a:	f5 df       	rcall	.-22     	; 0xe86 <_ZN11TimerDriver34_ComputeOutputCompareModeRegistersEv>
+  _ComputeOutputCompareRegisters();
+     e9c:	ce 01       	movw	r24, r28
+     e9e:	e2 df       	rcall	.-60     	; 0xe64 <_ZN11TimerDriver30_ComputeOutputCompareRegistersEv>
+  _ComputeClockSourceRegister();
+     ea0:	ce 01       	movw	r24, r28
+     ea2:	d3 df       	rcall	.-90     	; 0xe4a <_ZN11TimerDriver27_ComputeClockSourceRegisterEv>
+  _ComputeWaveFormGenerationModeRegister();
+     ea4:	ce 01       	movw	r24, r28
+     ea6:	c8 df       	rcall	.-112    	; 0xe38 <_ZN11TimerDriver38_ComputeWaveFormGenerationModeRegisterEv>
+}
+     ea8:	df 91       	pop	r29
+     eaa:	cf 91       	pop	r28
+     eac:	08 95       	ret
+
+00000eae <_ZN11TimerDriver23_UpdateControlRegistersEv>:
+  BYTE val = 0;
+  _controlRegister[0] = CP_BITS(val,_controlRegister[0],mask);
+}
+
+void TimerDriver::_UpdateControlRegisters(){
+  TCCR0A = _controlRegister[0];
+     eae:	fc 01       	movw	r30, r24
+     eb0:	24 81       	ldd	r18, Z+4	; 0x04
+     eb2:	24 bd       	out	0x24, r18	; 36
+  TCCR0B = _controlRegister[1];
+     eb4:	85 81       	ldd	r24, Z+5	; 0x05
+     eb6:	85 bd       	out	0x25, r24	; 37
+     eb8:	08 95       	ret
+
+00000eba <_ZN11TimerDriver26_UpdateInterruptsRegistersEv>:
+}
+
+void TimerDriver::_UpdateInterruptsRegisters(){
+  TIFR0 = _interruptRegister;
+     eba:	fc 01       	movw	r30, r24
+     ebc:	27 81       	ldd	r18, Z+7	; 0x07
+     ebe:	25 bb       	out	0x15, r18	; 21
+  TIMSK0 = _interruptMaskRegister;
+     ec0:	86 81       	ldd	r24, Z+6	; 0x06
+     ec2:	80 93 6e 00 	sts	0x006E, r24
+     ec6:	08 95       	ret
+
+00000ec8 <_ZN11TimerDriver5StartEv>:
+
+  _overflowTimeout = time;  
+}
+
+void TimerDriver::Start()
+{
+     ec8:	cf 93       	push	r28
+     eca:	df 93       	push	r29
+     ecc:	ec 01       	movw	r28, r24
+  _ComputeCotrolRegisters();
+     ece:	e0 df       	rcall	.-64     	; 0xe90 <_ZN11TimerDriver23_ComputeCotrolRegistersEv>
+  _ComputeInterruptsRegisters();
+     ed0:	ce 01       	movw	r24, r28
+     ed2:	ac df       	rcall	.-168    	; 0xe2c <_ZN11TimerDriver27_ComputeInterruptsRegistersEv>
+  
+  _UpdateControlRegisters();
+     ed4:	ce 01       	movw	r24, r28
+     ed6:	eb df       	rcall	.-42     	; 0xeae <_ZN11TimerDriver23_UpdateControlRegistersEv>
+  _UpdateOutputCompareRegisters();
+     ed8:	ce 01       	movw	r24, r28
+     eda:	9c df       	rcall	.-200    	; 0xe14 <_ZN11TimerDriver29_UpdateOutputCompareRegistersEv>
+  _UpdateInterruptsRegisters();
+     edc:	ce 01       	movw	r24, r28
+     ede:	ed df       	rcall	.-38     	; 0xeba <_ZN11TimerDriver26_UpdateInterruptsRegistersEv>
+}
+     ee0:	df 91       	pop	r29
+     ee2:	cf 91       	pop	r28
+     ee4:	08 95       	ret
+
+00000ee6 <_ZN11TimerDriverC1Ev>:
+void TimerDriver::_UpdateInterruptsRegisters(){
+  TIFR0 = _interruptRegister;
+  TIMSK0 = _interruptMaskRegister;
+}
+
+TimerDriver::TimerDriver(){
+     ee6:	08 95       	ret
+
+00000ee8 <_ZN11TimerDriverD1Ev>:
+  
+}
+
+TimerDriver::~TimerDriver(){
+     ee8:	08 95       	ret
+
+00000eea <_ZN20TimerEventDispatcherC1Ev>:
+#include "GlobalServicesTable.h"
+#include <string.h>
+
+extern GLOBAL_SERVICES_TABLE gST;
+
+TimerEventDispatcher::TimerEventDispatcher(){
+     eea:	0f 93       	push	r16
+     eec:	1f 93       	push	r17
+     eee:	cf 93       	push	r28
+     ef0:	df 93       	push	r29
+     ef2:	cd b7       	in	r28, 0x3d	; 61
+     ef4:	de b7       	in	r29, 0x3e	; 62
+     ef6:	62 97       	sbiw	r28, 0x12	; 18
+     ef8:	0f b6       	in	r0, 0x3f	; 63
+     efa:	f8 94       	cli
+     efc:	de bf       	out	0x3e, r29	; 62
+     efe:	0f be       	out	0x3f, r0	; 63
+     f00:	cd bf       	out	0x3d, r28	; 61
+     f02:	8c 01       	movw	r16, r24
+     f04:	f0 df       	rcall	.-32     	; 0xee6 <_ZN11TimerDriverC1Ev>
+     f06:	88 e0       	ldi	r24, 0x08	; 8
+     f08:	d8 01       	movw	r26, r16
+     f0a:	52 96       	adiw	r26, 0x12	; 18
+     f0c:	8c 93       	st	X, r24
+     f0e:	80 e2       	ldi	r24, 0x20	; 32
+     f10:	91 ea       	ldi	r25, 0xA1	; 161
+     f12:	a7 e0       	ldi	r26, 0x07	; 7
+     f14:	b0 e0       	ldi	r27, 0x00	; 0
+     f16:	f8 01       	movw	r30, r16
+     f18:	83 8b       	std	Z+19, r24	; 0x13
+     f1a:	94 8b       	std	Z+20, r25	; 0x14
+     f1c:	a5 8b       	std	Z+21, r26	; 0x15
+     f1e:	b6 8b       	std	Z+22, r27	; 0x16
+  memset(_events,0,sizeof(_events));
+     f20:	77 96       	adiw	r30, 0x17	; 23
+     f22:	88 e6       	ldi	r24, 0x68	; 104
+     f24:	df 01       	movw	r26, r30
+     f26:	1d 92       	st	X+, r1
+     f28:	8a 95       	dec	r24
+     f2a:	e9 f7       	brne	.-6      	; 0xf26 <_ZN20TimerEventDispatcherC1Ev+0x3c>
+  _driver = TimerDriver();
+     f2c:	ce 01       	movw	r24, r28
+     f2e:	01 96       	adiw	r24, 0x01	; 1
+     f30:	da df       	rcall	.-76     	; 0xee6 <_ZN11TimerDriverC1Ev>
+     f32:	82 e1       	ldi	r24, 0x12	; 18
+     f34:	fe 01       	movw	r30, r28
+     f36:	31 96       	adiw	r30, 0x01	; 1
+     f38:	d8 01       	movw	r26, r16
+     f3a:	01 90       	ld	r0, Z+
+     f3c:	0d 92       	st	X+, r0
+     f3e:	8a 95       	dec	r24
+     f40:	e1 f7       	brne	.-8      	; 0xf3a <_ZN20TimerEventDispatcherC1Ev+0x50>
+     f42:	ce 01       	movw	r24, r28
+     f44:	01 96       	adiw	r24, 0x01	; 1
+     f46:	d0 df       	rcall	.-96     	; 0xee8 <_ZN11TimerDriverD1Ev>
+  _driver.SetClockSource(Internal);
+     f48:	60 e0       	ldi	r22, 0x00	; 0
+     f4a:	c8 01       	movw	r24, r16
+     f4c:	a7 de       	rcall	.-690    	; 0xc9c <_ZN11TimerDriver14SetClockSourceE11ClockSource>
+  _driver.SetOverflowInterval(_sysTimerTimeout);
+     f4e:	f8 01       	movw	r30, r16
+     f50:	43 89       	ldd	r20, Z+19	; 0x13
+     f52:	54 89       	ldd	r21, Z+20	; 0x14
+     f54:	65 89       	ldd	r22, Z+21	; 0x15
+     f56:	76 89       	ldd	r23, Z+22	; 0x16
+     f58:	c8 01       	movw	r24, r16
+     f5a:	a5 de       	rcall	.-694    	; 0xca6 <_ZN11TimerDriver19SetOverflowIntervalEm>
+  _driver.Start();
+     f5c:	c8 01       	movw	r24, r16
+     f5e:	b4 df       	rcall	.-152    	; 0xec8 <_ZN11TimerDriver5StartEv>
+}
+     f60:	62 96       	adiw	r28, 0x12	; 18
+     f62:	0f b6       	in	r0, 0x3f	; 63
+     f64:	f8 94       	cli
+     f66:	de bf       	out	0x3e, r29	; 62
+     f68:	0f be       	out	0x3f, r0	; 63
+     f6a:	cd bf       	out	0x3d, r28	; 61
+     f6c:	df 91       	pop	r29
+     f6e:	cf 91       	pop	r28
+     f70:	1f 91       	pop	r17
+     f72:	0f 91       	pop	r16
+     f74:	08 95       	ret
+
+00000f76 <_ZN20TimerEventDispatcher17_GetFreeEventSlotEv>:
+
+
+TIMER_EVENT* TimerEventDispatcher::_GetFreeEventSlot()
+{
+  for(UINT i=0; i<_eventListLength; i++){
+     f76:	fc 01       	movw	r30, r24
+     f78:	72 89       	ldd	r23, Z+18	; 0x12
+     f7a:	77 23       	and	r23, r23
+     f7c:	11 f1       	breq	.+68     	; 0xfc2 <_ZN20TimerEventDispatcher17_GetFreeEventSlotEv+0x4c>
+    if( Closed == _events[i].type )
+     f7e:	27 89       	ldd	r18, Z+23	; 0x17
+     f80:	21 11       	cpse	r18, r1
+     f82:	16 c0       	rjmp	.+44     	; 0xfb0 <_ZN20TimerEventDispatcher17_GetFreeEventSlotEv+0x3a>
+     f84:	08 c0       	rjmp	.+16     	; 0xf96 <_ZN20TimerEventDispatcher17_GetFreeEventSlotEv+0x20>
+     f86:	a9 01       	movw	r20, r18
+     f88:	60 81       	ld	r22, Z
+     f8a:	2f 5f       	subi	r18, 0xFF	; 255
+     f8c:	3f 4f       	sbci	r19, 0xFF	; 255
+     f8e:	3d 96       	adiw	r30, 0x0d	; 13
+     f90:	61 11       	cpse	r22, r1
+     f92:	12 c0       	rjmp	.+36     	; 0xfb8 <_ZN20TimerEventDispatcher17_GetFreeEventSlotEv+0x42>
+     f94:	02 c0       	rjmp	.+4      	; 0xf9a <_ZN20TimerEventDispatcher17_GetFreeEventSlotEv+0x24>
+     f96:	40 e0       	ldi	r20, 0x00	; 0
+     f98:	50 e0       	ldi	r21, 0x00	; 0
+      return &_events[i];
+     f9a:	6d e0       	ldi	r22, 0x0D	; 13
+     f9c:	64 9f       	mul	r22, r20
+     f9e:	90 01       	movw	r18, r0
+     fa0:	65 9f       	mul	r22, r21
+     fa2:	30 0d       	add	r19, r0
+     fa4:	11 24       	eor	r1, r1
+     fa6:	29 5e       	subi	r18, 0xE9	; 233
+     fa8:	3f 4f       	sbci	r19, 0xFF	; 255
+     faa:	82 0f       	add	r24, r18
+     fac:	93 1f       	adc	r25, r19
+     fae:	08 95       	ret
+     fb0:	fc 01       	movw	r30, r24
+     fb2:	b4 96       	adiw	r30, 0x24	; 36
+
+
+TIMER_EVENT* TimerEventDispatcher::_GetFreeEventSlot()
+{
+  for(UINT i=0; i<_eventListLength; i++){
+    if( Closed == _events[i].type )
+     fb4:	21 e0       	ldi	r18, 0x01	; 1
+     fb6:	30 e0       	ldi	r19, 0x00	; 0
+}
+
+
+TIMER_EVENT* TimerEventDispatcher::_GetFreeEventSlot()
+{
+  for(UINT i=0; i<_eventListLength; i++){
+     fb8:	27 17       	cp	r18, r23
+     fba:	28 f3       	brcs	.-54     	; 0xf86 <_ZN20TimerEventDispatcher17_GetFreeEventSlotEv+0x10>
+    if( Closed == _events[i].type )
+      return &_events[i];
+  }
+  return NULL;
+     fbc:	80 e0       	ldi	r24, 0x00	; 0
+     fbe:	90 e0       	ldi	r25, 0x00	; 0
+     fc0:	08 95       	ret
+     fc2:	80 e0       	ldi	r24, 0x00	; 0
+     fc4:	90 e0       	ldi	r25, 0x00	; 0
+}
+     fc6:	08 95       	ret
+
+00000fc8 <_ZN20TimerEventDispatcher11CreateEventE14TimerEventTypemPFvP12_TIMER_EVENTPvES3_>:
+TIMER_EVENT *TimerEventDispatcher::CreateEvent(
+  TimerEventType type,
+  NANOSECONDS time,
+  TIMER_CALLBACK callback,
+  void *context
+){
+     fc8:	8f 92       	push	r8
+     fca:	9f 92       	push	r9
+     fcc:	af 92       	push	r10
+     fce:	bf 92       	push	r11
+     fd0:	ef 92       	push	r14
+     fd2:	ff 92       	push	r15
+     fd4:	0f 93       	push	r16
+     fd6:	1f 93       	push	r17
+     fd8:	cf 93       	push	r28
+     fda:	c6 2f       	mov	r28, r22
+     fdc:	49 01       	movw	r8, r18
+     fde:	5a 01       	movw	r10, r20
+  TIMER_EVENT *e = _GetFreeEventSlot();
+     fe0:	ca df       	rcall	.-108    	; 0xf76 <_ZN20TimerEventDispatcher17_GetFreeEventSlotEv>
+     fe2:	fc 01       	movw	r30, r24
+  
+  if(e == NULL)
+     fe4:	00 97       	sbiw	r24, 0x00	; 0
+     fe6:	69 f0       	breq	.+26     	; 0x1002 <_ZN20TimerEventDispatcher11CreateEventE14TimerEventTypemPFvP12_TIMER_EVENTPvES3_+0x3a>
+    return NULL;
+  
+  e->time = time;
+     fe8:	81 82       	std	Z+1, r8	; 0x01
+     fea:	92 82       	std	Z+2, r9	; 0x02
+     fec:	a3 82       	std	Z+3, r10	; 0x03
+     fee:	b4 82       	std	Z+4, r11	; 0x04
+  e->eplased = time;
+     ff0:	85 82       	std	Z+5, r8	; 0x05
+     ff2:	96 82       	std	Z+6, r9	; 0x06
+     ff4:	a7 82       	std	Z+7, r10	; 0x07
+     ff6:	b0 86       	std	Z+8, r11	; 0x08
+  e->Callback = callback;
+     ff8:	12 87       	std	Z+10, r17	; 0x0a
+     ffa:	01 87       	std	Z+9, r16	; 0x09
+  e->context = context;
+     ffc:	f4 86       	std	Z+12, r15	; 0x0c
+     ffe:	e3 86       	std	Z+11, r14	; 0x0b
+  e->type = type;
+    1000:	c0 83       	st	Z, r28
+  return e;
+}
+    1002:	cf 01       	movw	r24, r30
+    1004:	cf 91       	pop	r28
+    1006:	1f 91       	pop	r17
+    1008:	0f 91       	pop	r16
+    100a:	ff 90       	pop	r15
+    100c:	ef 90       	pop	r14
+    100e:	bf 90       	pop	r11
+    1010:	af 90       	pop	r10
+    1012:	9f 90       	pop	r9
+    1014:	8f 90       	pop	r8
+    1016:	08 95       	ret
+
+00001018 <_ZN20TimerEventDispatcher16SysTimerOverflowEv>:
+  e->type = Closed;
+}
+
+
+void TimerEventDispatcher::SysTimerOverflow()
+{
+    1018:	ef 92       	push	r14
+    101a:	ff 92       	push	r15
+    101c:	0f 93       	push	r16
+    101e:	1f 93       	push	r17
+    1020:	cf 93       	push	r28
+    1022:	df 93       	push	r29
+    1024:	ec 01       	movw	r28, r24
+  TIMER_EVENT *e;
+  for(UINT i=0; i < _eventListLength ;i++ ){
+    1026:	8a 89       	ldd	r24, Y+18	; 0x12
+    1028:	88 23       	and	r24, r24
+    102a:	09 f4       	brne	.+2      	; 0x102e <_ZN20TimerEventDispatcher16SysTimerOverflowEv+0x16>
+    102c:	4d c0       	rjmp	.+154    	; 0x10c8 <_ZN20TimerEventDispatcher16SysTimerOverflowEv+0xb0>
+    102e:	f1 2c       	mov	r15, r1
+    e = &_events[i];
+    1030:	0f 2e       	mov	r0, r31
+    1032:	fd e0       	ldi	r31, 0x0D	; 13
+    1034:	ef 2e       	mov	r14, r31
+    1036:	f0 2d       	mov	r31, r0
+    1038:	de 01       	movw	r26, r28
+    103a:	ef 9c       	mul	r14, r15
+    103c:	a0 0d       	add	r26, r0
+    103e:	b1 1d       	adc	r27, r1
+    1040:	11 24       	eor	r1, r1
+    1042:	57 96       	adiw	r26, 0x17	; 23
+    if(Closed != e->type && e->eplased>=_sysTimerTimeout){
+    1044:	8c 91       	ld	r24, X
+    1046:	88 23       	and	r24, r24
+    1048:	d1 f1       	breq	.+116    	; 0x10be <_ZN20TimerEventDispatcher16SysTimerOverflowEv+0xa6>
+    104a:	15 96       	adiw	r26, 0x05	; 5
+    104c:	0d 91       	ld	r16, X+
+    104e:	1d 91       	ld	r17, X+
+    1050:	2d 91       	ld	r18, X+
+    1052:	3c 91       	ld	r19, X
+    1054:	18 97       	sbiw	r26, 0x08	; 8
+    1056:	4b 89       	ldd	r20, Y+19	; 0x13
+    1058:	5c 89       	ldd	r21, Y+20	; 0x14
+    105a:	6d 89       	ldd	r22, Y+21	; 0x15
+    105c:	7e 89       	ldd	r23, Y+22	; 0x16
+    105e:	04 17       	cp	r16, r20
+    1060:	15 07       	cpc	r17, r21
+    1062:	26 07       	cpc	r18, r22
+    1064:	37 07       	cpc	r19, r23
+    1066:	58 f1       	brcs	.+86     	; 0x10be <_ZN20TimerEventDispatcher16SysTimerOverflowEv+0xa6>
+      e->eplased -= _sysTimerTimeout;
+    1068:	04 1b       	sub	r16, r20
+    106a:	15 0b       	sbc	r17, r21
+    106c:	26 0b       	sbc	r18, r22
+    106e:	37 0b       	sbc	r19, r23
+    1070:	15 96       	adiw	r26, 0x05	; 5
+    1072:	0d 93       	st	X+, r16
+    1074:	1d 93       	st	X+, r17
+    1076:	2d 93       	st	X+, r18
+    1078:	3c 93       	st	X, r19
+    107a:	18 97       	sbiw	r26, 0x08	; 8
+      if(e->type == Interval && e->eplased<_sysTimerTimeout){
+    107c:	81 30       	cpi	r24, 0x01	; 1
+    107e:	f9 f4       	brne	.+62     	; 0x10be <_ZN20TimerEventDispatcher16SysTimerOverflowEv+0xa6>
+    1080:	4b 89       	ldd	r20, Y+19	; 0x13
+    1082:	5c 89       	ldd	r21, Y+20	; 0x14
+    1084:	6d 89       	ldd	r22, Y+21	; 0x15
+    1086:	7e 89       	ldd	r23, Y+22	; 0x16
+    1088:	04 17       	cp	r16, r20
+    108a:	15 07       	cpc	r17, r21
+    108c:	26 07       	cpc	r18, r22
+    108e:	37 07       	cpc	r19, r23
+    1090:	b0 f4       	brcc	.+44     	; 0x10be <_ZN20TimerEventDispatcher16SysTimerOverflowEv+0xa6>
+        e->eplased = e->time;
+    1092:	11 96       	adiw	r26, 0x01	; 1
+    1094:	4d 91       	ld	r20, X+
+    1096:	5d 91       	ld	r21, X+
+    1098:	6d 91       	ld	r22, X+
+    109a:	7c 91       	ld	r23, X
+    109c:	14 97       	sbiw	r26, 0x04	; 4
+    109e:	15 96       	adiw	r26, 0x05	; 5
+    10a0:	4d 93       	st	X+, r20
+    10a2:	5d 93       	st	X+, r21
+    10a4:	6d 93       	st	X+, r22
+    10a6:	7c 93       	st	X, r23
+    10a8:	18 97       	sbiw	r26, 0x08	; 8
+        e->Callback(e,e->context);
+    10aa:	1b 96       	adiw	r26, 0x0b	; 11
+    10ac:	6d 91       	ld	r22, X+
+    10ae:	7c 91       	ld	r23, X
+    10b0:	1c 97       	sbiw	r26, 0x0c	; 12
+    10b2:	19 96       	adiw	r26, 0x09	; 9
+    10b4:	ed 91       	ld	r30, X+
+    10b6:	fc 91       	ld	r31, X
+    10b8:	1a 97       	sbiw	r26, 0x0a	; 10
+    10ba:	cd 01       	movw	r24, r26
+    10bc:	09 95       	icall
+
+
+void TimerEventDispatcher::SysTimerOverflow()
+{
+  TIMER_EVENT *e;
+  for(UINT i=0; i < _eventListLength ;i++ ){
+    10be:	f3 94       	inc	r15
+    10c0:	8a 89       	ldd	r24, Y+18	; 0x12
+    10c2:	f8 16       	cp	r15, r24
+    10c4:	08 f4       	brcc	.+2      	; 0x10c8 <_ZN20TimerEventDispatcher16SysTimerOverflowEv+0xb0>
+    10c6:	b8 cf       	rjmp	.-144    	; 0x1038 <_ZN20TimerEventDispatcher16SysTimerOverflowEv+0x20>
+        e->eplased = e->time;
+        e->Callback(e,e->context);
+      }         
+    }
+  }
+}
+    10c8:	df 91       	pop	r29
+    10ca:	cf 91       	pop	r28
+    10cc:	1f 91       	pop	r17
+    10ce:	0f 91       	pop	r16
+    10d0:	ff 90       	pop	r15
+    10d2:	ef 90       	pop	r14
+    10d4:	08 95       	ret
+
+000010d6 <_ZN20TimerEventDispatcher11CheckEventsEv>:
+
+void TimerEventDispatcher::CheckEvents()
+{
+    10d6:	ef 92       	push	r14
+    10d8:	ff 92       	push	r15
+    10da:	0f 93       	push	r16
+    10dc:	1f 93       	push	r17
+    10de:	cf 93       	push	r28
+    10e0:	df 93       	push	r29
+    10e2:	ec 01       	movw	r28, r24
+  TIMER_EVENT *e;PORTB ^=0xC0;
+    10e4:	95 b1       	in	r25, 0x05	; 5
+    10e6:	80 ec       	ldi	r24, 0xC0	; 192
+    10e8:	89 27       	eor	r24, r25
+    10ea:	85 b9       	out	0x05, r24	; 5
+  for( UINT i=0; i < _eventListLength ;i++ ){
+    10ec:	8a 89       	ldd	r24, Y+18	; 0x12
+    10ee:	88 23       	and	r24, r24
+    10f0:	b9 f1       	breq	.+110    	; 0x1160 <_ZN20TimerEventDispatcher11CheckEventsEv+0x8a>
+    10f2:	f1 2c       	mov	r15, r1
+    e = &_events[i];
+    10f4:	0f 2e       	mov	r0, r31
+    10f6:	fd e0       	ldi	r31, 0x0D	; 13
+    10f8:	ef 2e       	mov	r14, r31
+    10fa:	f0 2d       	mov	r31, r0
+    10fc:	de 01       	movw	r26, r28
+    10fe:	ef 9c       	mul	r14, r15
+    1100:	a0 0d       	add	r26, r0
+    1102:	b1 1d       	adc	r27, r1
+    1104:	11 24       	eor	r1, r1
+    1106:	57 96       	adiw	r26, 0x17	; 23
+    if(e->type==ExternalInteval && e->eplased < _sysTimerTimeout){
+    1108:	8c 91       	ld	r24, X
+    110a:	83 30       	cpi	r24, 0x03	; 3
+    110c:	29 f5       	brne	.+74     	; 0x1158 <_ZN20TimerEventDispatcher11CheckEventsEv+0x82>
+    110e:	15 96       	adiw	r26, 0x05	; 5
+    1110:	0d 91       	ld	r16, X+
+    1112:	1d 91       	ld	r17, X+
+    1114:	2d 91       	ld	r18, X+
+    1116:	3c 91       	ld	r19, X
+    1118:	18 97       	sbiw	r26, 0x08	; 8
+    111a:	4b 89       	ldd	r20, Y+19	; 0x13
+    111c:	5c 89       	ldd	r21, Y+20	; 0x14
+    111e:	6d 89       	ldd	r22, Y+21	; 0x15
+    1120:	7e 89       	ldd	r23, Y+22	; 0x16
+    1122:	04 17       	cp	r16, r20
+    1124:	15 07       	cpc	r17, r21
+    1126:	26 07       	cpc	r18, r22
+    1128:	37 07       	cpc	r19, r23
+    112a:	b0 f4       	brcc	.+44     	; 0x1158 <_ZN20TimerEventDispatcher11CheckEventsEv+0x82>
+      e->eplased = e->time;
+    112c:	11 96       	adiw	r26, 0x01	; 1
+    112e:	4d 91       	ld	r20, X+
+    1130:	5d 91       	ld	r21, X+
+    1132:	6d 91       	ld	r22, X+
+    1134:	7c 91       	ld	r23, X
+    1136:	14 97       	sbiw	r26, 0x04	; 4
+    1138:	15 96       	adiw	r26, 0x05	; 5
+    113a:	4d 93       	st	X+, r20
+    113c:	5d 93       	st	X+, r21
+    113e:	6d 93       	st	X+, r22
+    1140:	7c 93       	st	X, r23
+    1142:	18 97       	sbiw	r26, 0x08	; 8
+      e->Callback(e,e->context);
+    1144:	1b 96       	adiw	r26, 0x0b	; 11
+    1146:	6d 91       	ld	r22, X+
+    1148:	7c 91       	ld	r23, X
+    114a:	1c 97       	sbiw	r26, 0x0c	; 12
+    114c:	19 96       	adiw	r26, 0x09	; 9
+    114e:	ed 91       	ld	r30, X+
+    1150:	fc 91       	ld	r31, X
+    1152:	1a 97       	sbiw	r26, 0x0a	; 10
+    1154:	cd 01       	movw	r24, r26
+    1156:	09 95       	icall
+}
+
+void TimerEventDispatcher::CheckEvents()
+{
+  TIMER_EVENT *e;PORTB ^=0xC0;
+  for( UINT i=0; i < _eventListLength ;i++ ){
+    1158:	f3 94       	inc	r15
+    115a:	8a 89       	ldd	r24, Y+18	; 0x12
+    115c:	f8 16       	cp	r15, r24
+    115e:	70 f2       	brcs	.-100    	; 0x10fc <_ZN20TimerEventDispatcher11CheckEventsEv+0x26>
+      e->eplased = e->time;
+      e->Callback(e,e->context);
+        
+    }  
+  }    
+}
+    1160:	df 91       	pop	r29
+    1162:	cf 91       	pop	r28
+    1164:	1f 91       	pop	r17
+    1166:	0f 91       	pop	r16
+    1168:	ff 90       	pop	r15
+    116a:	ef 90       	pop	r14
+    116c:	08 95       	ret
+
+0000116e <__subsf3>:
+    116e:	50 58       	subi	r21, 0x80	; 128
+
+00001170 <__addsf3>:
+    1170:	bb 27       	eor	r27, r27
+    1172:	aa 27       	eor	r26, r26
+    1174:	0e d0       	rcall	.+28     	; 0x1192 <__addsf3x>
+    1176:	e0 c0       	rjmp	.+448    	; 0x1338 <__fp_round>
+    1178:	d1 d0       	rcall	.+418    	; 0x131c <__fp_pscA>
+    117a:	30 f0       	brcs	.+12     	; 0x1188 <__addsf3+0x18>
+    117c:	d6 d0       	rcall	.+428    	; 0x132a <__fp_pscB>
+    117e:	20 f0       	brcs	.+8      	; 0x1188 <__addsf3+0x18>
+    1180:	31 f4       	brne	.+12     	; 0x118e <__addsf3+0x1e>
+    1182:	9f 3f       	cpi	r25, 0xFF	; 255
+    1184:	11 f4       	brne	.+4      	; 0x118a <__addsf3+0x1a>
+    1186:	1e f4       	brtc	.+6      	; 0x118e <__addsf3+0x1e>
+    1188:	c6 c0       	rjmp	.+396    	; 0x1316 <__fp_nan>
+    118a:	0e f4       	brtc	.+2      	; 0x118e <__addsf3+0x1e>
+    118c:	e0 95       	com	r30
+    118e:	e7 fb       	bst	r30, 7
+    1190:	bc c0       	rjmp	.+376    	; 0x130a <__fp_inf>
+
+00001192 <__addsf3x>:
+    1192:	e9 2f       	mov	r30, r25
+    1194:	e2 d0       	rcall	.+452    	; 0x135a <__fp_split3>
+    1196:	80 f3       	brcs	.-32     	; 0x1178 <__addsf3+0x8>
+    1198:	ba 17       	cp	r27, r26
+    119a:	62 07       	cpc	r22, r18
+    119c:	73 07       	cpc	r23, r19
+    119e:	84 07       	cpc	r24, r20
+    11a0:	95 07       	cpc	r25, r21
+    11a2:	18 f0       	brcs	.+6      	; 0x11aa <__addsf3x+0x18>
+    11a4:	71 f4       	brne	.+28     	; 0x11c2 <__addsf3x+0x30>
+    11a6:	9e f5       	brtc	.+102    	; 0x120e <__addsf3x+0x7c>
+    11a8:	fa c0       	rjmp	.+500    	; 0x139e <__fp_zero>
+    11aa:	0e f4       	brtc	.+2      	; 0x11ae <__addsf3x+0x1c>
+    11ac:	e0 95       	com	r30
+    11ae:	0b 2e       	mov	r0, r27
+    11b0:	ba 2f       	mov	r27, r26
+    11b2:	a0 2d       	mov	r26, r0
+    11b4:	0b 01       	movw	r0, r22
+    11b6:	b9 01       	movw	r22, r18
+    11b8:	90 01       	movw	r18, r0
+    11ba:	0c 01       	movw	r0, r24
+    11bc:	ca 01       	movw	r24, r20
+    11be:	a0 01       	movw	r20, r0
+    11c0:	11 24       	eor	r1, r1
+    11c2:	ff 27       	eor	r31, r31
+    11c4:	59 1b       	sub	r21, r25
+    11c6:	99 f0       	breq	.+38     	; 0x11ee <__addsf3x+0x5c>
+    11c8:	59 3f       	cpi	r21, 0xF9	; 249
+    11ca:	50 f4       	brcc	.+20     	; 0x11e0 <__addsf3x+0x4e>
+    11cc:	50 3e       	cpi	r21, 0xE0	; 224
+    11ce:	68 f1       	brcs	.+90     	; 0x122a <__addsf3x+0x98>
+    11d0:	1a 16       	cp	r1, r26
+    11d2:	f0 40       	sbci	r31, 0x00	; 0
+    11d4:	a2 2f       	mov	r26, r18
+    11d6:	23 2f       	mov	r18, r19
+    11d8:	34 2f       	mov	r19, r20
+    11da:	44 27       	eor	r20, r20
+    11dc:	58 5f       	subi	r21, 0xF8	; 248
+    11de:	f3 cf       	rjmp	.-26     	; 0x11c6 <__addsf3x+0x34>
+    11e0:	46 95       	lsr	r20
+    11e2:	37 95       	ror	r19
+    11e4:	27 95       	ror	r18
+    11e6:	a7 95       	ror	r26
+    11e8:	f0 40       	sbci	r31, 0x00	; 0
+    11ea:	53 95       	inc	r21
+    11ec:	c9 f7       	brne	.-14     	; 0x11e0 <__addsf3x+0x4e>
+    11ee:	7e f4       	brtc	.+30     	; 0x120e <__addsf3x+0x7c>
+    11f0:	1f 16       	cp	r1, r31
+    11f2:	ba 0b       	sbc	r27, r26
+    11f4:	62 0b       	sbc	r22, r18
+    11f6:	73 0b       	sbc	r23, r19
+    11f8:	84 0b       	sbc	r24, r20
+    11fa:	ba f0       	brmi	.+46     	; 0x122a <__addsf3x+0x98>
+    11fc:	91 50       	subi	r25, 0x01	; 1
+    11fe:	a1 f0       	breq	.+40     	; 0x1228 <__addsf3x+0x96>
+    1200:	ff 0f       	add	r31, r31
+    1202:	bb 1f       	adc	r27, r27
+    1204:	66 1f       	adc	r22, r22
+    1206:	77 1f       	adc	r23, r23
+    1208:	88 1f       	adc	r24, r24
+    120a:	c2 f7       	brpl	.-16     	; 0x11fc <__addsf3x+0x6a>
+    120c:	0e c0       	rjmp	.+28     	; 0x122a <__addsf3x+0x98>
+    120e:	ba 0f       	add	r27, r26
+    1210:	62 1f       	adc	r22, r18
+    1212:	73 1f       	adc	r23, r19
+    1214:	84 1f       	adc	r24, r20
+    1216:	48 f4       	brcc	.+18     	; 0x122a <__addsf3x+0x98>
+    1218:	87 95       	ror	r24
+    121a:	77 95       	ror	r23
+    121c:	67 95       	ror	r22
+    121e:	b7 95       	ror	r27
+    1220:	f7 95       	ror	r31
+    1222:	9e 3f       	cpi	r25, 0xFE	; 254
+    1224:	08 f0       	brcs	.+2      	; 0x1228 <__addsf3x+0x96>
+    1226:	b3 cf       	rjmp	.-154    	; 0x118e <__addsf3+0x1e>
+    1228:	93 95       	inc	r25
+    122a:	88 0f       	add	r24, r24
+    122c:	08 f0       	brcs	.+2      	; 0x1230 <__addsf3x+0x9e>
+    122e:	99 27       	eor	r25, r25
+    1230:	ee 0f       	add	r30, r30
+    1232:	97 95       	ror	r25
+    1234:	87 95       	ror	r24
+    1236:	08 95       	ret
+
+00001238 <__fixunssfsi>:
+    1238:	98 d0       	rcall	.+304    	; 0x136a <__fp_splitA>
+    123a:	88 f0       	brcs	.+34     	; 0x125e <__fixunssfsi+0x26>
+    123c:	9f 57       	subi	r25, 0x7F	; 127
+    123e:	90 f0       	brcs	.+36     	; 0x1264 <__fixunssfsi+0x2c>
+    1240:	b9 2f       	mov	r27, r25
+    1242:	99 27       	eor	r25, r25
+    1244:	b7 51       	subi	r27, 0x17	; 23
+    1246:	a0 f0       	brcs	.+40     	; 0x1270 <__fixunssfsi+0x38>
+    1248:	d1 f0       	breq	.+52     	; 0x127e <__fixunssfsi+0x46>
+    124a:	66 0f       	add	r22, r22
+    124c:	77 1f       	adc	r23, r23
+    124e:	88 1f       	adc	r24, r24
+    1250:	99 1f       	adc	r25, r25
+    1252:	1a f0       	brmi	.+6      	; 0x125a <__fixunssfsi+0x22>
+    1254:	ba 95       	dec	r27
+    1256:	c9 f7       	brne	.-14     	; 0x124a <__fixunssfsi+0x12>
+    1258:	12 c0       	rjmp	.+36     	; 0x127e <__fixunssfsi+0x46>
+    125a:	b1 30       	cpi	r27, 0x01	; 1
+    125c:	81 f0       	breq	.+32     	; 0x127e <__fixunssfsi+0x46>
+    125e:	9f d0       	rcall	.+318    	; 0x139e <__fp_zero>
+    1260:	b1 e0       	ldi	r27, 0x01	; 1
+    1262:	08 95       	ret
+    1264:	9c c0       	rjmp	.+312    	; 0x139e <__fp_zero>
+    1266:	67 2f       	mov	r22, r23
+    1268:	78 2f       	mov	r23, r24
+    126a:	88 27       	eor	r24, r24
+    126c:	b8 5f       	subi	r27, 0xF8	; 248
+    126e:	39 f0       	breq	.+14     	; 0x127e <__fixunssfsi+0x46>
+    1270:	b9 3f       	cpi	r27, 0xF9	; 249
+    1272:	cc f3       	brlt	.-14     	; 0x1266 <__fixunssfsi+0x2e>
+    1274:	86 95       	lsr	r24
+    1276:	77 95       	ror	r23
+    1278:	67 95       	ror	r22
+    127a:	b3 95       	inc	r27
+    127c:	d9 f7       	brne	.-10     	; 0x1274 <__fixunssfsi+0x3c>
+    127e:	3e f4       	brtc	.+14     	; 0x128e <__fixunssfsi+0x56>
+    1280:	90 95       	com	r25
+    1282:	80 95       	com	r24
+    1284:	70 95       	com	r23
+    1286:	61 95       	neg	r22
+    1288:	7f 4f       	sbci	r23, 0xFF	; 255
+    128a:	8f 4f       	sbci	r24, 0xFF	; 255
+    128c:	9f 4f       	sbci	r25, 0xFF	; 255
+    128e:	08 95       	ret
+
+00001290 <__floatunsisf>:
+    1290:	e8 94       	clt
+    1292:	09 c0       	rjmp	.+18     	; 0x12a6 <__floatsisf+0x12>
+
+00001294 <__floatsisf>:
+    1294:	97 fb       	bst	r25, 7
+    1296:	3e f4       	brtc	.+14     	; 0x12a6 <__floatsisf+0x12>
+    1298:	90 95       	com	r25
+    129a:	80 95       	com	r24
+    129c:	70 95       	com	r23
+    129e:	61 95       	neg	r22
+    12a0:	7f 4f       	sbci	r23, 0xFF	; 255
+    12a2:	8f 4f       	sbci	r24, 0xFF	; 255
+    12a4:	9f 4f       	sbci	r25, 0xFF	; 255
+    12a6:	99 23       	and	r25, r25
+    12a8:	a9 f0       	breq	.+42     	; 0x12d4 <__floatsisf+0x40>
+    12aa:	f9 2f       	mov	r31, r25
+    12ac:	96 e9       	ldi	r25, 0x96	; 150
+    12ae:	bb 27       	eor	r27, r27
+    12b0:	93 95       	inc	r25
+    12b2:	f6 95       	lsr	r31
+    12b4:	87 95       	ror	r24
+    12b6:	77 95       	ror	r23
+    12b8:	67 95       	ror	r22
+    12ba:	b7 95       	ror	r27
+    12bc:	f1 11       	cpse	r31, r1
+    12be:	f8 cf       	rjmp	.-16     	; 0x12b0 <__floatsisf+0x1c>
+    12c0:	fa f4       	brpl	.+62     	; 0x1300 <__floatsisf+0x6c>
+    12c2:	bb 0f       	add	r27, r27
+    12c4:	11 f4       	brne	.+4      	; 0x12ca <__floatsisf+0x36>
+    12c6:	60 ff       	sbrs	r22, 0
+    12c8:	1b c0       	rjmp	.+54     	; 0x1300 <__floatsisf+0x6c>
+    12ca:	6f 5f       	subi	r22, 0xFF	; 255
+    12cc:	7f 4f       	sbci	r23, 0xFF	; 255
+    12ce:	8f 4f       	sbci	r24, 0xFF	; 255
+    12d0:	9f 4f       	sbci	r25, 0xFF	; 255
+    12d2:	16 c0       	rjmp	.+44     	; 0x1300 <__floatsisf+0x6c>
+    12d4:	88 23       	and	r24, r24
+    12d6:	11 f0       	breq	.+4      	; 0x12dc <__floatsisf+0x48>
+    12d8:	96 e9       	ldi	r25, 0x96	; 150
+    12da:	11 c0       	rjmp	.+34     	; 0x12fe <__floatsisf+0x6a>
+    12dc:	77 23       	and	r23, r23
+    12de:	21 f0       	breq	.+8      	; 0x12e8 <__floatsisf+0x54>
+    12e0:	9e e8       	ldi	r25, 0x8E	; 142
+    12e2:	87 2f       	mov	r24, r23
+    12e4:	76 2f       	mov	r23, r22
+    12e6:	05 c0       	rjmp	.+10     	; 0x12f2 <__floatsisf+0x5e>
+    12e8:	66 23       	and	r22, r22
+    12ea:	71 f0       	breq	.+28     	; 0x1308 <__floatsisf+0x74>
+    12ec:	96 e8       	ldi	r25, 0x86	; 134
+    12ee:	86 2f       	mov	r24, r22
+    12f0:	70 e0       	ldi	r23, 0x00	; 0
+    12f2:	60 e0       	ldi	r22, 0x00	; 0
+    12f4:	2a f0       	brmi	.+10     	; 0x1300 <__floatsisf+0x6c>
+    12f6:	9a 95       	dec	r25
+    12f8:	66 0f       	add	r22, r22
+    12fa:	77 1f       	adc	r23, r23
+    12fc:	88 1f       	adc	r24, r24
+    12fe:	da f7       	brpl	.-10     	; 0x12f6 <__floatsisf+0x62>
+    1300:	88 0f       	add	r24, r24
+    1302:	96 95       	lsr	r25
+    1304:	87 95       	ror	r24
+    1306:	97 f9       	bld	r25, 7
+    1308:	08 95       	ret
+
+0000130a <__fp_inf>:
+    130a:	97 f9       	bld	r25, 7
+    130c:	9f 67       	ori	r25, 0x7F	; 127
+    130e:	80 e8       	ldi	r24, 0x80	; 128
+    1310:	70 e0       	ldi	r23, 0x00	; 0
+    1312:	60 e0       	ldi	r22, 0x00	; 0
+    1314:	08 95       	ret
+
+00001316 <__fp_nan>:
+    1316:	9f ef       	ldi	r25, 0xFF	; 255
+    1318:	80 ec       	ldi	r24, 0xC0	; 192
+    131a:	08 95       	ret
+
+0000131c <__fp_pscA>:
+    131c:	00 24       	eor	r0, r0
+    131e:	0a 94       	dec	r0
+    1320:	16 16       	cp	r1, r22
+    1322:	17 06       	cpc	r1, r23
+    1324:	18 06       	cpc	r1, r24
+    1326:	09 06       	cpc	r0, r25
+    1328:	08 95       	ret
+
+0000132a <__fp_pscB>:
+    132a:	00 24       	eor	r0, r0
+    132c:	0a 94       	dec	r0
+    132e:	12 16       	cp	r1, r18
+    1330:	13 06       	cpc	r1, r19
+    1332:	14 06       	cpc	r1, r20
+    1334:	05 06       	cpc	r0, r21
+    1336:	08 95       	ret
+
+00001338 <__fp_round>:
+    1338:	09 2e       	mov	r0, r25
+    133a:	03 94       	inc	r0
+    133c:	00 0c       	add	r0, r0
+    133e:	11 f4       	brne	.+4      	; 0x1344 <__fp_round+0xc>
+    1340:	88 23       	and	r24, r24
+    1342:	52 f0       	brmi	.+20     	; 0x1358 <__fp_round+0x20>
+    1344:	bb 0f       	add	r27, r27
+    1346:	40 f4       	brcc	.+16     	; 0x1358 <__fp_round+0x20>
+    1348:	bf 2b       	or	r27, r31
+    134a:	11 f4       	brne	.+4      	; 0x1350 <__fp_round+0x18>
+    134c:	60 ff       	sbrs	r22, 0
+    134e:	04 c0       	rjmp	.+8      	; 0x1358 <__fp_round+0x20>
+    1350:	6f 5f       	subi	r22, 0xFF	; 255
+    1352:	7f 4f       	sbci	r23, 0xFF	; 255
+    1354:	8f 4f       	sbci	r24, 0xFF	; 255
+    1356:	9f 4f       	sbci	r25, 0xFF	; 255
+    1358:	08 95       	ret
+
+0000135a <__fp_split3>:
+    135a:	57 fd       	sbrc	r21, 7
+    135c:	90 58       	subi	r25, 0x80	; 128
+    135e:	44 0f       	add	r20, r20
+    1360:	55 1f       	adc	r21, r21
+    1362:	59 f0       	breq	.+22     	; 0x137a <__fp_splitA+0x10>
+    1364:	5f 3f       	cpi	r21, 0xFF	; 255
+    1366:	71 f0       	breq	.+28     	; 0x1384 <__fp_splitA+0x1a>
+    1368:	47 95       	ror	r20
+
+0000136a <__fp_splitA>:
+    136a:	88 0f       	add	r24, r24
+    136c:	97 fb       	bst	r25, 7
+    136e:	99 1f       	adc	r25, r25
+    1370:	61 f0       	breq	.+24     	; 0x138a <__fp_splitA+0x20>
+    1372:	9f 3f       	cpi	r25, 0xFF	; 255
+    1374:	79 f0       	breq	.+30     	; 0x1394 <__fp_splitA+0x2a>
+    1376:	87 95       	ror	r24
+    1378:	08 95       	ret
+    137a:	12 16       	cp	r1, r18
+    137c:	13 06       	cpc	r1, r19
+    137e:	14 06       	cpc	r1, r20
+    1380:	55 1f       	adc	r21, r21
+    1382:	f2 cf       	rjmp	.-28     	; 0x1368 <__fp_split3+0xe>
+    1384:	46 95       	lsr	r20
+    1386:	f1 df       	rcall	.-30     	; 0x136a <__fp_splitA>
+    1388:	08 c0       	rjmp	.+16     	; 0x139a <__fp_splitA+0x30>
+    138a:	16 16       	cp	r1, r22
+    138c:	17 06       	cpc	r1, r23
+    138e:	18 06       	cpc	r1, r24
+    1390:	99 1f       	adc	r25, r25
+    1392:	f1 cf       	rjmp	.-30     	; 0x1376 <__fp_splitA+0xc>
+    1394:	86 95       	lsr	r24
+    1396:	71 05       	cpc	r23, r1
+    1398:	61 05       	cpc	r22, r1
+    139a:	08 94       	sec
+    139c:	08 95       	ret
+
+0000139e <__fp_zero>:
+    139e:	e8 94       	clt
+
+000013a0 <__fp_szero>:
+    13a0:	bb 27       	eor	r27, r27
+    13a2:	66 27       	eor	r22, r22
+    13a4:	77 27       	eor	r23, r23
+    13a6:	cb 01       	movw	r24, r22
+    13a8:	97 f9       	bld	r25, 7
+    13aa:	08 95       	ret
+
+000013ac <__mulsf3>:
+    13ac:	0b d0       	rcall	.+22     	; 0x13c4 <__mulsf3x>
+    13ae:	c4 cf       	rjmp	.-120    	; 0x1338 <__fp_round>
+    13b0:	b5 df       	rcall	.-150    	; 0x131c <__fp_pscA>
+    13b2:	28 f0       	brcs	.+10     	; 0x13be <__mulsf3+0x12>
+    13b4:	ba df       	rcall	.-140    	; 0x132a <__fp_pscB>
+    13b6:	18 f0       	brcs	.+6      	; 0x13be <__mulsf3+0x12>
+    13b8:	95 23       	and	r25, r21
+    13ba:	09 f0       	breq	.+2      	; 0x13be <__mulsf3+0x12>
+    13bc:	a6 cf       	rjmp	.-180    	; 0x130a <__fp_inf>
+    13be:	ab cf       	rjmp	.-170    	; 0x1316 <__fp_nan>
+    13c0:	11 24       	eor	r1, r1
+    13c2:	ee cf       	rjmp	.-36     	; 0x13a0 <__fp_szero>
+
+000013c4 <__mulsf3x>:
+    13c4:	ca df       	rcall	.-108    	; 0x135a <__fp_split3>
+    13c6:	a0 f3       	brcs	.-24     	; 0x13b0 <__mulsf3+0x4>
+
+000013c8 <__mulsf3_pse>:
+    13c8:	95 9f       	mul	r25, r21
+    13ca:	d1 f3       	breq	.-12     	; 0x13c0 <__mulsf3+0x14>
+    13cc:	95 0f       	add	r25, r21
+    13ce:	50 e0       	ldi	r21, 0x00	; 0
+    13d0:	55 1f       	adc	r21, r21
+    13d2:	62 9f       	mul	r22, r18
+    13d4:	f0 01       	movw	r30, r0
+    13d6:	72 9f       	mul	r23, r18
+    13d8:	bb 27       	eor	r27, r27
+    13da:	f0 0d       	add	r31, r0
+    13dc:	b1 1d       	adc	r27, r1
+    13de:	63 9f       	mul	r22, r19
+    13e0:	aa 27       	eor	r26, r26
+    13e2:	f0 0d       	add	r31, r0
+    13e4:	b1 1d       	adc	r27, r1
+    13e6:	aa 1f       	adc	r26, r26
+    13e8:	64 9f       	mul	r22, r20
+    13ea:	66 27       	eor	r22, r22
+    13ec:	b0 0d       	add	r27, r0
+    13ee:	a1 1d       	adc	r26, r1
+    13f0:	66 1f       	adc	r22, r22
+    13f2:	82 9f       	mul	r24, r18
+    13f4:	22 27       	eor	r18, r18
+    13f6:	b0 0d       	add	r27, r0
+    13f8:	a1 1d       	adc	r26, r1
+    13fa:	62 1f       	adc	r22, r18
+    13fc:	73 9f       	mul	r23, r19
+    13fe:	b0 0d       	add	r27, r0
+    1400:	a1 1d       	adc	r26, r1
+    1402:	62 1f       	adc	r22, r18
+    1404:	83 9f       	mul	r24, r19
+    1406:	a0 0d       	add	r26, r0
+    1408:	61 1d       	adc	r22, r1
+    140a:	22 1f       	adc	r18, r18
+    140c:	74 9f       	mul	r23, r20
+    140e:	33 27       	eor	r19, r19
+    1410:	a0 0d       	add	r26, r0
+    1412:	61 1d       	adc	r22, r1
+    1414:	23 1f       	adc	r18, r19
+    1416:	84 9f       	mul	r24, r20
+    1418:	60 0d       	add	r22, r0
+    141a:	21 1d       	adc	r18, r1
+    141c:	82 2f       	mov	r24, r18
+    141e:	76 2f       	mov	r23, r22
+    1420:	6a 2f       	mov	r22, r26
+    1422:	11 24       	eor	r1, r1
+    1424:	9f 57       	subi	r25, 0x7F	; 127
+    1426:	50 40       	sbci	r21, 0x00	; 0
+    1428:	8a f0       	brmi	.+34     	; 0x144c <__mulsf3_pse+0x84>
+    142a:	e1 f0       	breq	.+56     	; 0x1464 <__mulsf3_pse+0x9c>
+    142c:	88 23       	and	r24, r24
+    142e:	4a f0       	brmi	.+18     	; 0x1442 <__mulsf3_pse+0x7a>
+    1430:	ee 0f       	add	r30, r30
+    1432:	ff 1f       	adc	r31, r31
+    1434:	bb 1f       	adc	r27, r27
+    1436:	66 1f       	adc	r22, r22
+    1438:	77 1f       	adc	r23, r23
+    143a:	88 1f       	adc	r24, r24
+    143c:	91 50       	subi	r25, 0x01	; 1
+    143e:	50 40       	sbci	r21, 0x00	; 0
+    1440:	a9 f7       	brne	.-22     	; 0x142c <__mulsf3_pse+0x64>
+    1442:	9e 3f       	cpi	r25, 0xFE	; 254
+    1444:	51 05       	cpc	r21, r1
+    1446:	70 f0       	brcs	.+28     	; 0x1464 <__mulsf3_pse+0x9c>
+    1448:	60 cf       	rjmp	.-320    	; 0x130a <__fp_inf>
+    144a:	aa cf       	rjmp	.-172    	; 0x13a0 <__fp_szero>
+    144c:	5f 3f       	cpi	r21, 0xFF	; 255
+    144e:	ec f3       	brlt	.-6      	; 0x144a <__mulsf3_pse+0x82>
+    1450:	98 3e       	cpi	r25, 0xE8	; 232
+    1452:	dc f3       	brlt	.-10     	; 0x144a <__mulsf3_pse+0x82>
+    1454:	86 95       	lsr	r24
+    1456:	77 95       	ror	r23
+    1458:	67 95       	ror	r22
+    145a:	b7 95       	ror	r27
+    145c:	f7 95       	ror	r31
+    145e:	e7 95       	ror	r30
+    1460:	9f 5f       	subi	r25, 0xFF	; 255
+    1462:	c1 f7       	brne	.-16     	; 0x1454 <__mulsf3_pse+0x8c>
+    1464:	fe 2b       	or	r31, r30
+    1466:	88 0f       	add	r24, r24
+    1468:	91 1d       	adc	r25, r1
+    146a:	96 95       	lsr	r25
+    146c:	87 95       	ror	r24
+    146e:	97 f9       	bld	r25, 7
+    1470:	08 95       	ret
+
+00001472 <__mulsi3>:
+    1472:	db 01       	movw	r26, r22
+    1474:	8f 93       	push	r24
+    1476:	9f 93       	push	r25
+    1478:	49 d0       	rcall	.+146    	; 0x150c <__muluhisi3>
+    147a:	bf 91       	pop	r27
+    147c:	af 91       	pop	r26
+    147e:	a2 9f       	mul	r26, r18
+    1480:	80 0d       	add	r24, r0
+    1482:	91 1d       	adc	r25, r1
+    1484:	a3 9f       	mul	r26, r19
+    1486:	90 0d       	add	r25, r0
+    1488:	b2 9f       	mul	r27, r18
+    148a:	90 0d       	add	r25, r0
+    148c:	11 24       	eor	r1, r1
+    148e:	08 95       	ret
+
+00001490 <__udivmodsi4>:
+    1490:	a1 e2       	ldi	r26, 0x21	; 33
+    1492:	1a 2e       	mov	r1, r26
+    1494:	aa 1b       	sub	r26, r26
+    1496:	bb 1b       	sub	r27, r27
+    1498:	fd 01       	movw	r30, r26
+    149a:	0d c0       	rjmp	.+26     	; 0x14b6 <__udivmodsi4_ep>
+
+0000149c <__udivmodsi4_loop>:
+    149c:	aa 1f       	adc	r26, r26
+    149e:	bb 1f       	adc	r27, r27
+    14a0:	ee 1f       	adc	r30, r30
+    14a2:	ff 1f       	adc	r31, r31
+    14a4:	a2 17       	cp	r26, r18
+    14a6:	b3 07       	cpc	r27, r19
+    14a8:	e4 07       	cpc	r30, r20
+    14aa:	f5 07       	cpc	r31, r21
+    14ac:	20 f0       	brcs	.+8      	; 0x14b6 <__udivmodsi4_ep>
+    14ae:	a2 1b       	sub	r26, r18
+    14b0:	b3 0b       	sbc	r27, r19
+    14b2:	e4 0b       	sbc	r30, r20
+    14b4:	f5 0b       	sbc	r31, r21
+
+000014b6 <__udivmodsi4_ep>:
+    14b6:	66 1f       	adc	r22, r22
+    14b8:	77 1f       	adc	r23, r23
+    14ba:	88 1f       	adc	r24, r24
+    14bc:	99 1f       	adc	r25, r25
+    14be:	1a 94       	dec	r1
+    14c0:	69 f7       	brne	.-38     	; 0x149c <__udivmodsi4_loop>
+    14c2:	60 95       	com	r22
+    14c4:	70 95       	com	r23
+    14c6:	80 95       	com	r24
+    14c8:	90 95       	com	r25
+    14ca:	9b 01       	movw	r18, r22
+    14cc:	ac 01       	movw	r20, r24
+    14ce:	bd 01       	movw	r22, r26
+    14d0:	cf 01       	movw	r24, r30
+    14d2:	08 95       	ret
+
+000014d4 <__divmodsi4>:
+    14d4:	05 2e       	mov	r0, r21
+    14d6:	97 fb       	bst	r25, 7
+    14d8:	16 f4       	brtc	.+4      	; 0x14de <__divmodsi4+0xa>
+    14da:	00 94       	com	r0
+    14dc:	0f d0       	rcall	.+30     	; 0x14fc <__negsi2>
+    14de:	57 fd       	sbrc	r21, 7
+    14e0:	05 d0       	rcall	.+10     	; 0x14ec <__divmodsi4_neg2>
+    14e2:	d6 df       	rcall	.-84     	; 0x1490 <__udivmodsi4>
+    14e4:	07 fc       	sbrc	r0, 7
+    14e6:	02 d0       	rcall	.+4      	; 0x14ec <__divmodsi4_neg2>
+    14e8:	46 f4       	brtc	.+16     	; 0x14fa <__divmodsi4_exit>
+    14ea:	08 c0       	rjmp	.+16     	; 0x14fc <__negsi2>
+
+000014ec <__divmodsi4_neg2>:
+    14ec:	50 95       	com	r21
+    14ee:	40 95       	com	r20
+    14f0:	30 95       	com	r19
+    14f2:	21 95       	neg	r18
+    14f4:	3f 4f       	sbci	r19, 0xFF	; 255
+    14f6:	4f 4f       	sbci	r20, 0xFF	; 255
+    14f8:	5f 4f       	sbci	r21, 0xFF	; 255
+
+000014fa <__divmodsi4_exit>:
+    14fa:	08 95       	ret
+
+000014fc <__negsi2>:
+    14fc:	90 95       	com	r25
+    14fe:	80 95       	com	r24
+    1500:	70 95       	com	r23
+    1502:	61 95       	neg	r22
+    1504:	7f 4f       	sbci	r23, 0xFF	; 255
+    1506:	8f 4f       	sbci	r24, 0xFF	; 255
+    1508:	9f 4f       	sbci	r25, 0xFF	; 255
+    150a:	08 95       	ret
+
+0000150c <__muluhisi3>:
+    150c:	0f d0       	rcall	.+30     	; 0x152c <__umulhisi3>
+    150e:	a5 9f       	mul	r26, r21
+    1510:	90 0d       	add	r25, r0
+    1512:	b4 9f       	mul	r27, r20
+    1514:	90 0d       	add	r25, r0
+    1516:	a4 9f       	mul	r26, r20
+    1518:	80 0d       	add	r24, r0
+    151a:	91 1d       	adc	r25, r1
+    151c:	11 24       	eor	r1, r1
+    151e:	08 95       	ret
+
+00001520 <__tablejump2__>:
+    1520:	ee 0f       	add	r30, r30
+    1522:	ff 1f       	adc	r31, r31
+
+00001524 <__tablejump__>:
+    1524:	05 90       	lpm	r0, Z+
+    1526:	f4 91       	lpm	r31, Z
+    1528:	e0 2d       	mov	r30, r0
+    152a:	09 94       	ijmp
+
+0000152c <__umulhisi3>:
+    152c:	a2 9f       	mul	r26, r18
+    152e:	b0 01       	movw	r22, r0
+    1530:	b3 9f       	mul	r27, r19
+    1532:	c0 01       	movw	r24, r0
+    1534:	a3 9f       	mul	r26, r19
+    1536:	01 d0       	rcall	.+2      	; 0x153a <__umulhisi3+0xe>
+    1538:	b2 9f       	mul	r27, r18
+    153a:	70 0d       	add	r23, r0
+    153c:	81 1d       	adc	r24, r1
+    153e:	11 24       	eor	r1, r1
+    1540:	91 1d       	adc	r25, r1
+    1542:	08 95       	ret
+
+00001544 <__do_global_dtors>:
+    1544:	10 e0       	ldi	r17, 0x00	; 0
+    1546:	c8 e3       	ldi	r28, 0x38	; 56
+    1548:	d0 e0       	ldi	r29, 0x00	; 0
+    154a:	03 c0       	rjmp	.+6      	; 0x1552 <__do_global_dtors+0xe>
+    154c:	fe 01       	movw	r30, r28
+    154e:	ea df       	rcall	.-44     	; 0x1524 <__tablejump__>
+    1550:	22 96       	adiw	r28, 0x02	; 2
+    1552:	cc 33       	cpi	r28, 0x3C	; 60
+    1554:	d1 07       	cpc	r29, r17
+    1556:	d1 f7       	brne	.-12     	; 0x154c <__do_global_dtors+0x8>
+    1558:	f8 94       	cli
+
+0000155a <__stop_program>:
+    155a:	ff cf       	rjmp	.-2      	; 0x155a <__stop_program>

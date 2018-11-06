@@ -1,0 +1,137 @@
+
+AtmegaTimer.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00000090  00000124  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000090  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000001  00800100  00800100  00000124  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000124  2**0
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000090  00000000  00000000  00000154  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000794  00000000  00000000  000001e4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000002e4  00000000  00000000  00000978  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000025d  00000000  00000000  00000c5c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  0000015c  00000000  00000000  00000ebc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000645  00000000  00000000  00001018  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000002db  00000000  00000000  0000165d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000070  00000000  00000000  00001938  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+			break;
+	}
+}
+
+void Timer::SetOverflowInterval(MICROSECONDS microSeconds)
+{
+   0:	19 c0       	rjmp	.+50     	; 0x34 <__ctors_end>
+   2:	28 c0       	rjmp	.+80     	; 0x54 <__bad_interrupt>
+   4:	27 c0       	rjmp	.+78     	; 0x54 <__bad_interrupt>
+   6:	26 c0       	rjmp	.+76     	; 0x54 <__bad_interrupt>
+   8:	25 c0       	rjmp	.+74     	; 0x54 <__bad_interrupt>
+   a:	24 c0       	rjmp	.+72     	; 0x54 <__bad_interrupt>
+   c:	23 c0       	rjmp	.+70     	; 0x54 <__bad_interrupt>
+   e:	22 c0       	rjmp	.+68     	; 0x54 <__bad_interrupt>
+  10:	21 c0       	rjmp	.+66     	; 0x54 <__bad_interrupt>
+  12:	20 c0       	rjmp	.+64     	; 0x54 <__bad_interrupt>
+  14:	1f c0       	rjmp	.+62     	; 0x54 <__bad_interrupt>
+  16:	1e c0       	rjmp	.+60     	; 0x54 <__bad_interrupt>
+  18:	1d c0       	rjmp	.+58     	; 0x54 <__bad_interrupt>
+  1a:	1c c0       	rjmp	.+56     	; 0x54 <__bad_interrupt>
+	if(microSeconds > (2^COUNTER_RESOLUTION) * (2^10) ){
+  1c:	1b c0       	rjmp	.+54     	; 0x54 <__bad_interrupt>
+  1e:	1a c0       	rjmp	.+52     	; 0x54 <__bad_interrupt>
+  20:	23 c0       	rjmp	.+70     	; 0x68 <__vector_16>
+  22:	18 c0       	rjmp	.+48     	; 0x54 <__bad_interrupt>
+  24:	17 c0       	rjmp	.+46     	; 0x54 <__bad_interrupt>
+  26:	16 c0       	rjmp	.+44     	; 0x54 <__bad_interrupt>
+  28:	15 c0       	rjmp	.+42     	; 0x54 <__bad_interrupt>
+  2a:	14 c0       	rjmp	.+40     	; 0x54 <__bad_interrupt>
+  2c:	13 c0       	rjmp	.+38     	; 0x54 <__bad_interrupt>
+  2e:	12 c0       	rjmp	.+36     	; 0x54 <__bad_interrupt>
+  30:	11 c0       	rjmp	.+34     	; 0x54 <__bad_interrupt>
+  32:	10 c0       	rjmp	.+32     	; 0x54 <__bad_interrupt>
+
+00000034 <__ctors_end>:
+  34:	11 24       	eor	r1, r1
+		return; // can't do it
+	
+	} else if (microSeconds > (uint64_t) ((2^COUNTER_RESOLUTION) * (2^8))) {
+  36:	1f be       	out	0x3f, r1	; 63
+  38:	cf ef       	ldi	r28, 0xFF	; 255
+  3a:	d4 e0       	ldi	r29, 0x04	; 4
+  3c:	de bf       	out	0x3e, r29	; 62
+	    _prescalerValue = TwoToThePoerOfTen;
+  3e:	cd bf       	out	0x3d, r28	; 61
+
+00000040 <__do_clear_bss>:
+  40:	21 e0       	ldi	r18, 0x01	; 1
+		_timeResolution = F_CPU / ( 2^8 * 2^10 );
+  42:	a0 e0       	ldi	r26, 0x00	; 0
+  44:	b1 e0       	ldi	r27, 0x01	; 1
+  46:	01 c0       	rjmp	.+2      	; 0x4a <.do_clear_bss_start>
+
+00000048 <.do_clear_bss_loop>:
+  48:	1d 92       	st	X+, r1
+
+0000004a <.do_clear_bss_start>:
+  4a:	a1 30       	cpi	r26, 0x01	; 1
+  4c:	b2 07       	cpc	r27, r18
+  4e:	e1 f7       	brne	.-8      	; 0x48 <.do_clear_bss_loop>
+  50:	02 d0       	rcall	.+4      	; 0x56 <main>
+  52:	1c c0       	rjmp	.+56     	; 0x8c <_exit>
+
+00000054 <__bad_interrupt>:
+  54:	d5 cf       	rjmp	.-86     	; 0x0 <__vectors>
+
+00000056 <main>:
+  56:	80 ec       	ldi	r24, 0xC0	; 192
+	} else if (microSeconds > (uint64_t) ((2^COUNTER_RESOLUTION) * (2^6))) {
+  58:	87 bd       	out	0x27, r24	; 39
+  5a:	82 e0       	ldi	r24, 0x02	; 2
+  5c:	84 bd       	out	0x24, r24	; 36
+  5e:	85 e0       	ldi	r24, 0x05	; 5
+  60:	84 bd       	out	0x24, r24	; 36
+  62:	81 e0       	ldi	r24, 0x01	; 1
+  64:	84 b9       	out	0x04, r24	; 4
+  66:	ff cf       	rjmp	.-2      	; 0x66 <main+0x10>
+
+00000068 <__vector_16>:
+  68:	1f 92       	push	r1
+  6a:	0f 92       	push	r0
+  6c:	0f b6       	in	r0, 0x3f	; 63
+  6e:	0f 92       	push	r0
+		_prescalerValue = TwoToThePoerOfEight;
+  70:	11 24       	eor	r1, r1
+  72:	8f 93       	push	r24
+		_timeResolution = F_CPU / ( 2^8 * 2^8 );
+  74:	80 91 00 01 	lds	r24, 0x0100
+  78:	80 95       	com	r24
+  7a:	80 93 00 01 	sts	0x0100, r24
+  7e:	85 b9       	out	0x05, r24	; 5
+  80:	8f 91       	pop	r24
+  82:	0f 90       	pop	r0
+  84:	0f be       	out	0x3f, r0	; 63
+  86:	0f 90       	pop	r0
+  88:	1f 90       	pop	r1
+	} else if (microSeconds > (uint64_t) ((2^COUNTER_RESOLUTION) * (2^3))) {
+  8a:	18 95       	reti
+
+0000008c <_exit>:
+  8c:	f8 94       	cli
+
+0000008e <__stop_program>:
+  8e:	ff cf       	rjmp	.-2      	; 0x8e <__stop_program>
